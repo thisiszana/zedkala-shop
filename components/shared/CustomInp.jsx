@@ -12,6 +12,7 @@ export default function CustomInp({
   label,
   placeholder,
   wrapperClassName,
+  inputClassName,
   min,
   max,
   readOnly,
@@ -47,7 +48,7 @@ export default function CustomInp({
         readOnly={readOnly || false}
         disabled={disabled || false}
         placeholder={placeholder || "متن موردنظر را وارد کنید ..."}
-        className="input w-full"
+        className={inputClassName ? inputClassName : "input w-full h-full"}
         onFocus={onFocus}
         onBlur={onBlur}
       />

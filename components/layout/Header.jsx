@@ -13,7 +13,6 @@ export default function Header() {
           <MobileNav />
           <Link href="/" className="flex items-center gap-2">
             <Image src={images.home_logo} width={100} height={100} alt="لوگو" />
-            <h2>کالا</h2>
           </Link>
           <SearchBox />
           <DesktopNav />
