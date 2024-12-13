@@ -33,21 +33,18 @@ export default function CustomInp({
     if (value?.length !== 0) setActive(true);
   }, [value]);
 
-  const togglePasswordVisibility = () => {
-    setInputType((prevType) => (prevType === "password" ? "text" : "password"));
-  };
   return (
     <div className={`input-group ${wrapperClassName && wrapperClassName}`}>
       <input
         type={inputType}
         name={name || "input"}
         value={value}
-        onChange={onChange}
+        onChange={onChange || null}
         min={min || min}
         max={max || max}
         readOnly={readOnly || false}
         disabled={disabled || false}
-        placeholder={placeholder || "متن موردنظر را وارد کنید ..."}
+        placeholder={placeholder}
         className={inputClassName ? inputClassName : "input w-full h-full"}
         onFocus={onFocus}
         onBlur={onBlur}
@@ -57,8 +54,10 @@ export default function CustomInp({
       )}
       {type === "password" && (
         <div
-          className="cursor-pointer absolute right-3 top-1/2 transform -translate-y-1/2"
-          onClick={togglePasswordVisibility}
+          className="cursor-pointer absolute left-3 top-1/2 transform -translate-y-1/2"
+          onClick={() =>
+            setInputType(inputType === "password" ? "text" : "password")
+          }
         >
           {inputType === "password" ? <EyeClosed /> : <EyeOpen />}
         </div>

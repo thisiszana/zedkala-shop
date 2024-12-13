@@ -22,7 +22,7 @@
 
 .user-label {
   position: absolute;
-  left: 15px;
+  right: 15px;
   color: #a0a0a0;
   pointer-events: none;
   transform: translateY(1rem);
@@ -35,7 +35,7 @@
   background-color: white;
   padding: 0 0.4em;
   color: rgb(57, 57, 57);
-  left: 8px;
+  right: 8px;
 }
 
 .maxWidth {
