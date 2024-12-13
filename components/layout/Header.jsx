@@ -1,3 +1,5 @@
+"use client";
+
 import Link from "next/link";
 import DesktopNav from "./DesktopNav";
 import MobileNav from "./MobileNav";
@@ -5,8 +7,14 @@ import Image from "next/image";
 import { images } from "@/constants";
 import SearchBox from "../shared/SearchBox";
 import { ShoppingCart, User } from "../icons/Icons";
+import CustomBtn from "../shared/CustomBtn";
+import { useState } from "react";
+import { usePathname } from "next/navigation";
 
 export default function Header() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const pathname = usePathname()
   return (
     <header className="bg-white border-b fixed top-0 z-[1000] w-full">
       <div className="maxWidth w-full flex items-center justify-between max-lg:py-4">
@@ -18,7 +26,8 @@ export default function Header() {
           <SearchBox />
         </div>
         <div className="flex items-center gap-3">
-          <User />
+          <Link>{<User />}</Link>
+
           <ShoppingCart />
         </div>
       </div>
