@@ -8,3 +8,16 @@ export const MESSAGES = {
   failed: "شکست خورد",
   server: "خطا در ارتباط با سرور",
 };
+
+export const STATUS_CODES = {
+  success: 200,
+  created: 201,
+  updated: 202,
+  badRequest: 400,
+  unAuthorized: 401,
+  forbidden: 403,
+  exist: 422,
+  not_found: 404,
+  conflict: 409,
+  server: 500,
+};
