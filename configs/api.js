@@ -1,21 +1,39 @@
+"use server"
 import axios from "axios";
 
-// const BASE_URL = "https://zedkala-admin-panel.vercel.app";
-const BASE_URL = "http://localhost:3001";
+import { cookies } from "next/headers";
 
-const headers = {
-  "Content-Type": "application/json",
-};
+const BASE_URL =
+  process.env.NODE_ENV === "production"
+    ? "https://zedkala-admin-panel.vercel.app"
+    : "http://localhost:3001";
 
 const api = axios.create({
   baseURL: BASE_URL,
-  headers,
+  headers: {
+    "Content-Type": "application/json",
+  },
 });
 
-api.interceptors.response.use(
-  (response) => {
-    return response;
+api.interceptors.request.use(
+  (config) => {
+    try {
+      const accessToken = cookies().get("accessToken")?.value;
+      if (accessToken) {
+        config.headers.Authorization = `Bearer ${accessToken}`;
+      }
+    } catch (error) {
+      console.error("Error adding access token to headers:", error);
+    }
+    return config;
   },
+  (error) => {
+    return Promise.reject(error);
+  }
+);
+
+api.interceptors.response.use(
+  (response) => response,
   (error) => {
     const { response } = error;
 

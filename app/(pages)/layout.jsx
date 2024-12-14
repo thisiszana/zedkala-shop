@@ -6,7 +6,7 @@ export default function PagesLayout({ children }) {
   return (
     <>
       <Header />
-      <main className="mt-[90px] maxWidth pb-[150px] min-h-screen bg-red-400">
+      <main className="mt-[90px] maxWidth pb-[150px] min-h-screen">
         {children}
       </main>
       <Footer />
