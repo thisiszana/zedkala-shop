@@ -1,13 +1,13 @@
 import axios from "axios";
 
-const BASE_URL = process.env.API_URL;
+const BASE_URL ="https://zedkala-admin-panel.vercel.app";
 
 const headers = {
   "Content-Type": "application/json",
 };
 
 const api = axios.create({
-  BASE_URL,
+  baseURL: BASE_URL,
   headers,
 });
 

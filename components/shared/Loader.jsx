@@ -1,5 +1,5 @@
 import { PulseLoader } from "react-spinners";
 
-export default function Loader({ h, w, color }) {
-  return <PulseLoader />;
+export default function Loader({ size }) {
+  return <PulseLoader size={size} />;
 }

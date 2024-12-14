@@ -22,7 +22,7 @@ export default function CustomBtn({
       onClick={onClick || null}
     >
       {isLoading ? (
-        <Loader width={15} height={15} />
+        <Loader size={8} />
       ) : (
         <>
           {icon && icon}
