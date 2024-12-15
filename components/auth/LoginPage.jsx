@@ -41,7 +41,7 @@ export default function LoginPage() {
         username: form.username,
         password: form.password,
       });
-      console.log(res);
+      console.log("res in login page",res);
 
       if (res.success === true) {
         toast.success(res.msg);
@@ -49,14 +49,10 @@ export default function LoginPage() {
         router.push("/");
       } else {
         setLoading(false);
-        toast.error(res.msg);
+        toast.error(res.data.msg);
       }
     } catch (error) {
-      if (error.response && error.response.data) {
-        toast.error(`خطا: ${error.response.data.message}`);
-      } else {
-        toast.error("مشکلی پیش آمده است. لطفاً اتصال خود را بررسی کنید.");
-      }
+      console.log("err in login page", error.message)
     }
   };
   return (

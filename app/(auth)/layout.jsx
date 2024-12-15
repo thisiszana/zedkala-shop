@@ -1,7 +1,10 @@
-import React from 'react'
+import { redirect } from "next/navigation";
 
-export default function AuthLayOut({children}) {
-  return (
-    <main>{children}</main>
-  )
+import { getServerSession } from "@/utils/session";
+
+export default async function AuthLayOut({ children }) {
+  const session = await getServerSession();
+
+  if (session) redirect("/");
+  return children;
 }

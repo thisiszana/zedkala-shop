@@ -11,6 +11,8 @@ import toast from "react-hot-toast";
 import { MESSAGES } from "@/messages/messages";
 import api from "@/configs/api";
 import { useRouter } from "next/navigation";
+import { BASE_URL } from "@/utils/var";
+import { fetchSignup } from "@/services/req";
 
 export default function SignupPage() {
   const [loading, setLoading] = useState(false);
@@ -43,25 +45,17 @@ export default function SignupPage() {
 
     try {
       setLoading(true);
-      const response = await api.post("/api/auth/register", {
-        displayName: form.displayName,
-        username: form.username,
-        password: form.password,
-      });
-
-      if (response.status === 201) {
-        toast.success(response.data.msg);
+      const responseData = await fetchSignup(form);
+      console.log("Response Data:", responseData);
+      if (responseData.success === true) {
+        toast.success(responseData.msg);
         setLoading(false);
         router.push("/login");
       } else {
-        toast.error("مشکلی پیش آمده است. لطفاً دوباره تلاش کنید.");
+        toast.error(responseData.msg);
       }
     } catch (error) {
-      if (error.response && error.response.data) {
-        toast.error(`خطا: ${error.response.data.message}`);
-      } else {
-        toast.error("مشکلی پیش آمده است. لطفاً اتصال خود را بررسی کنید.");
-      }
+      console.log(error.message);
     }
   };
 
