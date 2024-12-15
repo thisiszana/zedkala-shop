@@ -76,7 +76,7 @@ export default function LoginPage() {
             value={form.username}
             name="username"
             onChange={onChange}
-            wrapperClassName="w-[410px]"
+            wrapperClassName="w-[250px] sm:w-[410px]"
           />
           <CustomInp
             type="password"
@@ -84,7 +84,7 @@ export default function LoginPage() {
             value={form.password}
             name="password"
             onChange={onChange}
-            wrapperClassName="w-[410px]"
+            wrapperClassName="w-[250px] sm:w-[410px]"
           />
           <CustomBtn
             type="submit"

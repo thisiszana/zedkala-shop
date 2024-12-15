@@ -62,7 +62,7 @@ export default function SignupPage() {
   return (
     <form
       onSubmit={handleSubmit}
-      className="h-[100vh] flex items-center justify-center gap-[150px] "
+      className="h-[100vh] flex items-center justify-center gap-[150px]"
     >
       <div className="w-fit h-fit flex flex-col items-center justify-center bg-white border rounded-lg p-5">
         <Image
@@ -80,7 +80,7 @@ export default function SignupPage() {
             value={form.username}
             name="username"
             onChange={onChange}
-            wrapperClassName="w-[410px]"
+            wrapperClassName="w-[250px] sm:w-[410px]"
           />
           <CustomInp
             type="text"
@@ -88,7 +88,7 @@ export default function SignupPage() {
             value={form.displayName}
             name="displayName"
             onChange={onChange}
-            wrapperClassName="w-[410px]"
+            wrapperClassName="w-[250px] sm:w-[410px]"
           />
           <CustomInp
             type="password"
@@ -96,7 +96,7 @@ export default function SignupPage() {
             value={form.password}
             name="password"
             onChange={onChange}
-            wrapperClassName="w-[410px]"
+            wrapperClassName="w-[250px] sm:w-[410px]"
           />
           <CustomInp
             type="password"
@@ -104,7 +104,7 @@ export default function SignupPage() {
             value={form.confirmPassword}
             name="confirmPassword"
             onChange={onChange}
-            wrapperClassName="w-[410px]"
+            wrapperClassName="w-[250px] sm:w-[410px]"
           />
           <CustomBtn
             type="submit"
