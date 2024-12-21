@@ -1,7 +1,4 @@
-import { refreshTokenAction } from "@/action/auth.action";
-import { fetchRefreshToken } from "@/services/req";
 import { cookies } from "next/headers";
-import { redirect } from "next/navigation";
 
 export const getServerSession = async () => {
   try {
