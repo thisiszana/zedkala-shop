@@ -17,7 +17,6 @@ export const fetchSignup = async (data) => {
 };
 
 export const fetchLogin = async (data) => {
-  console.log("req dataaaa", data);
   const res = await fetch(`${BASE_URL}/api/auth/login`, {
     method: "POST",
     body: JSON.stringify(data),
@@ -31,7 +30,6 @@ export const fetchLogin = async (data) => {
 };
 
 export const fetchRefreshToken = async (refreshToken) => {
-  console.log("req dataaaa", refreshToken);
   const res = await fetch(`${BASE_URL}/api/auth/refresh-token`, {
     method: "POST",
     body: JSON.stringify(refreshToken),
@@ -45,7 +43,6 @@ export const fetchRefreshToken = async (refreshToken) => {
 };
 
 export const fetchUserSession = async ({ accessToken }) => {
-  console.log("req dataaaa", accessToken);
   const res = await fetch(`${BASE_URL}/api/user`, {
     method: "GET",
     headers: {

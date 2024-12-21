@@ -8,7 +8,7 @@ const client = new QueryClient();
 export default function ReactQueryProvider({ children }) {
   return (
     <QueryClientProvider client={client}>
-      <ReactQueryDevtools />
+      {/* <ReactQueryDevtools /> */}
       {children}
     </QueryClientProvider>
   );

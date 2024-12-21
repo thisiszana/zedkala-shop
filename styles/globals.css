@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+body {
+  background-color: #fff;
+}
+
 .input-group {
   position: relative;
 }
@@ -38,6 +42,51 @@
   right: 8px;
 }
 
+/* Rotation Border */
+@keyframes spin-border {
+  0% {
+    transform: rotate(0deg);
+    border-color: red;
+  }
+  25% {
+    border-color: blue;
+  }
+  50% {
+    border-color: green;
+  }
+  75% {
+    border-color: yellow;
+  }
+  100% {
+    transform: rotate(360deg);
+    border-color: red;
+  }
+}
+
+.rotating-border {
+  position: relative;
+}
+
+.rotating-border::before {
+  content: "";
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  border: 2px solid transparent;
+  border-radius: 50%;
+  animation: spin-border 2s linear infinite;
+}
+
 .maxWidth {
   @apply max-w-[1400px] mx-auto;
+}
+
+.iconSize {
+  @apply text-[24px];
+}
+
+.paddingIcon {
+  @apply p-[6px];
 }
