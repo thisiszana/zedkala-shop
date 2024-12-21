@@ -26,25 +26,31 @@ export const navLinks = [
     title: "صفحه‌اصلی",
     icon: icons.home,
     link: "/",
+    name: "home",
   },
   {
     title: "محصولات",
     icon: icons.basket,
     link: "/products",
+    name:"products"
   },
   {
     title: "دسته‌بندی",
     icon: icons.category,
     link: "/categories",
+    name:"categories"
   },
   {
     title: "وبلاگ",
     icon: icons.textB,
     link: "/blogs",
+    name:"blogs"
+
   },
   {
     title: "درباره ما",
     icon: icons.question,
     link: "/about-us",
+    name:"about"
   },
 ];

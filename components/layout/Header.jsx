@@ -1,18 +1,19 @@
 "use client";
 
-import Link from "next/link";
-import DesktopNav from "./DesktopNav";
-import MobileNav from "./MobileNav";
-import Image from "next/image";
-import { images } from "@/constants";
-import SearchBox from "../shared/SearchBox";
-import { ShoppingCart, User } from "../icons/Icons";
-import CustomBtn from "../shared/CustomBtn";
-import { useState } from "react";
 import { usePathname } from "next/navigation";
+import Image from "next/image";
+import Link from "next/link";
+
+import { useState } from "react";
+
 import { useUserQuery } from "@/hooks/useUserQuery";
-import Loader from "../shared/Loader";
 import BottomNavigation from "./BottomNavigation";
+import { ShoppingCart } from "../icons/Icons";
+import SearchBox from "../shared/SearchBox";
+import Loader from "../shared/Loader";
+import DesktopNav from "./DesktopNav";
+import { images } from "@/constants";
+import MobileNav from "./MobileNav";
 
 export default function Header() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -25,10 +26,12 @@ export default function Header() {
       <div className="maxWidth w-full py-[17px] flex items-center justify-between max-sm:py-2">
         <div className="flex items-center lg:gap-[50px] max-sm:justify-between max-sm:w-full max-sm:ml-4">
           <MobileNav />
-          <Link href="/" className="flex items-center gap-2">
-            <Image src={images.home_logo} width={40} height={40} alt="لوگو" />
-          </Link>
-          <SearchBox />
+          <div className="flex items-center gap-2 max-sm:flex-row-reverse">
+            <Link href="/" className="flex items-center gap-2">
+              <Image src={images.home_logo} width={40} height={40} alt="لوگو" />
+            </Link>
+            <SearchBox />
+          </div>
           <DesktopNav />
         </div>
         <div className="flex items-center gap-5 ml-4 max-sm:hidden">
