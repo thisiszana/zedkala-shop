@@ -3,7 +3,8 @@
 import { cookies } from "next/headers";
 
 import { MESSAGES } from "@/messages/messages";
-import { fetchLogin } from "@/services/req";
+import { fetchLogin, fetchRefreshToken } from "@/services/req";
+import { getServerSession } from "@/utils/session";
 
 export const loginUser = async (data) => {
   try {
@@ -55,30 +56,6 @@ export const loginUser = async (data) => {
     };
   } catch (error) {
     console.error("Login Error:", error);
-    return {
-      success: false,
-      msg: MESSAGES.server,
-    };
-  }
-};
-
-export const refreshTokenAction = async (refreshTokenAccess) => {
-  try {
-    const { accessToken, accessExpiresIn } = refreshTokenAccess;
-    const accessMaxAgeInSeconds = accessExpiresIn / 1000;
-
-    const cookieStore = await cookies();
-    await cookieStore.set({
-      name: "accessToken",
-      value: accessToken,
-      httpOnly: true,
-      secure: true,
-      sameSite: "strict",
-      path: "/",
-      maxAge: accessMaxAgeInSeconds,
-    });
-  } catch (error) {
-    console.error("refresh action Error:", error);
     return {
       success: false,
       msg: MESSAGES.server,

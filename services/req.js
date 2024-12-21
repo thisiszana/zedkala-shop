@@ -30,11 +30,11 @@ export const fetchLogin = async (data) => {
   return responseData;
 };
 
-export const fetchRefreshToken = async (data) => {
-  console.log("req dataaaa", data);
+export const fetchRefreshToken = async (refreshToken) => {
+  console.log("req dataaaa", refreshToken);
   const res = await fetch(`${BASE_URL}/api/auth/refresh-token`, {
     method: "POST",
-    body: JSON.stringify(data),
+    body: JSON.stringify(refreshToken),
     headers: {
       "Content-Type": "application/json",
     },
