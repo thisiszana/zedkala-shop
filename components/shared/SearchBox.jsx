@@ -14,7 +14,7 @@ export default function SearchBox() {
         placeholder="جستجو"
         value={query}
         onChange={(e) => setQuery(e.target.value)}
-        wrapperClassName="flex items-center w-[350px] h-[50px]"
+        wrapperClassName="flex items-center w-[350px] h-[40px]"
       />
     </div>
   );

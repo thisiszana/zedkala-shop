@@ -21,7 +21,7 @@ export default function Header() {
         <div className="flex items-center lg:gap-[50px]">
           {/* <MobileNav /> */}
           <Link href="/" className="flex items-center gap-2">
-          <Image src={images.home_logo} width={50} height={50} alt="لوگو" />
+          <Image src={images.home_logo} width={40} height={40} alt="لوگو" />
           </Link>
           <SearchBox />
         </div>
