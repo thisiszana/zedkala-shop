@@ -18,7 +18,9 @@ import MobileNav from "./MobileNav";
 export default function Header() {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const { data, error, isError, isLoading } = useUserQuery();
+  const { data, error, isError, isPending, isLoading } = useUserQuery();
+
+  console.log(isPending, isLoading, data);
 
   const pathname = usePathname();
   return (
@@ -28,7 +30,13 @@ export default function Header() {
           <MobileNav />
           <div className="flex items-center gap-2 max-sm:flex-row-reverse">
             <Link href="/" className="flex items-center gap-2">
-              <Image src={images.home_logo} width={40} height={40} alt="لوگو" />
+              <Image
+                src={images.home_logo}
+                width={40}
+                height={40}
+                alt="لوگو"
+                priority={true}
+              />
             </Link>
             <SearchBox />
           </div>
@@ -43,25 +51,25 @@ export default function Header() {
                 : "text-gray-500"
             } rotating-border`}
           >
-            {data?.user ? (
+            {isPending && data ? (
+              <div className="flex items-center justify-center w-[40px] h-[40px] rounded-full max-lg:w-[20px] max-lg:h-[20px]">
+                <Loader size={5} />
+              </div>
+            ) : (
               <Image
-                src={data.user.images || images.avatar}
+                src={data?.user?.images || images.avatar}
                 width={40}
                 height={40}
                 alt="لوگو"
                 className="rounded-full max-lg:w-[20px] max-lg:h-[20px]"
               />
-            ) : (
-              <div className="flex items-center justify-center w-[40px] h-[40px] rounded-full max-lg:w-[20px] max-lg:h-[20px]">
-                <Loader size={5} />
-              </div>
             )}
           </Link>
 
           <ShoppingCart />
         </div>
       </div>
-      <BottomNavigation data={data} />
+      <BottomNavigation data={data} isPending={isPending} />
     </header>
   );
 }

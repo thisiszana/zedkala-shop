@@ -10,7 +10,7 @@ import { Home, ShoppingBasket, ShoppingCart } from "../icons/Icons";
 import { images } from "@/constants";
 import Loader from "../shared/Loader";
 
-export default function BottomNavigation({ data }) {
+export default function BottomNavigation({ data, isPending }) {
   const pathname = usePathname();
   const [prevPath, setPrevPath] = useState(pathname);
 
@@ -121,21 +121,21 @@ export default function BottomNavigation({ data }) {
             : "text-lightGray"
         }`}
       >
-        {data?.user ? (
-          <Image
-            src={data.user.images || images.avatar}
-            width={40}
-            height={40}
-            alt="لوگو"
-            className="rounded-full"
-          />
-        ) : (
+        {isPending ? (
           <div className="flex items-center justify-center w-10 h-10">
             <Loader
               size={4}
               color={`${pathname.includes("/profile") ? "black" : "white"}`}
             />
           </div>
+        ) : (
+          <Image
+            src={data?.user?.images || images.avatar}
+            width={40}
+            height={40}
+            alt="لوگو"
+            className="rounded-full"
+          />
         )}
         {pathname.includes("/profile") && (
           <motion.span

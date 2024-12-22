@@ -18,7 +18,7 @@ export const icons = {
 
 export const images = {
   home_logo: "/logo/z-logo.jpg",
-  avatar: `/images/avatars/avatar_${Math.floor(Math.random() * 25) + 1}.jpg`,
+  avatar: `/images/avatars/avatar_6.jpg`,
 };
 
 export const navLinks = [
