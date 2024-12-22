@@ -13,7 +13,7 @@ import Loader from "../shared/Loader";
 export default function BottomNavigation({ data, isPending }) {
   const pathname = usePathname();
   const [prevPath, setPrevPath] = useState(pathname);
-console.log(data)
+  console.log(data);
   useEffect(() => {
     if (pathname !== prevPath) {
       setPrevPath(pathname);
@@ -46,10 +46,11 @@ console.log(data)
         {pathname === "/" && (
           <motion.span
             className="absolute w-10 h-2 bg-homeIcon shadow-home rounded-full"
-            initial={{ opacity: 0, y: -20 }}
+            initial={{ opacity: 0, y: -20, scaleX: 0 }}
             animate={{
               opacity: 1,
               y: positions.home?.y || -20,
+              scaleX: 1,
               transition: {
                 duration: 1,
                 ease: "easeOut",
@@ -73,10 +74,11 @@ console.log(data)
         {pathname === "/products" && (
           <motion.span
             className="absolute w-10 h-2 bg-productsIcon shadow-products rounded-full"
-            initial={{ opacity: 0, y: -20 }}
+            initial={{ opacity: 0, y: -20, scaleX: 0 }}
             animate={{
               opacity: 1,
               y: positions.products?.y || -20,
+              scaleX: 1,
               transition: {
                 duration: 1,
                 ease: "easeOut",
@@ -99,10 +101,11 @@ console.log(data)
         {pathname === "/cart" && (
           <motion.span
             className="absolute w-10 h-2 bg-cartIcon shadow-cart rounded-full"
-            initial={{ opacity: 0, y: -20 }}
+            initial={{ opacity: 0, y: -20, scaleX: 0 }}
             animate={{
               opacity: 1,
               y: positions.cart?.y || -20,
+              scaleX: 1,
               transition: {
                 duration: 1,
                 ease: "easeOut",
@@ -140,10 +143,11 @@ console.log(data)
         {pathname.includes("/profile") && (
           <motion.span
             className="absolute w-10 h-2 bg-profileIcon shadow-profile rounded-full"
-            initial={{ opacity: 0, y: -20 }}
+            initial={{ opacity: 0, y: -20, scaleX: 0 }}
             animate={{
               opacity: 1,
               y: positions.profile?.y || -20,
+              scaleX: 1,
               transition: {
                 duration: 1,
                 ease: "easeOut",
