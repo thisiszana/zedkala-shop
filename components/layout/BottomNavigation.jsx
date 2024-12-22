@@ -13,7 +13,7 @@ import Loader from "../shared/Loader";
 export default function BottomNavigation({ data, isPending }) {
   const pathname = usePathname();
   const [prevPath, setPrevPath] = useState(pathname);
-
+console.log(data)
   useEffect(() => {
     if (pathname !== prevPath) {
       setPrevPath(pathname);
@@ -121,7 +121,7 @@ export default function BottomNavigation({ data, isPending }) {
             : "text-lightGray"
         }`}
       >
-        {isPending ? (
+        {isPending && data ? (
           <div className="flex items-center justify-center w-10 h-10">
             <Loader
               size={4}

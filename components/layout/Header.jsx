@@ -19,9 +19,7 @@ export default function Header() {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const { data, error, isError, isPending, isLoading } = useUserQuery();
-
-  console.log(isPending, isLoading, data);
-
+console.log(data)
   const pathname = usePathname();
   return (
     <header className="bg-white border-b fixed top-0 z-[1000] w-full">

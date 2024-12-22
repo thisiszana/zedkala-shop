@@ -3,8 +3,7 @@
 import { cookies } from "next/headers";
 
 import { MESSAGES } from "@/messages/messages";
-import { fetchLogin, fetchRefreshToken } from "@/services/req";
-import { getServerSession } from "@/utils/session";
+import { fetchLogin } from "@/services/req";
 
 export const loginUser = async (data) => {
   try {

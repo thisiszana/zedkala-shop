@@ -43,12 +43,21 @@ export const fetchRefreshToken = async (refreshToken) => {
 };
 
 export const fetchUserSession = async ({ accessToken }) => {
-  console.log("accessToken for user", accessToken)
+  console.log("accessToken for user", accessToken);
   const res = await fetch(`${BASE_URL}/api/user`, {
     method: "GET",
     headers: {
       Authorization: `Bearer ${accessToken}`,
     },
+  });
+
+  const responseData = await res.json();
+  return responseData;
+};
+
+export const fetchBanner = async () => {
+  const res = await fetch(`${BASE_URL}/api/banner`, {
+    next: { revalidate: 86400 },
   });
 
   const responseData = await res.json();
