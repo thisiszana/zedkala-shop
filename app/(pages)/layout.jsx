@@ -7,7 +7,7 @@ export default function PagesLayout({ children }) {
     <>
       <Header />
       <BannerSection />
-      <main className="mt-[90px] maxWidth pb-[150px] min-h-screen">
+      <main className="mt-[30px] px-3 maxWidth pb-[150px] min-h-screen">
         {children}
       </main>
       <Footer />
