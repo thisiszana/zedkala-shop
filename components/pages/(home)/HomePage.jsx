@@ -1,8 +1,9 @@
-import api from "@/configs/api";
+import BannerSection from "./ui/banner/BannerSection";
 
 export default async function HomePage() {
-
-  // const {data} = await api.get("/api/user")
-
-  return <div></div>;
+  return (
+    <div>
+      
+    </div>
+  );
 }
