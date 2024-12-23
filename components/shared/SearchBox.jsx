@@ -5,6 +5,7 @@ import { useState } from "react";
 import CustomInp from "./CustomInp";
 import CustomBtn from "./CustomBtn";
 import { Search } from "../icons/Icons";
+import SearchInput from "./SearchInput";
 
 export default function SearchBox() {
   const [query, setQuery] = useState("");
@@ -21,11 +22,7 @@ export default function SearchBox() {
         />
       </div>
       <div className="sm:hidden">
-        <CustomBtn
-          type="button"
-          icon={<Search />}
-          classNames="paddingIcon rounded-full text-dark1 transition-colors"
-        />
+        <SearchInput />
       </div>
     </div>
   );

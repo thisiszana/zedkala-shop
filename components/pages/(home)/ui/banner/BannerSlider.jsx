@@ -22,7 +22,7 @@ export default function BannerSlider({ banner }) {
         modules={[Pagination, Autoplay]}
         autoplay={{ delay: 3000, disableOnInteraction: false }}
         loop={false}
-        spaceBetween={10}
+        spaceBetween={1}
         centeredSlides={true}
         slidesPerView={1}
         effect="fade"
@@ -30,7 +30,7 @@ export default function BannerSlider({ banner }) {
         breakpoints={{
           0: {
             slidesPerView: 1.1,
-            spaceBetween: 10,
+            spaceBetween: 1,
             centeredSlides: true,
           },
           640: {

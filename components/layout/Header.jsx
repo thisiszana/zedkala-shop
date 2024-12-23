@@ -19,15 +19,14 @@ export default function Header() {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const { data, error, isError, isPending, isLoading } = useUserQuery();
-  console.log(data);
+
   const pathname = usePathname();
   return (
     <header className="bg-white border-b-2 fixed top-0 z-[1000] w-full ">
       <div className="maxWidth w-full py-[17px] flex items-center justify-between max-sm:py-2">
-        <div className="flex items-center lg:gap-[50px] max-sm:justify-between max-sm:w-full max-sm:ml-4">
+        <div className="flex items-center lg:gap-[50px] max-sm:justify-between max-sm:w-full max-sm:mx-4 max-sm:flex-row-reverse">
           <MobileNav />
-          <div className="flex items-center gap-2 max-sm:flex-row-reverse">
-            <Link href="/" className="flex items-center gap-2">
+            <Link href="/" className="flex items-center gap-2 max-sm:hidden">
               <Image
                 src={images.home_logo}
                 width={40}
@@ -37,7 +36,6 @@ export default function Header() {
               />
             </Link>
             <SearchBox />
-          </div>
           <DesktopNav />
         </div>
         <div className="flex items-center gap-5 ml-4 max-sm:hidden">
