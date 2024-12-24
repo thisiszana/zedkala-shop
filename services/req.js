@@ -78,3 +78,12 @@ export const fetchCategory = async () => {
     return responseData;
   } catch (error) {}
 };
+
+export const fetchProducts = async () => {
+  try {
+    const res = await fetch(`${BASE_URL}/api/products`);
+
+    const responseData = await res.json();
+    return responseData;
+  } catch (error) {}
+};
