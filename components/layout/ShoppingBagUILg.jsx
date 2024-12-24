@@ -46,7 +46,7 @@ export default function ShoppingBagUILg() {
   return (
     <Link href="/">
       <motion.div
-        className="fixed bottom-6 left-2 flex items-center gap-2 p-2 lg:p-4 rounded-xl shadow-lg overflow-hidden bg-greenIconShopping text-white"
+        className="fixed bottom-6 left-2 flex items-center gap-2 p-2 lg:p-4 rounded-xl shadow-lg overflow-hidden bg-greenIconShopping text-white max-sm:hidden"
         initial="hidden"
         animate={showShoppingBag ? "visible" : "hidden"}
         variants={drawerVariants}
