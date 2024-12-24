@@ -22,10 +22,11 @@ export default function Header() {
 
   const pathname = usePathname();
   return (
-    <header className="backdrop-blur-[5px] bg-white/70 border-b-2 fixed top-0 z-[1000] w-full ">
-      <div className="maxWidth w-full py-[17px] flex items-center justify-between max-sm:py-2">
-        <div className="flex items-center lg:gap-[50px] max-sm:justify-between max-sm:w-full max-sm:mx-4 max-sm:flex-row-reverse">
-          <MobileNav />
+    <>
+      <header className="backdrop-blur-[5px] bg-white/70 border-b-2 fixed top-0 z-[1000] w-full ">
+        <div className="maxWidth w-full py-[17px] flex items-center justify-between max-sm:py-2">
+          <div className="flex items-center lg:gap-[50px] max-sm:justify-between max-sm:w-full max-sm:mx-4 max-sm:flex-row-reverse">
+            <MobileNav />
             <Link href="/" className="flex items-center gap-2 max-sm:hidden">
               <Image
                 src={images.home_logo}
@@ -36,36 +37,37 @@ export default function Header() {
               />
             </Link>
             <SearchBox />
-          <DesktopNav />
-        </div>
-        <div className="flex items-center gap-5 ml-4 max-sm:hidden">
-          <Link
-            href={`${data?.user ? "/profile" : "/login"}`}
-            className={`iconSize paddingIcon rounded-full hover:bg-gray-100 transition1 ${
-              pathname.includes("/profile")
-                ? "text-violet-600"
-                : "text-gray-500"
-            } rotating-border`}
-          >
-            {isPending && data ? (
-              <div className="flex items-center justify-center w-[40px] h-[40px] rounded-full max-lg:w-[20px] max-lg:h-[20px]">
-                <Loader size={5} />
-              </div>
-            ) : (
-              <Image
-                src={data?.user?.images || images.avatar}
-                width={40}
-                height={40}
-                alt="لوگو"
-                className="rounded-full max-lg:w-[20px] max-lg:h-[20px]"
-              />
-            )}
-          </Link>
+            <DesktopNav />
+          </div>
+          <div className="flex items-center gap-5 ml-4 max-sm:hidden">
+            <Link
+              href={`${data?.user ? "/profile" : "/login"}`}
+              className={`iconSize paddingIcon rounded-full hover:bg-gray-100 transition1 ${
+                pathname.includes("/profile")
+                  ? "text-violet-600"
+                  : "text-gray-500"
+              } rotating-border`}
+            >
+              {isPending && data ? (
+                <div className="flex items-center justify-center w-[40px] h-[40px] rounded-full max-lg:w-[20px] max-lg:h-[20px]">
+                  <Loader size={5} />
+                </div>
+              ) : (
+                <Image
+                  src={data?.user?.images || images.avatar}
+                  width={40}
+                  height={40}
+                  alt="لوگو"
+                  className="rounded-full max-lg:w-[20px] max-lg:h-[20px]"
+                />
+              )}
+            </Link>
 
-          <ShoppingCart />
+            <ShoppingCart />
+          </div>
         </div>
-      </div>
+      </header>
       <BottomNavigation data={data} isPending={isPending} />
-    </header>
+    </>
   );
 }
