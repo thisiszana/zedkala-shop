@@ -1,16 +1,20 @@
-import Footer from "@/components/layout/Footer";
-import Header from "@/components/layout/Header";
 import BannerSection from "@/components/pages/(home)/ui/banner/BannerSection";
+import AuthProvider from "@/providers/AuthProvider";
+import ClientProvider from "@/providers/ClientProvider";
+import { getServerSession } from "@/utils/session";
 
-export default function PagesLayout({ children }) {
+export const dynamic = "force-dynamic";
+
+export default async function PagesLayout({ children }) {
+  const { accessToken, refreshToken } = await getServerSession();
   return (
-    <>
-      <Header />
-      <BannerSection />
-      <main className="mt-[30px] px-3 maxWidth pb-[150px] min-h-screen">
-        {children}
-      </main>
-      <Footer />
-    </>
+    <AuthProvider refreshToken={refreshToken} accessToken={accessToken}>
+      <ClientProvider>
+        <BannerSection />
+        <main className="mt-[90px] px-3 maxWidth pb-[150px] min-h-screen">
+          {children}
+        </main>
+      </ClientProvider>
+    </AuthProvider>
   );
 }

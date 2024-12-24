@@ -7,6 +7,7 @@ import { Pagination, Autoplay } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/effect-fade";
+import { images } from "@/constants";
 
 export default function BannerSlider({ banner }) {
   const pathname = usePathname();
@@ -66,7 +67,7 @@ export default function BannerSlider({ banner }) {
               "
             >
               <Image
-                src={item.images[0]}
+                src={item.images[0] || images.imageNotFound}
                 width={1920}
                 height={1080}
                 alt={item.title}

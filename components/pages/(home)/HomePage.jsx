@@ -18,8 +18,7 @@ export default async function HomePage() {
           priority={true}
         />
       </Link>
-        <CategorySection />
-
+      <CategorySection />
     </div>
   );
 }

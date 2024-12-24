@@ -56,19 +56,25 @@ export const fetchUserSession = async ({ accessToken }) => {
 };
 
 export const fetchBanner = async () => {
-  const res = await fetch(`${BASE_URL}/api/banner`, {
-    next: { revalidate: 86400 },
-  });
+  try {
+    const res = await fetch(`${BASE_URL}/api/banner`, {
+      next: { revalidate: 86400 },
+    });
 
-  const responseData = await res.json();
-  return responseData;
+    const responseData = await res.json();
+    return responseData;
+  } catch (error) {
+    console.error("err in fetch banner", error.message);
+  }
 };
 
 export const fetchCategory = async () => {
-  const res = await fetch(`${BASE_URL}/api/category`, {
-    next: { revalidate: 86400 },
-  });
+  try {
+    const res = await fetch(`${BASE_URL}/api/category`, {
+      next: { revalidate: 86400 },
+    });
 
-  const responseData = await res.json();
-  return responseData;
+    const responseData = await res.json();
+    return responseData;
+  } catch (error) {}
 };
