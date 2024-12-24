@@ -9,11 +9,12 @@ import { motion } from "framer-motion";
 import { Home, ShoppingBasket, ShoppingCart } from "../icons/Icons";
 import { images } from "@/constants";
 import Loader from "../shared/Loader";
+import ShoppingBagUI from "./ShoppingBagUI";
 
 export default function BottomNavigation({ data, isPending }) {
   const pathname = usePathname();
   const [prevPath, setPrevPath] = useState(pathname);
-  console.log(data);
+
   useEffect(() => {
     if (pathname !== prevPath) {
       setPrevPath(pathname);
@@ -28,136 +29,139 @@ export default function BottomNavigation({ data, isPending }) {
   };
 
   return (
-    <motion.div
-      className="fixed bottom-6 left-3 right-3 backdrop-blur-[5px] bg-dark1 sm:hidden flex justify-around items-center py-5  rounded-xl shadow-lg"
-      initial={{ y: 100 }}
-      animate={{ y: 0 }}
-      transition={{ duration: 0.5, ease: "easeOut" }}
-    >
-      <Link
-        href="/"
-        className={`relative text-[22px] flex items-center justify-center w-10 h-10 rounded-full cursor-pointer transition-all ${
-          pathname === "/"
-            ? "bg-homeIcon shadow-homeMain text-dark1"
-            : "text-lightGray"
-        }`}
+    <>
+      <motion.div
+        className="fixed bottom-6 left-3 right-3 z-20 backdrop-blur-[5px] bg-dark1 sm:hidden flex justify-around items-center py-5  rounded-xl shadow-lg"
+        initial={{ y: 100 }}
+        animate={{ y: 0 }}
+        transition={{ duration: 0.5, ease: "easeOut" }}
       >
-        <Home />
-        {pathname === "/" && (
-          <motion.span
-            className="absolute w-10 h-2 bg-homeIcon shadow-home rounded-full"
-            initial={{ opacity: 0, y: -20, scaleX: 0 }}
-            animate={{
-              opacity: 1,
-              y: positions.home?.y || -20,
-              scaleX: 1,
-              transition: {
-                duration: 1,
-                ease: "easeOut",
-                repeat: Infinity,
-                repeatType: "reverse",
-              },
-            }}
-            whileHover={{ scale: 1.2 }}
-          ></motion.span>
-        )}
-      </Link>
-      <Link
-        href="/products"
-        className={`relative text-[22px] flex items-center justify-center w-10 h-10 rounded-full cursor-pointer transition-all ${
-          pathname === "/products"
-            ? "bg-productsIcon shadow-productsMain text-lightGray"
-            : "text-lightGray"
-        }`}
-      >
-        <ShoppingBasket />
-        {pathname === "/products" && (
-          <motion.span
-            className="absolute w-10 h-2 bg-productsIcon shadow-products rounded-full"
-            initial={{ opacity: 0, y: -20, scaleX: 0 }}
-            animate={{
-              opacity: 1,
-              y: positions.products?.y || -20,
-              scaleX: 1,
-              transition: {
-                duration: 1,
-                ease: "easeOut",
-                repeat: Infinity,
-                repeatType: "reverse",
-              },
-            }}
-          ></motion.span>
-        )}
-      </Link>
-      <Link
-        href="/cart"
-        className={`relative text-[22px] flex items-center justify-center w-10 h-10 rounded-full cursor-pointer transition-all ${
-          pathname === "/cart"
-            ? "bg-cartIcon shadow-cartMain text-lightGray"
-            : "text-lightGray"
-        }`}
-      >
-        <ShoppingCart />
-        {pathname === "/cart" && (
-          <motion.span
-            className="absolute w-10 h-2 bg-cartIcon shadow-cart rounded-full"
-            initial={{ opacity: 0, y: -20, scaleX: 0 }}
-            animate={{
-              opacity: 1,
-              y: positions.cart?.y || -20,
-              scaleX: 1,
-              transition: {
-                duration: 1,
-                ease: "easeOut",
-                repeat: Infinity,
-                repeatType: "reverse",
-              },
-            }}
-          ></motion.span>
-        )}
-      </Link>
-      <Link
-        href={`${data?.user ? "/profile" : "/login"}`}
-        className={`relative text-[22px] flex items-center justify-center w-10 h-10 rounded-full cursor-pointer transition-all ${
-          pathname.includes("/profile")
-            ? "bg-profileIcon shadow-profileMain text-lightGray"
-            : "text-lightGray"
-        }`}
-      >
-        {isPending && data ? (
-          <div className="flex items-center justify-center w-10 h-10">
-            <Loader
-              size={4}
-              color={`${pathname.includes("/profile") ? "black" : "white"}`}
+        <Link
+          href="/"
+          className={`relative text-[22px] flex items-center justify-center w-10 h-10 rounded-full cursor-pointer transition-all ${
+            pathname === "/"
+              ? "bg-homeIcon shadow-homeMain text-dark1"
+              : "text-lightGray"
+          }`}
+        >
+          <Home />
+          {pathname === "/" && (
+            <motion.span
+              className="absolute w-10 h-2 bg-homeIcon shadow-home rounded-full"
+              initial={{ opacity: 0, y: -20, scaleX: 0 }}
+              animate={{
+                opacity: 1,
+                y: positions.home?.y || -20,
+                scaleX: 1,
+                transition: {
+                  duration: 1,
+                  ease: "easeOut",
+                  repeat: Infinity,
+                  repeatType: "reverse",
+                },
+              }}
+              whileHover={{ scale: 1.2 }}
+            ></motion.span>
+          )}
+        </Link>
+        <Link
+          href="/products"
+          className={`relative text-[22px] flex items-center justify-center w-10 h-10 rounded-full cursor-pointer transition-all ${
+            pathname === "/products"
+              ? "bg-productsIcon shadow-productsMain text-lightGray"
+              : "text-lightGray"
+          }`}
+        >
+          <ShoppingBasket />
+          {pathname === "/products" && (
+            <motion.span
+              className="absolute w-10 h-2 bg-productsIcon shadow-products rounded-full"
+              initial={{ opacity: 0, y: -20, scaleX: 0 }}
+              animate={{
+                opacity: 1,
+                y: positions.products?.y || -20,
+                scaleX: 1,
+                transition: {
+                  duration: 1,
+                  ease: "easeOut",
+                  repeat: Infinity,
+                  repeatType: "reverse",
+                },
+              }}
+            ></motion.span>
+          )}
+        </Link>
+        <Link
+          href="/cart"
+          className={`relative text-[22px] flex items-center justify-center w-10 h-10 rounded-full cursor-pointer transition-all ${
+            pathname === "/cart"
+              ? "bg-cartIcon shadow-cartMain text-lightGray"
+              : "text-lightGray"
+          }`}
+        >
+          <ShoppingCart />
+          {pathname === "/cart" && (
+            <motion.span
+              className="absolute w-10 h-2 bg-cartIcon shadow-cart rounded-full"
+              initial={{ opacity: 0, y: -20, scaleX: 0 }}
+              animate={{
+                opacity: 1,
+                y: positions.cart?.y || -20,
+                scaleX: 1,
+                transition: {
+                  duration: 1,
+                  ease: "easeOut",
+                  repeat: Infinity,
+                  repeatType: "reverse",
+                },
+              }}
+            ></motion.span>
+          )}
+        </Link>
+        <Link
+          href={`${data?.user ? "/profile" : "/login"}`}
+          className={`relative text-[22px] flex items-center justify-center w-10 h-10 rounded-full cursor-pointer transition-all ${
+            pathname.includes("/profile")
+              ? "bg-profileIcon shadow-profileMain text-lightGray"
+              : "text-lightGray"
+          }`}
+        >
+          {isPending && data ? (
+            <div className="flex items-center justify-center w-10 h-10">
+              <Loader
+                size={4}
+                color={`${pathname.includes("/profile") ? "black" : "white"}`}
+              />
+            </div>
+          ) : (
+            <Image
+              src={data?.user?.images || images.avatar}
+              width={40}
+              height={40}
+              alt="لوگو"
+              className="rounded-full"
             />
-          </div>
-        ) : (
-          <Image
-            src={data?.user?.images || images.avatar}
-            width={40}
-            height={40}
-            alt="لوگو"
-            className="rounded-full"
-          />
-        )}
-        {pathname.includes("/profile") && (
-          <motion.span
-            className="absolute w-10 h-2 bg-profileIcon shadow-profile rounded-full"
-            initial={{ opacity: 0, y: -20, scaleX: 0 }}
-            animate={{
-              opacity: 1,
-              y: positions.profile?.y || -20,
-              scaleX: 1,
-              transition: {
-                duration: 1,
-                ease: "easeOut",
-                repeat: Infinity,
-                repeatType: "reverse",
-              },
-            }}
-          ></motion.span>
-        )}
-      </Link>
-    </motion.div>
+          )}
+          {pathname.includes("/profile") && (
+            <motion.span
+              className="absolute w-10 h-2 bg-profileIcon shadow-profile rounded-full"
+              initial={{ opacity: 0, y: -20, scaleX: 0 }}
+              animate={{
+                opacity: 1,
+                y: positions.profile?.y || -20,
+                scaleX: 1,
+                transition: {
+                  duration: 1,
+                  ease: "easeOut",
+                  repeat: Infinity,
+                  repeatType: "reverse",
+                },
+              }}
+            ></motion.span>
+          )}
+        </Link>
+      </motion.div>
+      <ShoppingBagUI />
+    </>
   );
 }
