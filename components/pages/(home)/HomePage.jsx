@@ -1,16 +1,15 @@
-import Link from "next/link";
-import { images } from "@/constants";
 import Image from "next/image";
+import Link from "next/link";
+
 import CategorySection from "./ui/category/CategorySection";
-import { Suspense } from "react";
-import CategorySkeleton from "./ui/category/CategorySkeleton";
+import { images } from "@/constants";
 
 export default async function HomePage() {
   return (
     <div>
-      <Link href="/" alt="زد - کالا" className="block lg:hidden">
+      <Link href="/" alt="زد - کالا" className="block lg:hidden h-[120px]">
         <Image
-          className="rounded-[20px] overflow-hidden shadow-lg"
+          className="rounded-[20px] overflow-hidden shadow-lg h-full"
           src={images.shopBanner}
           width={1920}
           height={800}

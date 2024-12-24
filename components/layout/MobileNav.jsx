@@ -40,12 +40,13 @@ export default function MobileNav() {
         flexDirection: "column",
         justifyContent: "space-between",
         gap: "20px",
+        borderRadius: "0 20px 20px 0",
       },
     },
     drawerContent: (
       <motion.ul
         className="space-y-[10px]"
-        key={key} 
+        key={key}
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1 }}
@@ -57,9 +58,9 @@ export default function MobileNav() {
             <motion.li
               key={title}
               onClick={closeDrawer}
-              initial={{ opacity: 0, x: -50 }} 
-              animate={{ opacity: 1, x: 0 }} 
-              transition={{ delay: index * 0.1, duration: 0.5 }} 
+              initial={{ opacity: 0, x: -50 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: index * 0.1, duration: 0.5 }}
             >
               <Link
                 href={link}

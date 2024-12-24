@@ -23,7 +23,7 @@ export default function Header() {
   const pathname = usePathname();
   return (
     <>
-      <header className="backdrop-blur-[5px] bg-white/70 border-b-2 fixed top-0 z-[1000] w-full ">
+      <header className="backdrop-blur-[5px] bg-white/70 border-b-2 fixed top-0 z-[1000] w-full mb-[60px]">
         <div className="maxWidth w-full py-[17px] flex items-center justify-between max-sm:py-2">
           <div className="flex items-center lg:gap-[50px] max-sm:justify-between max-sm:w-full max-sm:mx-4 max-sm:flex-row-reverse">
             <MobileNav />
