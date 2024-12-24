@@ -19,7 +19,8 @@ export const icons = {
 export const images = {
   home_logo: "/logo/z-logo.jpg",
   avatar: `/images/avatars/avatar_6.jpg`,
-  shopBanner: "/images/shop-banner.png"
+  shopBanner: "/images/shop-banner.png",
+  imageNotFound: "/images/imagenotfound.jfif",
 };
 
 export const navLinks = [

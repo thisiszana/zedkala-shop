@@ -63,3 +63,12 @@ export const fetchBanner = async () => {
   const responseData = await res.json();
   return responseData;
 };
+
+export const fetchCategory = async () => {
+  const res = await fetch(`${BASE_URL}/api/category`, {
+    next: { revalidate: 86400 },
+  });
+
+  const responseData = await res.json();
+  return responseData;
+};

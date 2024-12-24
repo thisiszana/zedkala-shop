@@ -1,6 +1,9 @@
 import Link from "next/link";
 import { images } from "@/constants";
 import Image from "next/image";
+import CategorySection from "./ui/category/CategorySection";
+import { Suspense } from "react";
+import CategorySkeleton from "./ui/category/CategorySkeleton";
 
 export default async function HomePage() {
   return (
@@ -15,6 +18,8 @@ export default async function HomePage() {
           priority={true}
         />
       </Link>
+        <CategorySection />
+
     </div>
   );
 }
