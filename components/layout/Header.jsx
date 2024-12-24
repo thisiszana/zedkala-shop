@@ -14,6 +14,7 @@ import Loader from "../shared/Loader";
 import DesktopNav from "./DesktopNav";
 import { images } from "@/constants";
 import MobileNav from "./MobileNav";
+import ShoppingBagUILg from "./ShoppingBagUILg";
 
 export default function Header() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -67,6 +68,7 @@ export default function Header() {
           </div>
         </div>
       </header>
+      <ShoppingBagUILg />
       <BottomNavigation data={data} isPending={isPending} />
     </>
   );

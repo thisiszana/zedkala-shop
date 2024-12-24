@@ -48,7 +48,7 @@ export default function ShoppingBagUI() {
   return (
     <Link href="/">
       <motion.div
-        className="fixed bottom-[110px] left-3 flex items-center gap-2 p-2 rounded-xl shadow-lg overflow-hidden"
+        className="sm:hidden fixed bottom-[110px] left-3 flex items-center gap-2 p-2 rounded-xl shadow-lg overflow-hidden"
         initial={{ opacity: 0, y: 100 }}
         animate={{
           opacity: showShoppingBag ? 1 : 0,
