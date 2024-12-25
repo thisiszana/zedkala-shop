@@ -43,7 +43,6 @@ export const fetchRefreshToken = async (refreshToken) => {
 };
 
 export const fetchUserSession = async ({ accessToken }) => {
-  console.log("accessToken for user", accessToken);
   const res = await fetch(`${BASE_URL}/api/user`, {
     method: "GET",
     headers: {
@@ -79,11 +78,15 @@ export const fetchCategory = async () => {
   } catch (error) {}
 };
 
-export const fetchProducts = async () => {
+export const fetchProducts = async ({ pageParam = 1 }) => {
   try {
-    const res = await fetch(`${BASE_URL}/api/products`);
+    const res = await fetch(
+      `${BASE_URL}/api/products?page=${pageParam}&limit=10`
+    );
 
     const responseData = await res.json();
     return responseData;
-  } catch (error) {}
+  } catch (error) {
+    console.error("Error fetching products:", error);
+  }
 };

@@ -12,6 +12,8 @@ export default {
         dark1: "#33384d",
         dark2: "#232b33",
         greenIconShopping: "#029a49",
+        pink1: "#ffebf6",
+        pink2: "rgba(251,0,141,1)",
         bgRedMain: "#de232a",
         background: "var(--background)",
         foreground: "var(--foreground)",
