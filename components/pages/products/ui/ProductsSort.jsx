@@ -6,8 +6,13 @@ import { motion, AnimatePresence } from "framer-motion";
 
 import { icons, sortOptions } from "@/constants";
 
-export default function ProductsSort({ refetch, setSort, totalProducts }) {
-  const [activeSort, setActiveSort] = useState("جدیدترین");
+export default function ProductsSort({
+  refetch,
+  setSort,
+  totalProducts,
+  sort,
+}) {
+  const [activeSort, setActiveSort] = useState(sortOptions[sort - 1].title || "جدیدترین");
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const handleSort = (option) => {
@@ -51,7 +56,9 @@ export default function ProductsSort({ refetch, setSort, totalProducts }) {
             ))}
           </motion.ul>
         </div>
-        <span className="text-[14px] bg-greenIconShopping text-lightGray rounded-full px-1 text-center">{totalProducts}</span>
+        <span className="text-[14px] bg-greenIconShopping text-white rounded-full px-1 text-center">
+          {totalProducts}
+        </span>
       </div>
 
       <div className="relative md:hidden flex items-center justify-between">
@@ -62,7 +69,9 @@ export default function ProductsSort({ refetch, setSort, totalProducts }) {
           {icons.sort}
           <span className="text-[14px]">{activeSort}</span>
         </button>
-        <span className="text-[14px] bg-greenIconShopping text-lightGray rounded-full px-2 py-1 font-bold">{totalProducts}</span>
+        <span className="text-[14px] bg-greenIconShopping text-white rounded-full px-2 py-1 font-bold">
+          {totalProducts}
+        </span>
         <AnimatePresence>
           {isMenuOpen && (
             <motion.ul

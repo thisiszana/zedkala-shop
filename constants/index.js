@@ -4,8 +4,11 @@ import {
   PiQuestionLight,
   PiBoundingBoxLight,
 } from "react-icons/pi";
+import { IoMdCheckmarkCircleOutline } from "react-icons/io";
 import { HiBars3BottomRight } from "react-icons/hi2";
 import { ImSortAmountDesc } from "react-icons/im";
+import { TbTruckDelivery } from "react-icons/tb";
+import { CiDeliveryTruck } from "react-icons/ci";
 import { IoCheckmark } from "react-icons/io5";
 import { GoHome } from "react-icons/go";
 
@@ -18,12 +21,15 @@ export const icons = {
   question: <PiQuestionLight />,
   category: <PiBoundingBoxLight />,
   menuBars: <HiBars3BottomRight />,
+  fastDelivery: <TbTruckDelivery />,
+  freeDelivery: <CiDeliveryTruck />,
+  aviable: <IoMdCheckmarkCircleOutline />,
 };
 
 export const images = {
   home_logo: "/logo/z-logo.jpg",
-  avatar: `/images/avatars/avatar_6.jpg`,
   shopBanner: "/images/shop-banner.png",
+  avatar: `/images/avatars/avatar_6.jpg`,
   imageNotFound: "/images/imagenotfound.jfif",
 };
 

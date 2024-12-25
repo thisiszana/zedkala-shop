@@ -63,7 +63,7 @@ export default function BannerSlider({ banner }) {
                 sm:w-full sm:h-[180px] sm:rounded-[20px]
                 md:w-full md:h-[230px] md:rounded-[30px]
                 lg:w-full lg:h-[260px] lg:rounded-none
-                xl:w-full xl:h-[300px]
+                xl:w-full xl:h-[350px]
               "
             >
               <Image

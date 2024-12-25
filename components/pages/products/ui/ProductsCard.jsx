@@ -1,7 +1,7 @@
 "use client";
 
 import NextImage from "next/image";
-import { images as img } from "@/constants";
+import { icons, images as img } from "@/constants";
 import { useEffect, useState } from "react";
 import { FaTag, FaShoppingBasket } from "react-icons/fa";
 import { BsPlusCircle } from "react-icons/bs";
@@ -10,8 +10,16 @@ import { motion } from "framer-motion";
 import { Image } from "@nextui-org/react";
 
 function ProductCard({ product }) {
-  const { title, price, images, categoryName, discount, stock, isGrocery } =
-    product;
+  const {
+    title,
+    price,
+    images,
+    categoryName,
+    discount,
+    stock,
+    isGrocery,
+    deliveryOptions,
+  } = product;
 
   const [timeLeft, setTimeLeft] = useState("");
   const [isHovered, setIsHovered] = useState(false);
@@ -61,15 +69,18 @@ function ProductCard({ product }) {
           alt={title}
           width={400}
           height={300}
-          className="object-contain w-full h-48"
+          className="object-contain w-full h-[150px]"
         />
+        <div className="absolute left-2 bottom-[0.1px] ">
+          <BsPlusCircle className="text-green-500 text-xl bg-white cursor-pointer" />
+        </div>
         {discount?.value > 0 && timeLeft !== "۰۰:۰۰:۰۰" && (
           <div
             className={`absolute top-2 right-2 ${
               discount.title === "شگفت‌انگیزسفارشی"
                 ? "bg-pink1 text-pink2"
-                : "bg-red-500"
-            } text-white text-xs px-2 py-1 rounded-md flex items-center gap-1`}
+                : "bg-red-500 text-white"
+            }  text-xs px-2 py-1 rounded-md flex items-center gap-1`}
           >
             <FaTag size={12} />
             <motion.div
@@ -106,7 +117,10 @@ function ProductCard({ product }) {
         <p className="text-xs text-gray-500">{categoryName}</p>
         {stock ? (
           stock > 3 ? (
-            <p className="text-xs text-green-500">موجود در انبار زد کالا</p>
+            <div className="flex items-center gap-2 text-green-500">
+              <span>{icons.aviable}</span>
+              <p className="text-xs text-green-500">موجود در انبار زد کالا</p>
+            </div>
           ) : (
             <motion.p
               initial={{ scale: 0.9, opacity: 0 }}
@@ -125,30 +139,40 @@ function ProductCard({ product }) {
         ) : (
           <p className="text-xs text-red-500">ناموجود</p>
         )}
-        <div className="flex items-center justify-between mt-2">
-          <div>
-            <p className="text-lg font-bold text-gray-800">
-              {sp(
-                discount?.value > 0
-                  ? Math.floor(price * (1 - discount.value / 100))
-                  : price
-              )}{" "}
-              <span className="text-[10px]">تومان</span>
+        <div className="flex items-center gap-2">
+          <p className="text-lg font-bold text-gray-800">
+            {sp(
+              discount?.value > 0
+                ? Math.floor(price * (1 - discount.value / 100))
+                : price
+            )}{" "}
+            <span className="text-[10px]">تومان</span>
+          </p>
+          {discount?.value > 0 && timeLeft !== "۰۰:۰۰:۰۰" && (
+            <p className="text-sm line-through text-gray-500">
+              {sp(price)} <span className="text-[10px]">تومان</span>
             </p>
-            {discount?.value > 0 && timeLeft !== "۰۰:۰۰:۰۰" && (
-              <p className="text-sm line-through text-gray-500">
-                {sp(price)} <span className="text-[10px]">تومان</span>
-              </p>
+          )}
+        </div>
+        <div className="flex items-center gap-4 justify-between">
+          <div className="flex items-center gap-3">
+            {deliveryOptions?.freeDelivery && (
+              <span className="flex items-center gap-1 text-[22px] text-green-500">
+                {icons.freeDelivery}
+              </span>
+            )}
+            {deliveryOptions?.fastDelivery && (
+              <span className="flex items-center gap-1 text-[22px] text-red-500">
+                {icons.fastDelivery}
+              </span>
             )}
           </div>
-          <BsPlusCircle className="text-green-500 text-xl cursor-pointer" />
+          {discount?.expiresAt && timeLeft !== "۰۰:۰۰:۰۰" && (
+            <div className="flex items-center">
+              <span className="text-xs text-red-500">{timeLeft}</span>
+            </div>
+          )}
         </div>
-
-        {discount?.expiresAt && timeLeft !== "۰۰:۰۰:۰۰" && (
-          <div className="mt-2 flex items-center justify-between">
-            <span className="text-xs text-red-500">{timeLeft}</span>
-          </div>
-        )}
       </div>
     </div>
   );

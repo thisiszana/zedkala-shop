@@ -76,7 +76,7 @@ console.log(data)
 
   return (
     <div>
-      <ProductsSort refetch={refetch} setSort={handleSortChange} totalProducts={data.length} />
+      <ProductsSort refetch={refetch} setSort={handleSortChange} totalProducts={data.length} sort={sort} />
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 p-6 justify-self-center">
         {data.map((product) => (
           <ProductsCard key={product._id} product={product} />
