@@ -5,12 +5,16 @@ import {
   PiBoundingBoxLight,
 } from "react-icons/pi";
 import { HiBars3BottomRight } from "react-icons/hi2";
+import { ImSortAmountDesc } from "react-icons/im";
+import { IoCheckmark } from "react-icons/io5";
 import { GoHome } from "react-icons/go";
 
 export const icons = {
   home: <GoHome />,
+  check: <IoCheckmark />,
   textB: <PiTextBLight />,
   basket: <PiBasketThin />,
+  sort: <ImSortAmountDesc />,
   question: <PiQuestionLight />,
   category: <PiBoundingBoxLight />,
   menuBars: <HiBars3BottomRight />,
@@ -23,6 +27,15 @@ export const images = {
   imageNotFound: "/images/imagenotfound.jfif",
 };
 
+export const sortOptions = [
+  "پر بازدیدترین",
+  "بیشترین تخفیف",
+  "جدیدترین",
+  "ارزان‌ترین",
+  "گران‌ترین",
+  "سوپرمارکتی",
+];
+
 export const navLinks = [
   {
     title: "صفحه‌اصلی",
@@ -34,25 +47,24 @@ export const navLinks = [
     title: "محصولات",
     icon: icons.basket,
     link: "/products",
-    name:"products"
+    name: "products",
   },
   {
     title: "دسته‌بندی",
     icon: icons.category,
     link: "/categories",
-    name:"categories"
+    name: "categories",
   },
   {
     title: "وبلاگ",
     icon: icons.textB,
     link: "/blogs",
-    name:"blogs"
-
+    name: "blogs",
   },
   {
     title: "درباره ما",
     icon: icons.question,
     link: "/about-us",
-    name:"about"
+    name: "about",
   },
 ];

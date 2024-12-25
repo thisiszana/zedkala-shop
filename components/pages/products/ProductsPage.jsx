@@ -4,6 +4,7 @@ import { useGetProducts } from "@/hooks/useGetProducts";
 import ProductsCard from "./ui/ProductsCard";
 import { useEffect, useRef } from "react";
 import ProductSkeletons, { ProductSkeleton } from "./ui/ProductCardSkeleton";
+import ProductsSort from "./ui/ProductsSort";
 
 export default function ProductsPage() {
   const {
@@ -59,7 +60,9 @@ console.log(data)
   }
 
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 p-6 justify-self-center">
+    <div>
+      <ProductsSort />
+    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 p-6 justify-self-center">
       {data.map((product) => (
         <ProductsCard key={product._id} product={product} />
       ))}
@@ -67,6 +70,7 @@ console.log(data)
         <ProductSkeletons count={1} />
       )}
       <div ref={loadingTarget}></div>
+    </div>
     </div>
   );
 }
