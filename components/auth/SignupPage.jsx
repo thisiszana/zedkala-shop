@@ -46,7 +46,6 @@ export default function SignupPage() {
     try {
       setLoading(true);
       const responseData = await fetchSignup(form);
-      console.log("Response Data:", responseData);
       if (responseData.success === true) {
         toast.success(responseData.msg);
         setLoading(false);
@@ -55,7 +54,7 @@ export default function SignupPage() {
         toast.error(responseData.msg);
       }
     } catch (error) {
-      console.log(error.message);
+      return new Error(error.message);
     }
   };
 

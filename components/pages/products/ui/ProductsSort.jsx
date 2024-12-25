@@ -6,8 +6,8 @@ import { motion, AnimatePresence } from "framer-motion";
 
 import { icons, sortOptions } from "@/constants";
 
-export default function ProductsSort() {
-  const [activeSort, setActiveSort] = useState("پر بازدیدترین");
+export default function ProductsSort({ refetch, setSort, totalProducts }) {
+  const [activeSort, setActiveSort] = useState("جدیدترین");
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const handleSort = (option) => {
@@ -17,11 +17,11 @@ export default function ProductsSort() {
 
   return (
     <div className="border-b pb-2">
-      <div className="hidden lg:flex items-center justify-between">
+      <div className="hidden md:flex items-center justify-between">
         <div className="flex items-center gap-4">
-          <span className="text-gray-600 font-medium flex items-center gap-2">
+          <span className="text-gray-600 font-medium text-[15px] flex items-center gap-2">
             {icons.sort}
-            مرتب سازی:
+            مرتب سازی :
           </span>
           <motion.ul
             className="flex items-center gap-4"
@@ -31,10 +31,14 @@ export default function ProductsSort() {
           >
             {sortOptions.map((option, index) => (
               <motion.li
-                key={option}
-                onClick={() => handleSort(option)}
+                key={option.sort}
+                onClick={() => {
+                  handleSort(option.title);
+                  setSort(option.sort);
+                  refetch();
+                }}
                 className={`cursor-pointer text-[14px] ${
-                  activeSort === option
+                  activeSort === option.title
                     ? "text-green-600 border-b border-green-600 pb-1"
                     : "text-gray-600"
                 }`}
@@ -42,15 +46,15 @@ export default function ProductsSort() {
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: index * 0.1, duration: 0.5 }}
               >
-                {option}
+                {option.title}
               </motion.li>
             ))}
           </motion.ul>
         </div>
-        <span className="text-[14px]">تعداد محصول</span>
+        <span className="text-[14px] bg-greenIconShopping text-lightGray rounded-full px-1 text-center">{totalProducts}</span>
       </div>
 
-      <div className="relative md:hidden">
+      <div className="relative md:hidden flex items-center justify-between">
         <button
           onClick={() => setIsMenuOpen(!isMenuOpen)}
           className="flex items-center gap-2 text-gray-600"
@@ -58,6 +62,7 @@ export default function ProductsSort() {
           {icons.sort}
           <span className="text-[14px]">{activeSort}</span>
         </button>
+        <span className="text-[14px] bg-greenIconShopping text-lightGray rounded-full px-2 py-1 font-bold">{totalProducts}</span>
         <AnimatePresence>
           {isMenuOpen && (
             <motion.ul
@@ -65,26 +70,30 @@ export default function ProductsSort() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: 10 }}
               transition={{ duration: 0.3 }}
-              className="absolute top-full mt-2 bg-white border rounded-lg shadow-lg w-[130px] z-20 md:hidden"
+              className="absolute top-full mt-2 bg-white border rounded-lg shadow-lg w-[150px] z-20 md:hidden"
             >
               {sortOptions.map((option) => (
                 <li
-                  key={option}
+                  key={option.sort}
                   onClick={() => {
-                    setActiveSort(option);
+                    setActiveSort(option.title);
+                    setSort(option.sort);
+                    refetch();
                     setIsMenuOpen(false);
                   }}
                   className={`px-3 py-2 cursor-pointer hover:bg-gray-100 text-[14px] ${
-                    activeSort === option ? "text-green-600" : "text-gray-600"
+                    activeSort === option.title
+                      ? "text-green-600"
+                      : "text-gray-600"
                   }`}
                 >
-                  {activeSort === option ? (
+                  {activeSort === option.title ? (
                     <span className="flex items-center gap-2">
-                      {option}
+                      {option.title}
                       {icons.check}
                     </span>
                   ) : (
-                    option
+                    option.title
                   )}
                 </li>
               ))}

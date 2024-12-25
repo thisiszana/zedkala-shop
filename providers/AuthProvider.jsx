@@ -35,7 +35,7 @@ export default function AuthProvider({ children, refreshToken, accessToken }) {
     }
   }, [data, isError, refreshToken, accessToken, router]);
 
-  console.log("access in auth provider", accessToken);
+  // console.log("access in auth provider", accessToken);
   
   const user = useUserQuery(accessToken);
 

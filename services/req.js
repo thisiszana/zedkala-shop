@@ -78,10 +78,10 @@ export const fetchCategory = async () => {
   } catch (error) {}
 };
 
-export const fetchProducts = async ({ pageParam = 1 }) => {
+export const fetchProducts = async ({ pageParam = 1, sort }) => {
   try {
     const res = await fetch(
-      `${BASE_URL}/api/products?page=${pageParam}&limit=10`
+      `${BASE_URL}/api/products?page=${pageParam}&limit=10&sort=${sort}`
     );
 
     const responseData = await res.json();

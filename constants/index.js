@@ -28,12 +28,12 @@ export const images = {
 };
 
 export const sortOptions = [
-  "پر بازدیدترین",
-  "بیشترین تخفیف",
-  "جدیدترین",
-  "ارزان‌ترین",
-  "گران‌ترین",
-  "سوپرمارکتی",
+  { title: "پربازدیدترین", sort: 1 },
+  { title: "بیشترین‌تخفیف", sort: 2 },
+  { title: "جدیدترین", sort: 3 },
+  { title: "ارزان‌ترین", sort: 4 },
+  { title: "گران‌ترین", sort: 5 },
+  { title: "سوپرمارکتی", sort: 6 },
 ];
 
 export const navLinks = [

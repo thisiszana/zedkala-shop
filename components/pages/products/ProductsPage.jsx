@@ -1,12 +1,24 @@
 "use client";
 
+import { useEffect, useRef, useState } from "react";
+
 import { useGetProducts } from "@/hooks/useGetProducts";
+import ProductSkeletons from "./ui/ProductCardSkeleton";
+import useSetQuery from "@/hooks/useSetQuery";
 import ProductsCard from "./ui/ProductsCard";
-import { useEffect, useRef } from "react";
-import ProductSkeletons, { ProductSkeleton } from "./ui/ProductCardSkeleton";
 import ProductsSort from "./ui/ProductsSort";
 
 export default function ProductsPage() {
+  const { searchParams, setSearchParams } = useSetQuery();
+  const [sort, setSort] = useState(3);
+
+  useEffect(() => {
+    const sortParam = searchParams.get("sort");
+    if (sortParam) {
+      setSort(parseInt(sortParam, 10));
+    }
+  }, [searchParams]);
+
   const {
     data,
     isLoading,
@@ -15,10 +27,10 @@ export default function ProductsPage() {
     fetchNextPage,
     refetch,
     error,
-  } = useGetProducts();
-console.log(data)
+  } = useGetProducts(sort);
+ 
   const loadingTarget = useRef(null);
-
+console.log(data)
   useEffect(() => {
     const observer = new IntersectionObserver((entries) => {
       if (hasNextPage && entries[0].isIntersecting) {
@@ -37,10 +49,13 @@ console.log(data)
     };
   }, [loadingTarget, hasNextPage, fetchNextPage]);
 
+  const handleSortChange = (newSort) => {
+    setSort(newSort);
+    setSearchParams("sort", newSort);
+  };
+
   if (isLoading) {
-    return (
-      <ProductSkeletons count={9} />
-    );
+    return <ProductSkeletons count={9} />;
   }
 
   if (error) {
@@ -61,16 +76,14 @@ console.log(data)
 
   return (
     <div>
-      <ProductsSort />
-    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 p-6 justify-self-center">
-      {data.map((product) => (
-        <ProductsCard key={product._id} product={product} />
-      ))}
-      {isFetchingNextPage && (
-        <ProductSkeletons count={1} />
-      )}
-      <div ref={loadingTarget}></div>
-    </div>
+      <ProductsSort refetch={refetch} setSort={handleSortChange} totalProducts={data.length} />
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 p-6 justify-self-center">
+        {data.map((product) => (
+          <ProductsCard key={product._id} product={product} />
+        ))}
+        {isFetchingNextPage && <ProductSkeletons count={1} />}
+        <div ref={loadingTarget}></div>
+      </div>
     </div>
   );
 }

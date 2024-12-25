@@ -41,7 +41,6 @@ export default function LoginPage() {
         username: form.username,
         password: form.password,
       });
-      console.log("res in login page",res);
 
       if (res.success === true) {
         toast.success(res.msg);
@@ -52,7 +51,7 @@ export default function LoginPage() {
         toast.error(res.data.msg);
       }
     } catch (error) {
-      console.log("err in login page", error.message)
+      return new Error(error.message);
     }
   };
   return (

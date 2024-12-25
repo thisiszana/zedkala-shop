@@ -8,7 +8,7 @@ export const dynamic = 'force-dynamic';
 export default async function AuthLayout({ children }) {
   const { accessToken, refreshToken } = await getServerSession();
 
-  console.log("session in authlayout", { accessToken, refreshToken });
+  // console.log("session in authlayout", { accessToken, refreshToken });
 
   if (accessToken && refreshToken) {
     redirect("/");

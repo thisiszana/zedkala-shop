@@ -5,7 +5,7 @@ import { fetchProducts } from "@/services/req";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import { useMemo } from "react";
 
-export const useGetProducts = () => {
+export const useGetProducts = (sort) => {
   const {
     data,
     isLoading,
@@ -14,9 +14,9 @@ export const useGetProducts = () => {
     fetchNextPage,
     refetch,
   } = useInfiniteQuery({
-    queryKey: [QUERY_KEY.products],
+    queryKey: [QUERY_KEY.products, sort],
     initialPageParam: 1,
-    queryFn: ({ pageParam = 1 }) => fetchProducts({ pageParam }),
+    queryFn: ({ pageParam = 1 }) => fetchProducts({ pageParam, sort }),
     getNextPageParam: (lastPage, allPages, lastPageParam, allPageParams) => {
       if (lastPage.currentPage) {
         return lastPageParam + 1;
