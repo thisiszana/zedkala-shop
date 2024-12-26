@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import  { Suspense, useEffect, useRef, useState } from "react";
 
 import { useGetProducts } from "@/hooks/useGetProducts";
 import ProductSkeletons from "./ui/ProductCardSkeleton";
@@ -19,6 +19,14 @@ export default function ProductsPage() {
     }
   }, [searchParams]);
 
+  return (
+    <Suspense fallback={<ProductSkeletons count={9} />}>
+      <ProductsContent sort={sort} setSearchParams={setSearchParams} setSort={setSort} />
+    </Suspense>
+  );
+}
+
+function ProductsContent({ sort, setSearchParams, setSort }) {
   const {
     data,
     isLoading,
@@ -28,7 +36,7 @@ export default function ProductsPage() {
     refetch,
     error,
   } = useGetProducts(sort);
- console.log("products", data)
+
   const loadingTarget = useRef(null);
 
   useEffect(() => {
@@ -76,7 +84,12 @@ export default function ProductsPage() {
 
   return (
     <div>
-      <ProductsSort refetch={refetch} setSort={handleSortChange} totalProducts={data.length} sort={sort} />
+      <ProductsSort
+        refetch={refetch}
+        setSort={handleSortChange}
+        totalProducts={data.length}
+        sort={sort}
+      />
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 p-6 justify-self-center">
         {data.map((product) => (
           <ProductsCard key={product._id} product={product} />
