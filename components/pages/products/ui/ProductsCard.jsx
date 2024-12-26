@@ -69,14 +69,14 @@ function ProductCard({ product }) {
           alt={title}
           width={400}
           height={300}
-          className="object-contain w-full h-[150px] z-10"
+          className="object-contain w-full h-[150px] z-0"
         />
-        <div className="absolute left-2 bottom-[0.1px] z-20">
+        <div className="absolute left-2 bottom-[0.1px]">
           <BsPlusCircle className="text-green-500 text-xl bg-white cursor-pointer" />
         </div>
         {discount?.value > 0 && timeLeft !== "۰۰:۰۰:۰۰" && (
           <div
-            className={`absolute top-2 right-2 z-20 ${
+            className={`absolute top-2 right-2 ${
               discount.title === "شگفت‌انگیزسفارشی"
                 ? "bg-pink1 text-pink2"
                 : "bg-red-500 text-white"

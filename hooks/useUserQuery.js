@@ -5,7 +5,6 @@ import { fetchUserSession } from "@/services/req";
 import { useQuery } from "@tanstack/react-query";
 
 export const useUserQuery = (accessToken) => {
-
   const { data, error, isError, isPending, isLoading } = useQuery({
     queryKey: [QUERY_KEY.user_session],
     queryFn: () => fetchUserSession({ accessToken }),
@@ -15,7 +14,7 @@ export const useUserQuery = (accessToken) => {
   });
 
   return {
-    data,
+    userData: data,
     error,
     isError,
     isPending,

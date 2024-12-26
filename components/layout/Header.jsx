@@ -6,20 +6,20 @@ import Link from "next/link";
 
 import { useState } from "react";
 
-import { useUserQuery } from "@/hooks/useUserQuery";
 import BottomNavigation from "./BottomNavigation";
+import ShoppingBagUILg from "./ShoppingBagUILg";
+import { useAuth } from "@/context/AuthContext";
 import { ShoppingCart } from "../icons/Icons";
 import SearchBox from "../shared/SearchBox";
 import Loader from "../shared/Loader";
 import DesktopNav from "./DesktopNav";
 import { images } from "@/constants";
 import MobileNav from "./MobileNav";
-import ShoppingBagUILg from "./ShoppingBagUILg";
 
 export default function Header() {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const { data, error, isError, isPending, isLoading } = useUserQuery();
+  const { logout, isLoading, userData } = useAuth();
 
   const pathname = usePathname();
   return (
@@ -42,20 +42,20 @@ export default function Header() {
           </div>
           <div className="flex items-center gap-5 ml-4 max-sm:hidden">
             <Link
-              href={`${data?.user ? "/profile" : "/login"}`}
+              href={`${userData?.user ? "/profile" : "/login"}`}
               className={`iconSize paddingIcon rounded-full hover:bg-gray-100 transition1 ${
                 pathname.includes("/profile")
                   ? "text-violet-600"
                   : "text-gray-500"
               } rotating-border`}
             >
-              {isPending && data ? (
+              {isLoading ? (
                 <div className="flex items-center justify-center w-[40px] h-[40px] rounded-full max-lg:w-[20px] max-lg:h-[20px]">
                   <Loader size={5} />
                 </div>
               ) : (
                 <Image
-                  src={data?.user?.images || images.avatar}
+                  src={userData?.user?.images || images.avatar}
                   width={40}
                   height={40}
                   alt="لوگو"
@@ -69,7 +69,7 @@ export default function Header() {
         </div>
       </header>
       <ShoppingBagUILg />
-      <BottomNavigation data={data} isPending={isPending} />
+      <BottomNavigation userData={userData} isLoading={isLoading} />
     </>
   );
 }

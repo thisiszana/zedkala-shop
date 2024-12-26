@@ -26,18 +26,13 @@ export const useGetProducts = (sort) => {
     },
   });
 
-  const products = useMemo(() => {
-    return (
-      data?.pages
-        ?.flatMap((page) => page.products)
-        ?.reduce((acc, product) => {
-          if (!acc.find((item) => item._id === product._id)) {
-            acc.push(product);
-          }
-          return acc;
-        }, []) || []
-    );
-  }, [data]);
+  const products =
+    data?.pages
+      ?.flatMap((page) => page.products)
+      ?.filter(
+        (product, index, self) =>
+          self.findIndex((p) => p._id === product._id) === index
+      ) || [];
 
   return {
     data: products,

@@ -7,7 +7,11 @@ import { images } from "@/constants";
 export default async function HomePage() {
   return (
     <div>
-      <Link href="/" alt="زد - کالا" className="block lg:hidden sm:h-[140px] md:h-[180px]">
+      <Link
+        href="/"
+        alt="زد - کالا"
+        className="block lg:hidden sm:h-[140px] md:h-[180px]"
+      >
         <Image
           className="rounded-[20px] overflow-hidden shadow-lg h-full"
           src={images.shopBanner}

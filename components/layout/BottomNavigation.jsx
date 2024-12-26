@@ -11,7 +11,7 @@ import { images } from "@/constants";
 import Loader from "../shared/Loader";
 import ShoppingBagUI from "./ShoppingBagUI";
 
-export default function BottomNavigation({ data, isPending }) {
+export default function BottomNavigation({ userData, isLoading }) {
   const pathname = usePathname();
   const [prevPath, setPrevPath] = useState(pathname);
 
@@ -119,14 +119,14 @@ export default function BottomNavigation({ data, isPending }) {
           )}
         </Link>
         <Link
-          href={`${data?.user ? "/profile" : "/login"}`}
+          href={`${userData?.user ? "/profile" : "/login"}`}
           className={`relative text-[22px] flex items-center justify-center w-10 h-10 rounded-full cursor-pointer transition-all ${
             pathname.includes("/profile")
               ? "bg-profileIcon shadow-profileMain text-lightGray"
               : "text-lightGray"
           }`}
         >
-          {isPending && data ? (
+          {isLoading && userData ? (
             <div className="flex items-center justify-center w-10 h-10">
               <Loader
                 size={4}
@@ -135,7 +135,7 @@ export default function BottomNavigation({ data, isPending }) {
             </div>
           ) : (
             <Image
-              src={data?.user?.images || images.avatar}
+              src={userData?.user?.images || images.avatar}
               width={40}
               height={40}
               alt="لوگو"

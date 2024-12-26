@@ -1,11 +1,13 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { useEffect } from "react";
+
 import { useQuery } from "@tanstack/react-query";
-import { QUERY_KEY } from "@/services/queryKey";
+
+import { useEffect } from "react";
+
 import { fetchRefreshToken } from "@/services/req";
-import { useUserQuery } from "@/hooks/useUserQuery";
+import { QUERY_KEY } from "@/services/queryKey";
 
 export default function AuthProvider({ children, refreshToken, accessToken }) {
   const router = useRouter();
@@ -20,7 +22,6 @@ export default function AuthProvider({ children, refreshToken, accessToken }) {
 
   useEffect(() => {
     if (!refreshToken && !accessToken) {
-      router.push("/login");
       return;
     }
 
@@ -35,13 +36,13 @@ export default function AuthProvider({ children, refreshToken, accessToken }) {
     }
   }, [data, isError, refreshToken, accessToken, router]);
 
-  // console.log("access in auth provider", accessToken);
-  
-  const user = useUserQuery(accessToken);
+  if (!refreshToken && !accessToken) {
+    return <>{children}</>;
+  }
 
   if (isLoading) {
     return <div>در حال بررسی وضعیت...</div>;
   }
-
+  
   return <>{children}</>;
 }

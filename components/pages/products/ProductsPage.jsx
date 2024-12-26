@@ -28,9 +28,9 @@ export default function ProductsPage() {
     refetch,
     error,
   } = useGetProducts(sort);
- 
+ console.log("products", data)
   const loadingTarget = useRef(null);
-console.log(data)
+
   useEffect(() => {
     const observer = new IntersectionObserver((entries) => {
       if (hasNextPage && entries[0].isIntersecting) {
