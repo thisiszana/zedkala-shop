@@ -1,6 +1,6 @@
 "use client";
 
-import  { Suspense, useEffect, useRef, useState } from "react";
+import { Suspense, useEffect, useRef, useState } from "react";
 
 import { useGetProducts } from "@/hooks/useGetProducts";
 import ProductSkeletons from "./ui/ProductCardSkeleton";
@@ -20,8 +20,12 @@ export default function ProductsPage() {
   }, [searchParams]);
 
   return (
-    <Suspense fallback={<ProductSkeletons count={9} />}>
-      <ProductsContent sort={sort} setSearchParams={setSearchParams} setSort={setSort} />
+    <Suspense key={sort} fallback={<ProductSkeletons count={9} />}>
+      <ProductsContent
+        sort={sort}
+        setSearchParams={setSearchParams}
+        setSort={setSort}
+      />
     </Suspense>
   );
 }
