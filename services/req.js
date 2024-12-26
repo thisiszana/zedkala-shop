@@ -57,7 +57,7 @@ export const fetchUserSession = async ({ accessToken }) => {
 export const fetchBanner = async () => {
   try {
     const res = await fetch(`${BASE_URL}/api/banner`, {
-      next: { revalidate: 86400 },
+      next: { revalidate: 60 },
     });
 
     const responseData = await res.json();
@@ -70,7 +70,7 @@ export const fetchBanner = async () => {
 export const fetchCategory = async () => {
   try {
     const res = await fetch(`${BASE_URL}/api/category`, {
-      next: { revalidate: 86400 },
+      next: { revalidate: 60 },
     });
 
     const responseData = await res.json();

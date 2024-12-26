@@ -1,12 +1,7 @@
 import BannerSection from "@/components/pages/(home)/ui/banner/BannerSection";
 import ClientProvider from "@/providers/ClientProvider";
-import { getServerSession } from "@/utils/session";
-import { redirect } from "next/navigation";
 
 export default async function PagesLayout({ children }) {
-  const { accessToken, refreshToken } = await getServerSession();
-
-  if (!accessToken && !refreshToken) return redirect("/");
   return (
     <ClientProvider>
       <BannerSection />
