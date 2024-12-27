@@ -18,7 +18,7 @@ export const useGetProducts = (sort) => {
     initialPageParam: 1,
     queryFn: ({ pageParam = 1 }) => fetchProducts({ pageParam, sort }),
     getNextPageParam: (lastPage, allPages, lastPageParam, allPageParams) => {
-      if (lastPage.currentPage) {
+      if (lastPage?.currentPage) {
         return lastPageParam + 1;
       } else {
         return null;

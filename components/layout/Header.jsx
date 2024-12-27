@@ -74,7 +74,9 @@ export default function Header() {
             {userLoading ? (
               <Loader size={4} color="#000" />
             ) : (
-              <ShoppingCart />
+              <Link href="/checkout/cart">
+                <ShoppingCart />
+              </Link>
             )}
             {totalProduct > 0 && (
               <div className="w-[17px] h-[17px] flex items-center justify-center text-[10px] absolute bottom-6 -left-[10px] lg:bottom-8 bg-red-600 text-white rounded-full">
