@@ -11,7 +11,12 @@ import { images } from "@/constants";
 import Loader from "../shared/Loader";
 import ShoppingBagUI from "./ShoppingBagUI";
 
-export default function BottomNavigation({ userData, isLoading }) {
+export default function BottomNavigation({
+  userData,
+  isLoading,
+  userLoading,
+  totalProduct,
+}) {
   const pathname = usePathname();
   const [prevPath, setPrevPath] = useState(pathname);
 
@@ -99,7 +104,12 @@ export default function BottomNavigation({ userData, isLoading }) {
               : "text-lightGray"
           }`}
         >
-          <ShoppingCart />
+          {userLoading ? <Loader size={4} color="#000" /> : <ShoppingCart />}
+          {totalProduct > 0 && (
+            <div className="w-[17px] h-[17px] flex items-center justify-center text-[10px] absolute bottom-8 -left-[10px] lg:bottom-8 bg-red-600 text-white rounded-full">
+              {totalProduct}
+            </div>
+          )}
           {pathname === "/cart" && (
             <motion.span
               className="absolute w-10 h-2 bg-cartIcon shadow-cart rounded-full"

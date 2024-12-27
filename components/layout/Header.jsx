@@ -15,11 +15,18 @@ import Loader from "../shared/Loader";
 import DesktopNav from "./DesktopNav";
 import { images } from "@/constants";
 import MobileNav from "./MobileNav";
+import { useUserCart } from "@/hooks/useUserQuery";
 
 export default function Header() {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const { logout, isLoading, userData } = useAuth();
+  const { logout, user, isLoading, userData } = useAuth();
+  const { accessToken } = user || "";
+
+  const { data, userLoading } = useUserCart(accessToken);
+  const { userCart } = data || {};
+
+  const totalProduct = userCart?.cart?.totalProductsCount;
 
   const pathname = usePathname();
   return (
@@ -40,7 +47,7 @@ export default function Header() {
             <SearchBox />
             <DesktopNav />
           </div>
-          <div className="flex items-center gap-5 ml-4 max-sm:hidden">
+          <div className="flex items-center gap-5 ml-4 max-sm:hidden relative">
             <Link
               href={`${userData?.user ? "/profile" : "/login"}`}
               className={`iconSize paddingIcon rounded-full hover:bg-gray-100 transition1 ${
@@ -64,12 +71,26 @@ export default function Header() {
               )}
             </Link>
 
-            <ShoppingCart />
+            {userLoading ? (
+              <Loader size={4} color="#000" />
+            ) : (
+              <ShoppingCart />
+            )}
+            {totalProduct > 0 && (
+              <div className="w-[17px] h-[17px] flex items-center justify-center text-[10px] absolute bottom-6 -left-[10px] lg:bottom-8 bg-red-600 text-white rounded-full">
+                {totalProduct}
+              </div>
+            )}
           </div>
         </div>
       </header>
       <ShoppingBagUILg />
-      <BottomNavigation userData={userData} isLoading={isLoading} />
+      <BottomNavigation
+        userData={userData}
+        isLoading={isLoading}
+        userLoading={userLoading}
+        totalProduct={totalProduct}
+      />
     </>
   );
 }
