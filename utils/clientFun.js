@@ -19,3 +19,18 @@ export const sp = (number) => {
   const joinedNumber = seperatedNumber.join(",");
   return e2p(joinedNumber);
 };
+
+export const isInCart = (productId, selectedItems) => {
+  if (selectedItems) {
+    const existingIndex = selectedItems.findIndex((item) => item === productId);
+    return existingIndex;
+  } else {
+    return -1;
+  }
+};
+
+export const productQuantity = (productId, cartItems) => {
+  if (!cartItems) return 0;
+  const item = cartItems.find((item) => item.productId === productId);
+  return item ? item.quantity : 0;
+};

@@ -11,12 +11,10 @@ const AuthContext = createContext();
 export const AuthContextProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
   const [user, setUser] = useState(null);
-console.log("user in authcontext")
+
   const router = useRouter();
 
-  const { userData,  isError, isLoading } = useUserQuery(
-    user?.accessToken
-  );
+  const { userData, isError, isLoading } = useUserQuery(user?.accessToken);
 
   useEffect(() => {
     const refreshToken = document.cookie
@@ -28,7 +26,7 @@ console.log("user in authcontext")
       .split("; ")
       .find((row) => row.startsWith("accessToken="))
       ?.split("=")[1];
-
+      
     if (refreshToken && !accessToken) {
       fetchRefreshToken({ refreshToken })
         .then((data) => {

@@ -26,8 +26,8 @@ export const loginUser = async (data) => {
       cookieStore.set({
         name: "accessToken",
         value: accessToken,
-        httpOnly: true,
-        secure: true,
+        // httpOnly: true,
+        // secure: true,
         sameSite: "strict",
         path: "/",
         maxAge: accessMaxAgeInSeconds,
@@ -36,8 +36,8 @@ export const loginUser = async (data) => {
       cookieStore.set({
         name: "refreshToken",
         value: refreshToken,
-        httpOnly: true,
-        secure: true,
+        // httpOnly: true,
+        // secure: true,
         sameSite: "strict",
         path: "/",
         maxAge: refreshMaxAgeInSeconds,

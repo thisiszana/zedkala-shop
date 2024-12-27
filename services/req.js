@@ -90,3 +90,33 @@ export const fetchProducts = async ({ pageParam = 1, sort }) => {
     console.error("Error fetching products:", error);
   }
 };
+
+export const fetchUserCart = async ({ accessToken }) => {
+
+  const res = await fetch(`${BASE_URL}/api/user/cart`, {
+    method: "GET",
+    headers: {
+      Authorization: `Bearer ${accessToken}`,
+    },
+  });
+
+  const responseData = await res.json();
+  return responseData;
+};
+
+export const fetchToCart = async ({ action, productId, accessToken }) => {
+  try {
+    const res = await fetch(`${BASE_URL}/api/user/cart`, {
+      method: "POST",
+      body: JSON.stringify({ action, productId }),
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    });
+
+    const responseData = await res.json();
+    return responseData;
+  } catch (error) {
+    console.error("Error fetching products:", error);
+  }
+};

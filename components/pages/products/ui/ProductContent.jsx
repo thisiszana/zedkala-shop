@@ -22,7 +22,6 @@ export default function ProductContent() {
   } = useGetProducts(sort);
 
   const loadingTarget = useRef(null);
-  console.log("User-Agent:", navigator.userAgent);
   useEffect(() => {
     const sortParam = searchParams.get("sort");
     if (sortParam) {

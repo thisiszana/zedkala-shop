@@ -2,15 +2,17 @@
 
 import NextImage from "next/image";
 import { icons, images as img } from "@/constants";
-import { useEffect, useState } from "react";
-import { FaTag, FaShoppingBasket } from "react-icons/fa";
-import { BsPlusCircle } from "react-icons/bs";
-import { e2p, sp } from "@/utils/clientFun";
+import { useState } from "react";
+import { FaShoppingBasket } from "react-icons/fa";
+import { sp } from "@/utils/clientFun";
 import { motion } from "framer-motion";
 import { Image } from "@nextui-org/react";
+import AddToCart from "@/components/shared/cart/AddToCart";
+import DiscountBadge from "./DiscountBadge";
 
 function ProductCard({ product }) {
   const {
+    _id,
     title,
     price,
     images,
@@ -23,38 +25,6 @@ function ProductCard({ product }) {
 
   const [timeLeft, setTimeLeft] = useState("");
   const [isHovered, setIsHovered] = useState(false);
-
-  useEffect(() => {
-    if (discount?.expiresAt) {
-      const interval = setInterval(() => {
-        const now = new Date();
-        const expiration = new Date(discount.expiresAt);
-        const diff = expiration - now;
-
-        if (diff <= 0) {
-          clearInterval(interval);
-          setTimeLeft("۰۰:۰۰:۰۰");
-        } else {
-          const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-          const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
-          const minutes = Math.floor((diff / (1000 * 60)) % 60);
-          const seconds = Math.floor((diff / 1000) % 60);
-
-          setTimeLeft(
-            e2p(
-              `${days > 0 ? `${String(days).padStart(2, "0")} روز و ` : ""}` +
-                `${String(hours).padStart(2, "0")} : ${String(minutes).padStart(
-                  2,
-                  "0"
-                )} : ${String(seconds).padStart(2, "0")}`
-            )
-          );
-        }
-      }, 1000);
-
-      return () => clearInterval(interval);
-    }
-  }, [discount?.expiresAt]);
 
   return (
     <div
@@ -72,31 +42,11 @@ function ProductCard({ product }) {
           className="object-contain w-full h-[150px] z-0"
         />
         <div className="absolute left-2 bottom-[0.1px]">
-          <BsPlusCircle className="text-green-500 text-xl bg-white cursor-pointer" />
+          {isGrocery?.value && (
+          <AddToCart productId={_id} stock={stock} />
+          )}
         </div>
-        {discount?.value > 0 && timeLeft !== "۰۰:۰۰:۰۰" && (
-          <div
-            className={`absolute top-2 right-2 ${
-              discount.title === "شگفت‌انگیزسفارشی"
-                ? "bg-pink1 text-pink2"
-                : "bg-red-500 text-white"
-            }  text-xs px-2 py-1 rounded-md flex items-center gap-1`}
-          >
-            <FaTag size={12} />
-            <motion.div
-              initial={{ width: 0, opacity: 0, height: 0 }}
-              animate={{
-                width: isHovered ? "auto" : 0,
-                opacity: isHovered ? 1 : 0,
-                height: isHovered ? "auto" : 0,
-                transition: { type: "spring", stiffness: 100, duration: 0.3 },
-              }}
-              className="overflow-hidden"
-            >
-              <span>{discount.title || "تخفیف ویژه"}</span>
-            </motion.div>
-          </div>
-        )}
+        <DiscountBadge discount={discount} isHovered={isHovered} />
 
         {isGrocery?.value && (
           <motion.div
@@ -167,11 +117,7 @@ function ProductCard({ product }) {
               </span>
             )}
           </div>
-          {discount?.expiresAt && timeLeft !== "۰۰:۰۰:۰۰" && (
-            <div className="flex items-center">
-              <span className="text-xs text-red-500">{timeLeft}</span>
-            </div>
-          )}
+          <DiscountBadge discount={discount} showTimerOnly />
         </div>
       </div>
     </div>

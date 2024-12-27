@@ -1,6 +1,7 @@
 export const MESSAGES = {
   confirmPassword: "رمز عبور جدید نادرست است!",
 
+  userUnAuth: "لطفاً ابتدا وارد حساب کاربری خود شوید.",
   fillInp: "لطفا داده های معتبر را وارد کنید!",
   invalidData: "دیتا نامعتبر.",
   success: "موفق",
