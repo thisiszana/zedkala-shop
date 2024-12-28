@@ -18,7 +18,7 @@ export const useGetProducts = (sort) => {
     initialPageParam: 1,
     queryFn: ({ pageParam = 1 }) => fetchProducts({ pageParam, sort }),
     getNextPageParam: (lastPage, allPages, lastPageParam, allPageParams) => {
-      if (lastPage?.currentPage) {
+      if (lastPage?.currentPage && lastPage?.totalPages > lastPage.currentPage) {
         return lastPageParam + 1;
       } else {
         return null;
@@ -28,10 +28,10 @@ export const useGetProducts = (sort) => {
 
   const products =
     data?.pages
-      ?.flatMap((page) => page.products)
+      ?.flatMap((page) => page?.products)
       ?.filter(
         (product, index, self) =>
-          self.findIndex((p) => p._id === product._id) === index
+          self.findIndex((p) => p._id === product?._id) === index
       ) || [];
 
   return {
