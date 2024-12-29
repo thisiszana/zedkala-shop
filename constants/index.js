@@ -30,6 +30,7 @@ export const images = {
   home_logo: "/logo/z-logo.jpg",
   shopBanner: "/images/shop-banner.png",
   avatar: `/images/avatars/avatar_6.jpg`,
+  disIcon: "icon/Amazing.svg",
   imageNotFound: "/images/imagenotfound.jfif",
 };
 

@@ -3,6 +3,7 @@ import Link from "next/link";
 
 import CategorySection from "./ui/category/CategorySection";
 import { images } from "@/constants";
+import DiscountProduct from "./ui/discount-product/DiscountProduct";
 
 export default async function HomePage() {
   return (
@@ -21,6 +22,7 @@ export default async function HomePage() {
           priority={true}
         />
       </Link>
+      <DiscountProduct />
       <CategorySection />
     </div>
   );

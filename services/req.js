@@ -92,7 +92,6 @@ export const fetchProducts = async ({ pageParam = 1, sort }) => {
 };
 
 export const fetchUserCart = async ({ accessToken }) => {
-
   const res = await fetch(`${BASE_URL}/api/user/cart`, {
     method: "GET",
     headers: {
@@ -119,4 +118,11 @@ export const fetchToCart = async ({ action, productId, accessToken }) => {
   } catch (error) {
     console.error("Error fetching products:", error);
   }
+};
+
+export const fetchDiscountProduct = async () => {
+  const res = await fetch(`${BASE_URL}/api/products/discount-product`);
+
+  const responseData = await res.json();
+  return responseData;
 };
