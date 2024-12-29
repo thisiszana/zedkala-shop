@@ -16,13 +16,14 @@ function ProductCard({ product }) {
     title,
     price,
     images,
+    colors,
     categoryName,
     discount,
     stock,
     isGrocery,
     deliveryOptions,
   } = product;
-
+  console.log(colors);
   const [timeLeft, setTimeLeft] = useState("");
   const [isHovered, setIsHovered] = useState(false);
 
@@ -42,9 +43,7 @@ function ProductCard({ product }) {
           className="object-contain w-full h-[150px] z-0"
         />
         <div className="absolute left-2 bottom-[0.1px]">
-          {isGrocery?.value && (
-          <AddToCart productId={_id} stock={stock} />
-          )}
+          {isGrocery?.value && <AddToCart productId={_id} stock={stock} />}
         </div>
         <DiscountBadge discount={discount} isHovered={isHovered} />
 
@@ -58,6 +57,17 @@ function ProductCard({ product }) {
           >
             <FaShoppingBasket size={12} />
           </motion.div>
+        )}
+        {colors.length > 0 && (
+          <div className="flex flex-col space-y-2 absolute left-3 top-[15px]">
+            {colors.map((color, index) => (
+              <div
+                key={index}
+                className="w-[6px] h-[6px] rounded-full border border-dark1"
+                style={{ backgroundColor: color }}
+              ></div>
+            ))}
+          </div>
         )}
       </div>
       <div className="p-4 space-y-2">

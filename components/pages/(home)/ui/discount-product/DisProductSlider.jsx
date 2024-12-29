@@ -60,8 +60,8 @@ export default function DisProductSlider({ discountProduct }) {
     <div className="relative bg-red-500 p-4 rounded-[25px] flex w-[100%] mt-5 lg:mt-0">
       <Swiper
         modules={[Navigation]}
-        spaceBetween={4} 
-        slidesPerView="auto" 
+        spaceBetween={4}
+        slidesPerView="auto"
         navigation={{
           nextEl: ".custom-next",
           prevEl: ".custom-prev",
@@ -82,7 +82,7 @@ export default function DisProductSlider({ discountProduct }) {
               <SwiperSlide
                 key={`static-${index}`}
                 className="flex items-center justify-center w-auto"
-                style={{ width: "180px" }} 
+                style={{ width: "180px" }}
               >
                 {product.content}
               </SwiperSlide>
@@ -90,10 +90,10 @@ export default function DisProductSlider({ discountProduct }) {
               <SwiperSlide
                 key={index}
                 className="flex items-center justify-center w-auto"
-                style={{ width: "180px" }} 
+                style={{ width: "180px" }}
               >
                 <div className="bg-white p-2 shadow-md h-[200px] ">
-                  <div className="flex justify-center items-center mb-4">
+                  <div className="flex justify-center items-center mb-4 relative">
                     <Image
                       src={product.images[0]}
                       width={80}
@@ -101,6 +101,17 @@ export default function DisProductSlider({ discountProduct }) {
                       alt={shorterText(product.title, 5)}
                       className="object-contain"
                     />
+                    {product.colors.length > 0 && (
+                      <div className="flex flex-col space-y-2 absolute left-0 top-0">
+                        {product.colors.map((color, index) => (
+                          <div
+                            key={index}
+                            className="w-[6px] h-[6px] rounded-full border border-dark1"
+                            style={{ backgroundColor: color }}
+                          ></div>
+                        ))}
+                      </div>
+                    )}
                   </div>
                   <h3 className="text-[12px] font-bold text-gray-700 mb-2 truncate">
                     {product.title}
