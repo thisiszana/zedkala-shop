@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 import CategorySection from "./ui/category/CategorySection";
-import { images } from "@/constants";
+import { images, productBanner, productBanner1 } from "@/constants";
 import DiscountProduct from "./ui/discount-product/DiscountProduct";
 import RecommendedProductsBanner from "./ui/RecommendedProductsBanner";
 
@@ -24,8 +24,9 @@ export default async function HomePage() {
         />
       </Link>
       <DiscountProduct />
-      <RecommendedProductsBanner />
+      <RecommendedProductsBanner productBanner={productBanner} />
       <CategorySection />
+      <RecommendedProductsBanner productBanner={productBanner1} />
     </div>
   );
 }

@@ -98,3 +98,15 @@ export const productBanner = [
     id: 4,
   },
 ];
+export const productBanner1 = [
+  {
+    src: "/images/productBanner1.webp",
+    alt: "Slide 1",
+    id: 1,
+  },
+  {
+    src: "/images/productBanner2.webp",
+    alt: "Slide 1",
+    id: 2,
+  },
+];
