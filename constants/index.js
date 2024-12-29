@@ -75,3 +75,26 @@ export const navLinks = [
     name: "about",
   },
 ];
+
+export const productBanner = [
+  {
+    src: "/images/productBannerRecom1.webp",
+    alt: "Slide 1",
+    id: 1,
+  },
+  {
+    src: "/images/productBannerRecom2.webp",
+    alt: "Slide 1",
+    id: 2,
+  },
+  {
+    src: "/images/productBannerRecom3.webp",
+    alt: "Slide 1",
+    id: 3,
+  },
+  {
+    src: "/images/productBannerRecom4.webp",
+    alt: "Slide 1",
+    id: 4,
+  },
+];

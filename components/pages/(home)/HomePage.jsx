@@ -4,6 +4,7 @@ import Link from "next/link";
 import CategorySection from "./ui/category/CategorySection";
 import { images } from "@/constants";
 import DiscountProduct from "./ui/discount-product/DiscountProduct";
+import RecommendedProductsBanner from "./ui/RecommendedProductsBanner";
 
 export default async function HomePage() {
   return (
@@ -23,6 +24,7 @@ export default async function HomePage() {
         />
       </Link>
       <DiscountProduct />
+      <RecommendedProductsBanner />
       <CategorySection />
     </div>
   );
