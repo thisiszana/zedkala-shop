@@ -1,25 +1,17 @@
 "use client";
 
+import { productBanner1 } from "@/constants";
 import { motion } from "framer-motion";
+
 import Image from "next/image";
 
-export default function RecommendedProductsBanner({ productBanner }) {
-  const numberOfImages = productBanner.length;
-
-  const gridColumns = numberOfImages === 1
-    ? "grid-cols-1"
-    : numberOfImages === 2
-    ? "grid-cols-2"
-    : numberOfImages === 3
-    ? "grid-cols-3"
-    : "grid-cols-4"; 
-
+export default function RecommendedProductsBanner1() {
   return (
-    <div className="container mx-auto mt-5">
-      <div className={`grid ${gridColumns} gap-6`}>
-        {productBanner.map((image, index) => (
+    <div className="container mx-auto  mt-5">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+        {productBanner1.map((image, index) => (
           <motion.div
-            key={index}
+            key={image.id}
             className="relative overflow-hidden rounded-lg shadow-lg"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{

@@ -4,7 +4,7 @@ import Link from "next/link";
 import CategorySection from "./ui/category/CategorySection";
 import { images, productBanner, productBanner1 } from "@/constants";
 import DiscountProduct from "./ui/discount-product/DiscountProduct";
-import RecommendedProductsBanner from "./ui/RecommendedProductsBanner";
+import RecommendedProductsBanner from "./ui/Recommended-products/RecommendedProductsBanner";
 
 export default async function HomePage() {
   return (
@@ -24,9 +24,17 @@ export default async function HomePage() {
         />
       </Link>
       <DiscountProduct />
-      <RecommendedProductsBanner productBanner={productBanner} />
+      <div className="container mx-auto  mt-5">
+        <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+          <RecommendedProductsBanner productBanner={productBanner} />
+        </div>
+      </div>
       <CategorySection />
-      <RecommendedProductsBanner productBanner={productBanner1} />
+      <div className="container mx-auto  mt-5">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <RecommendedProductsBanner productBanner={productBanner1} />
+        </div>
+      </div>
     </div>
   );
 }
