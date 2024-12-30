@@ -12,7 +12,7 @@ export default async function HomePage() {
       <Link
         href="/"
         alt="زد - کالا"
-        className="block lg:hidden sm:h-[140px] md:h-[180px]"
+        className="block lg:hidden sm:h-[140px] md:h-[180px] px-3"
       >
         <Image
           className="rounded-[20px] overflow-hidden shadow-lg h-full"
@@ -24,13 +24,13 @@ export default async function HomePage() {
         />
       </Link>
       <DiscountProduct />
-      <div className="container mx-auto  mt-5">
+      <div className="container mx-auto mt-5 px-3">
         <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
           <RecommendedProductsBanner productBanner={productBanner} />
         </div>
       </div>
       <CategorySection />
-      <div className="container mx-auto  mt-5">
+      <div className="container mx-auto mt-5 px-3">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <RecommendedProductsBanner productBanner={productBanner1} />
         </div>

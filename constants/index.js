@@ -31,6 +31,7 @@ export const images = {
   shopBanner: "/images/shop-banner.png",
   avatar: `/images/avatars/avatar_6.jpg`,
   disIcon: "icon/Amazing.svg",
+  disIcon1: "icon/Amazings1.svg",
   imageNotFound: "/images/imagenotfound.jfif",
 };
 

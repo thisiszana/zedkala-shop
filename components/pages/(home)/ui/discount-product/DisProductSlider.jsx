@@ -11,6 +11,7 @@ import { shorterText, sp } from "@/utils/clientFun";
 import Link from "next/link";
 import { images } from "@/constants";
 import { LeftAngle, RightAngle } from "@/components/icons/Icons";
+import DiscountBadge from "@/components/pages/products/ui/DiscountBadge";
 
 export default function DisProductSlider({ discountProduct }) {
   const [isBeginning, setIsBeginning] = useState(true);
@@ -24,9 +25,9 @@ export default function DisProductSlider({ discountProduct }) {
           href={"/products?sort=2"}
           className="flex flex-col items-center justify-between text-white text-center mb-4 px-[40px]"
         >
-          <h2 className="text-lg font-bold">پیشنهاد شگفت‌ انگیز</h2>
+            <Image src={images.disIcon1} width={90} height={90} alt="Icon" />
           <div className="flex items-center justify-center my-4">
-            <Image src={images.disIcon} width={80} height={80} alt="Icon" />
+            <Image src={images.disIcon} width={60} height={60} alt="Icon" />
           </div>
           <span className="text-[14px] inline-flex items-center mx-auto gap-1">
             <p className="text-center my-auto text-[12px] ">مشاهده همه</p>
@@ -57,7 +58,7 @@ export default function DisProductSlider({ discountProduct }) {
   ];
 
   return (
-    <div className="relative bg-red-500 p-4 rounded-[25px] flex w-[100%] mt-5 lg:mt-0">
+    <div className="relative bg-red-500 p-4 pl-0 lg:rounded-[25px] flex w-[100%] mt-5 lg:mt-0">
       <Swiper
         modules={[Navigation]}
         spaceBetween={4}
@@ -92,7 +93,7 @@ export default function DisProductSlider({ discountProduct }) {
                 className="flex items-center justify-center w-auto"
                 style={{ width: "180px" }}
               >
-                <div className="bg-white p-2 shadow-md h-[200px] ">
+                <div className="bg-white p-2 shadow-md h-[200px]">
                   <div className="flex justify-center items-center mb-4 relative">
                     <Image
                       src={product.images[0]}
@@ -131,8 +132,14 @@ export default function DisProductSlider({ discountProduct }) {
                       <span className="text-[10px]">تومان</span>
                     </p>
                   </div>
-                  <div className="text-[10px] text-white bg-red-500 px-2 py-2 font-bold rounded-full mt-2 w-fit">
-                    {product.discount?.value}٪
+                  <div className="flex items-center justify-between mt-2">
+                    <div className="text-[10px] text-white bg-red-500 px-2 py-2 font-bold rounded-full mt-2 w-fit">
+                      {product.discount?.value}٪
+                    </div>
+                    <DiscountBadge
+                      discount={product.discount}
+                      showTimerOnly={true}
+                    />
                   </div>
                 </div>
               </SwiperSlide>
