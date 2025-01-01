@@ -99,7 +99,7 @@ body {
 
 
 .maxWidth {
-  @apply max-w-[1400px] mx-auto;
+  @apply max-w-[1600px] mx-auto;
 }
 
 .iconSize {

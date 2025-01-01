@@ -36,7 +36,7 @@ export default function BottomNavigation({
   return (
     <>
       <motion.div
-        className="fixed bottom-6 left-3 right-3 z-20 backdrop-blur-[5px] bg-dark1 sm:hidden flex justify-around items-center py-5  rounded-xl shadow-lg"
+        className="fixed bottom-6 left-3 right-3 z-50 backdrop-blur-[5px] bg-dark1 sm:hidden flex justify-around items-center py-5 rounded-xl shadow-lg"
         initial={{ y: 100 }}
         animate={{ y: 0 }}
         transition={{ duration: 0.5, ease: "easeOut" }}

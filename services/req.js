@@ -126,3 +126,10 @@ export const fetchDiscountProduct = async () => {
   const responseData = await res.json();
   return responseData;
 };
+
+export const fetchProduct = async (id) => {
+  const res = await fetch(`${BASE_URL}/api/products/${id}`);
+
+  const responseData = await res.json();
+  return responseData;
+};

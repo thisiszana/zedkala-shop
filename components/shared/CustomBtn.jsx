@@ -9,6 +9,7 @@ export default function CustomBtn({
   disabled,
   title,
   icon,
+  style,
   onClick,
 }) {
   const bassClassNames = `rounded-lg px-[20px] h-[40px] w-full Transition flex items-center justify-center gap-2 ${
@@ -17,6 +18,7 @@ export default function CustomBtn({
   return (
     <button
       type={type || "button"}
+      style={style}
       className={classNames ? classNames : bassClassNames}
       disabled={disabled}
       onClick={onClick || null}

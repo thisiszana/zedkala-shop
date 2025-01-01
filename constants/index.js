@@ -5,10 +5,12 @@ import {
   PiBoundingBoxLight,
 } from "react-icons/pi";
 import { IoMdCheckmarkCircleOutline } from "react-icons/io";
+import { MdNotificationImportant } from "react-icons/md";
 import { HiBars3BottomRight } from "react-icons/hi2";
 import { ImSortAmountDesc } from "react-icons/im";
 import { TbTruckDelivery } from "react-icons/tb";
 import { CiDeliveryTruck } from "react-icons/ci";
+import { GoShieldCheck } from "react-icons/go";
 import { IoCheckmark } from "react-icons/io5";
 import { GoHome } from "react-icons/go";
 
@@ -17,12 +19,14 @@ export const icons = {
   check: <IoCheckmark />,
   textB: <PiTextBLight />,
   basket: <PiBasketThin />,
+  shield: <GoShieldCheck />,
   sort: <ImSortAmountDesc />,
   question: <PiQuestionLight />,
   category: <PiBoundingBoxLight />,
   menuBars: <HiBars3BottomRight />,
   fastDelivery: <TbTruckDelivery />,
   freeDelivery: <CiDeliveryTruck />,
+  important: <MdNotificationImportant />,
   aviable: <IoMdCheckmarkCircleOutline />,
 };
 

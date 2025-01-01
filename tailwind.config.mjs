@@ -21,6 +21,8 @@ export default {
         productsIcon: "rgb(233, 63, 142)",
         profileIcon: "rgba(255, 165, 0, 0.6)",
         cartIcon: "rgb(220, 53, 69)",
+        mainRed: "#ef4056",
+        secondaryRed: "#ef4444",
       },
       boxShadow: {
         homeMain: "0 0 15px 5px rgb(186, 255, 174)",

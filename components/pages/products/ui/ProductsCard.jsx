@@ -9,6 +9,7 @@ import { motion } from "framer-motion";
 import { Image } from "@nextui-org/react";
 import AddToCart from "@/components/shared/cart/AddToCart";
 import DiscountBadge from "./DiscountBadge";
+import Link from "next/link";
 
 function ProductCard({ product }) {
   const {
@@ -23,7 +24,7 @@ function ProductCard({ product }) {
     isGrocery,
     deliveryOptions,
   } = product;
-  console.log(colors);
+
   const [timeLeft, setTimeLeft] = useState("");
   const [isHovered, setIsHovered] = useState(false);
 
@@ -43,7 +44,13 @@ function ProductCard({ product }) {
           className="object-contain w-full h-[150px] z-0"
         />
         <div className="absolute left-2 bottom-[0.1px]">
-          {isGrocery?.value && <AddToCart productId={_id} stock={stock} />}
+          {isGrocery?.value && (
+            <AddToCart
+              productId={_id}
+              stock={stock}
+              className="flex items-center gap-2 bg-white/80 rounded-[8px] overflow-hidden"
+            />
+          )}
         </div>
         <DiscountBadge discount={discount} isHovered={isHovered} />
 
@@ -63,7 +70,7 @@ function ProductCard({ product }) {
             {colors.map((color, index) => (
               <div
                 key={index}
-                className="w-[6px] h-[6px] rounded-full border border-dark1"
+                className="w-[6px] h-[6px] rounded-full border-[0.5px] border-dark1"
                 style={{ backgroundColor: color }}
               ></div>
             ))}
@@ -75,30 +82,38 @@ function ProductCard({ product }) {
           {title}
         </h3>
         <p className="text-xs text-gray-500">{categoryName}</p>
-        {stock ? (
-          stock > 3 ? (
-            <div className="flex items-center gap-2 text-green-500">
-              <span>{icons.aviable}</span>
-              <p className="text-xs text-green-500">موجود در انبار زد کالا</p>
-            </div>
+        <div className="flex items-center justify-between w-full">
+          {stock ? (
+            stock > 3 ? (
+              <div className="flex items-center gap-2 text-green-500">
+                <span>{icons.aviable}</span>
+                <p className="text-xs text-green-500">موجود در انبار زد کالا</p>
+              </div>
+            ) : (
+              <motion.p
+                initial={{ scale: 0.9, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                transition={{
+                  duration: 0.7,
+                  ease: "easeInOut",
+                  repeat: Infinity,
+                  repeatType: "reverse",
+                }}
+                className="text-xs text-red-500"
+              >
+                {`تنها ${stock} عدد باقی مانده!`}
+              </motion.p>
+            )
           ) : (
-            <motion.p
-              initial={{ scale: 0.9, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              transition={{
-                duration: 0.7,
-                ease: "easeInOut",
-                repeat: Infinity,
-                repeatType: "reverse",
-              }}
-              className="text-xs text-red-500"
-            >
-              {`تنها ${stock} عدد باقی مانده!`}
-            </motion.p>
-          )
-        ) : (
-          <p className="text-xs text-red-500">ناموجود</p>
-        )}
+            <p className="text-xs text-red-500">ناموجود</p>
+          )}
+          <Link
+            href={`product/${_id}`}
+            className="text-red-500 border border-red-500 rounded-md text-[12px] px-2 py-1 transition-all hover:bg-red-500 hover:text-white"
+          >
+            جزئیات
+          </Link>
+        </div>
         <div className="flex items-center gap-2">
           <p className="text-lg font-bold text-gray-800">
             {sp(
