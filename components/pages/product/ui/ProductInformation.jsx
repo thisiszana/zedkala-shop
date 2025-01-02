@@ -73,7 +73,7 @@ export default function ProductInformation({ product }) {
           </div>
 
           <div className="flex gap-4">
-            <div className="flex flex-col gap-3 border-t md:w-[65%]">
+            <div className="flex flex-col gap-3 border-t w-full md:w-[65%]">
               <InsuranceCard insurance={product.insurance} />
               <ProductSpecifications specifications={product.specifications} />
 
