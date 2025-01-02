@@ -66,7 +66,7 @@ export default function MobileNav() {
                 href={link}
                 className={`block hover:text-violet-600 hover:border-b-violet-400 transition1 text-[14px] py-[10px] ${
                   isActive
-                    ? `bg-violet-50 pr-[15px] border-r-2 border-violet-500 text-violet-600 font-bold w-fit pl-3`
+                    ? `bg-red-50 pr-[15px] border-r-2 border-mainRed text-secondaryRed font-bold w-fit pl-3`
                     : "text-gray-500 border-transparent font-light"
                 }`}
               >

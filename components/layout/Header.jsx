@@ -52,7 +52,7 @@ export default function Header() {
               href={`${userData?.user ? "/profile" : "/login"}`}
               className={`iconSize paddingIcon rounded-full hover:bg-gray-100 transition1 ${
                 pathname.includes("/profile")
-                  ? "text-violet-600"
+                  ? "text-secondaryRed"
                   : "text-gray-500"
               } rotating-border`}
             >
