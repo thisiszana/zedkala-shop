@@ -3,8 +3,10 @@ import { Modal } from "antd";
 import AddToCartInfo from "@/components/shared/cart/AddToCartInfo";
 import { Close, LeftAngle, ShoppingBag } from "@/components/icons/Icons";
 import CustomBtn from "@/components/shared/CustomBtn";
-import { icons } from "@/constants";
+import { icons, images } from "@/constants";
 import { motion, AnimatePresence } from "framer-motion";
+import { sp } from "@/utils/clientFun";
+import Image from "next/image";
 
 export default function SidebarProduct({ product }) {
   const [isModalVisible, setIsModalVisible] = useState(false);
@@ -13,7 +15,7 @@ export default function SidebarProduct({ product }) {
 
   useEffect(() => {
     if (isOpen) {
-      const timer = setTimeout(() => setIsOpen(false), 50000);
+      const timer = setTimeout(() => setIsOpen(false), 10000);
       return () => clearTimeout(timer);
     }
   }, [isOpen]);
@@ -39,11 +41,39 @@ export default function SidebarProduct({ product }) {
 
   return (
     <>
-      <div className="hidden md:bg-[#f7f7f7] md:border md:flex md:flex-col md:rounded-[8px] md:shadow-md md:w-[30%] md:p-4 md:mt-8 md:h-fit">
+      <div className="hidden md:bg-[#f7f7f7] md:border md:flex md:flex-col md:rounded-[8px] md:shadow-md md:w-[35%] md:p-4 md:mt-8 md:h-fit">
+        <div className="flex flex-col gap-4 mb-4">
+          <h1 className="text-[14px] font-bold">فروشنده</h1>
+          <div className="flex items-center gap-2">
+            <Image src={images.home_logo} width={40} height={40} alt="آیکون" />
+            <span className="font-bold text-[12px] text-secondaryRed">زد - کالا</span>
+          </div>
+        </div>
         <AddToCartInfo productId={product._id} stock={product.stock} />
-        <span className="text-[14px] font-bold text-green-600 text-end my-3">
-          {product.price.toLocaleString("fa-IR")} تومان
-        </span>
+        <div className="flex flex-col items-end w-full gap-2 text-xs my-3">
+          {product.discount?.value > 0 ? (
+            <>
+              <div className="flex items-center gap-1">
+                <span className="bg-mainRed text-white rounded-full px-1 ml-2 text-[10px]">
+                  {product.discount.value} %
+                </span>
+                <span className="text-red-500 font-bold line-through">
+                  {sp(product.price)}
+                </span>
+              </div>
+              <p className="text-gray-800">
+                {sp(
+                  Math.floor(product.price * (1 - product.discount.value / 100))
+                )}{" "}
+                <span className="text-[10px]">تومان</span>
+              </p>
+            </>
+          ) : (
+            <p className="text-gray-800 font-bold">
+              {sp(product.price)} <span className="text-[10px]">تومان</span>
+            </p>
+          )}
+        </div>
         {product.warranty && (
           <div className="hidden md:flex items-center gap-2 mt-1 font-bold">
             <span className="inline-flex items-center">{icons.shield}</span>
@@ -92,18 +122,18 @@ export default function SidebarProduct({ product }) {
 
       {!isOpen && (
         <motion.button
-        onClick={() => setIsOpen(true)}
-        className="fixed bottom-[100px] left-0 bg-mainRed text-white p-2 rounded-tr-[10px] text-[12px] shadow-lg z-[1000] md:hidden"
-        initial={{ y: 100, opacity: 0, scale: 0.8 }}
-        animate={{ y: 0, opacity: 1, scale: 1 }}
-        transition={{
-          type: "spring",
-          stiffness: 260,
-          damping: 20,
-        }}
-      >
-        <ShoppingBag />
-      </motion.button>
+          onClick={() => setIsOpen(true)}
+          className="fixed bottom-[150px] left-0 bg-mainRed text-white p-2 rounded-tr-[10px] text-[12px] shadow-lg z-[1000] md:hidden"
+          initial={{ y: 150, opacity: 0, scale: 0.8 }}
+          animate={{ y: 0, opacity: 1, scale: 1 }}
+          transition={{
+            type: "spring",
+            stiffness: 260,
+            damping: 20,
+          }}
+        >
+          <ShoppingBag />
+        </motion.button>
       )}
 
       <AnimatePresence>
@@ -122,7 +152,7 @@ export default function SidebarProduct({ product }) {
                 classNames="text-mainRed"
               />
             </div>
-            <div className="flex items-center justify-between">
+            <div className="flex items-center justify-between border-t pt-3">
               <AddToCartInfo productId={product._id} stock={product.stock} />
               <span className="block text-[14px] font-bold text-green-600 text-end mt-4">
                 {product.price.toLocaleString("fa-IR")} تومان

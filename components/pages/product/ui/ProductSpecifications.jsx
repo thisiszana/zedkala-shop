@@ -79,8 +79,8 @@ export default function ProductSpecifications({ specifications }) {
         closable
         onClose={handleCloseDrawer}
         open={isDrawerVisible}
-        height="60%"
-        className="rounded-t-[20px]"
+        height="90%"
+        className="rounded-t-[15px]"
         styles={{
           body: {
             padding: "16px",

@@ -17,6 +17,7 @@ export default function CustomInp({
   max,
   readOnly,
   disabled,
+  isChecked
 }) {
   const [active, setActive] = useState(false);
   const [inputType, setInputType] = useState(type || "text");
@@ -48,6 +49,7 @@ export default function CustomInp({
         className={inputClassName ? inputClassName : "input w-full h-full"}
         onFocus={onFocus}
         onBlur={onBlur}
+        checked={isChecked && isChecked}
       />
       {label && (
         <label className={`user-label ${active && "active"}`}>{label}</label>

@@ -80,8 +80,8 @@ body {
 }
 
 .custom-pagination .custom-bullet {
-  width:6px;
-  height:6px;
+  width: 6px;
+  height: 6px;
   margin: 0 1px;
   background-color: #d5d5da;
   border-radius: 50%;
@@ -93,10 +93,27 @@ body {
   background-color: #fff;
   width: 18px;
   border-radius: 5px;
-  transform: scale(1.3); 
+  transform: scale(1.3);
   box-shadow: 0 0 8px rgba(41, 42, 42, 0.6);
 }
 
+.custom-pagination2 .custom-bullet {
+  width: 6px;
+  height: 6px;
+  margin: 0 1px;
+  border-radius: 50%;
+  background-color: #363434;
+  transition: all 0.3s ease-in-out;
+  transform: scale(1);
+}
+
+.custom-pagination2 .swiper-pagination-bullet-active {
+  background-color: #ef4056;
+  width: 18px;
+  border-radius: 5px;
+  transform: scale(1.3);
+  box-shadow: 0 0 8px rgba(41, 42, 42, 0.6);
+}
 
 .maxWidth {
   @apply max-w-[1600px] mx-auto;
