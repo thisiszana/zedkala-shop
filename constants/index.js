@@ -1,34 +1,56 @@
 import {
   PiTextBLight,
   PiBasketThin,
+  PiSignOutFill,
   PiQuestionLight,
   PiBoundingBoxLight,
 } from "react-icons/pi";
+import {
+  MdNotificationImportant,
+  MdOutlineNotificationsActive,
+} from "react-icons/md";
+import {
+  IoCheckmark,
+  IoChatbubbleOutline,
+  IoLocationOutline,
+} from "react-icons/io5";
 import { IoMdCheckmarkCircleOutline } from "react-icons/io";
-import { MdNotificationImportant } from "react-icons/md";
+import { CiDeliveryTruck, CiStar } from "react-icons/ci";
+import { FaRegHeart, FaRegUser } from "react-icons/fa";
+import { BsBag, BsClockHistory } from "react-icons/bs";
 import { HiBars3BottomRight } from "react-icons/hi2";
 import { ImSortAmountDesc } from "react-icons/im";
 import { TbTruckDelivery } from "react-icons/tb";
-import { CiDeliveryTruck } from "react-icons/ci";
+import { FiGift, FiEdit3 } from "react-icons/fi";
 import { GoShieldCheck } from "react-icons/go";
-import { IoCheckmark } from "react-icons/io5";
 import { TiInfoLarge } from "react-icons/ti";
 import { GoHome } from "react-icons/go";
 
 export const icons = {
+  bag: <BsBag />,
   home: <GoHome />,
+  gift: <FiGift />,
+  star: <CiStar />,
+  edit: <FiEdit3 />,
+  user: <FaRegUser />,
   info: <TiInfoLarge />,
+  heart: <FaRegHeart />,
   check: <IoCheckmark />,
   textB: <PiTextBLight />,
   basket: <PiBasketThin />,
   shield: <GoShieldCheck />,
+  signout: <PiSignOutFill />,
   sort: <ImSortAmountDesc />,
+  history: <BsClockHistory />,
   question: <PiQuestionLight />,
+  chat: <IoChatbubbleOutline />,
   category: <PiBoundingBoxLight />,
   menuBars: <HiBars3BottomRight />,
+  location: <IoLocationOutline />,
   fastDelivery: <TbTruckDelivery />,
   freeDelivery: <CiDeliveryTruck />,
   important: <MdNotificationImportant />,
+  notif: <MdOutlineNotificationsActive />,
   aviable: <IoMdCheckmarkCircleOutline />,
 };
 
@@ -145,5 +167,85 @@ export const productDetailIcons = [
     id: 5,
     src: "/icon/product-details/express-delivery.svg",
     title: "ضمانت اصل بودن کالا",
+  },
+];
+
+export const personalInfoSidebar = [
+  {
+    id: 1,
+    icon: icons.home,
+    title: "خلاصه فعالیت ها",
+    pathname: "",
+  },
+  {
+    id: 2,
+    icon: icons.star,
+    title: "پلاس",
+    pathname: "/zedplus",
+  },
+  {
+    id: 3,
+    icon: icons.bag,
+    title: "سفارشات",
+    pathname: "/orders",
+  },
+  {
+    id: 4,
+    icon: icons.heart,
+    title: "لیست‌های من",
+    pathname: "/lists",
+  },
+  {
+    id: 5,
+    icon: icons.chat,
+    title: "دیدگاه و پرسش‌ها",
+    pathname: "/comments",
+  },
+  {
+    id: 6,
+    icon: icons.location,
+    title: "آدرس‌ها",
+    pathname: "/addresses",
+  },
+  {
+    id: 7,
+    icon: icons.gift,
+    title: "کارت‌های هدیه",
+    pathname: "/gift-cards",
+  },
+  {
+    id: 8,
+    icon: icons.notif,
+    title: "پیام ها",
+    pathname: "/notifcation",
+  },
+  {
+    id: 9,
+    icon: icons.history,
+    title: "بازدیدهای اخیر",
+    pathname: "/user-history",
+  },
+  {
+    id: 10,
+    icon: icons.user,
+    title: "اطلاعات حساب کاربری",
+    pathname: "/profile-info",
+  },
+  // {
+  //   id: 11,
+  //   icon: icons.signout,
+  //   title: "خروج",
+  //   pathname: "",
+  // },
+];
+
+export const passwordRequirements = [
+  { label: "شامل عدد", test: /\d/, points: 1 },
+  { label: "حداقل ۸ حرف", test: /.{8,}/, points: 3 },
+  { label: "شامل علامت (!@#$%^&*())", test: /[!@#$%^&*()]/, points: 2 },
+  {
+    label: "شامل یک حرف بزرگ و کوچک",
+    test: /(?=.*[a-z])(?=.*[A-Z])/,
+    points: 2,
   },
 ];
