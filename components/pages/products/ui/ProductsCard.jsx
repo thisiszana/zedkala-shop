@@ -30,7 +30,7 @@ function ProductCard({ product }) {
 
   return (
     <div
-      className="max-w-xs bg-white rounded-lg shadow-lg overflow-hidden border border-gray-200"
+      className="max-w-xs bg-white hover:shadow-2xl transition overflow-hidden border-t sm:border-r border-gray-200"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
