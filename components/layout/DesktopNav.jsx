@@ -15,7 +15,7 @@ export default function DesktopNav() {
             <li key={title}>
               <Link
                 href={link}
-                className={`block hover:text-violet-600 hover:border-b-violet-400 transition1 font-light text-[14px] py-[5px] border-b-2 border-t-2 border-t-transparent ${
+                className={`block hover:text-secondaryRed hover:border-b-mainRed transition1 font-light text-[14px] py-[5px] border-b-2 border-t-2 border-t-transparent ${
                   isActive
                     ? "border-mainRed text-secondaryRed"
                     : "text-gray-500 border-transparent"
