@@ -129,7 +129,7 @@ export default function BottomNavigation({
           )}
         </Link>
         <Link
-          href={`${userData?.user ? "/profile" : "/login"}`}
+          href={`${userData?.user ? "/profile/profile-info" : "/login"}`}
           className={`relative text-[22px] flex items-center justify-center w-10 h-10 rounded-full cursor-pointer transition-all ${
             pathname.includes("/profile")
               ? "bg-profileIcon shadow-profileMain text-lightGray"

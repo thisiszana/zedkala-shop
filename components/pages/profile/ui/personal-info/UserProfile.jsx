@@ -77,7 +77,7 @@ const UserProfile = () => {
   }
 
   return (
-    <div className="w-full border p-6 bg-white rounded-lg shadow-md">
+    <div className="w-full border px-6 pt-5 bg-white rounded-lg shadow-md h-fit">
       <div className="flex items-center gap-4 mb-6">
         <Image
           src={userData?.user?.images || images.avatar}

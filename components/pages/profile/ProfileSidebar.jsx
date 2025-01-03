@@ -13,7 +13,7 @@ export default function ProfileSidebar() {
   const { userData, isPending } = useUserQuery();
 
   return (
-    <div className="w-[20%] border rounded-[10px] py-4 pl-[20px] h-fit shadow-md">
+    <div className="w-full md:w-[280px] border rounded-[10px] py-4 pl-[20px] h-fit shadow-md">
       {isPending ? (
         <div className="flex justify-center py-10">
           <Loader size={8} />

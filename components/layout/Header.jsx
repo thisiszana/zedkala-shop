@@ -49,7 +49,7 @@ export default function Header() {
           </div>
           <div className="flex items-center gap-5 ml-4 max-sm:hidden relative">
             <Link
-              href={`${userData?.user ? "/profile" : "/login"}`}
+              href={`${userData?.user ? "/profile/profile-info" : "/login"}`}
               className={`iconSize paddingIcon rounded-full hover:bg-gray-100 transition1 ${
                 pathname.includes("/profile")
                   ? "text-secondaryRed"
