@@ -11,7 +11,7 @@ export default async function layout({ children }) {
       }
   return (
     <ClientProvider>
-      <main className="mt-[100px] lg:px-3 maxWidth pb-[150px] min-h-screen flex flex-col gap-3 md:flex-row">
+      <main className="mt-[100px] px-3 lg:px-0 maxWidth pb-[150px] min-h-screen flex flex-col gap-3 md:flex-row">
         <ProfileSidebar />
         {children}
       </main>

@@ -7,6 +7,7 @@ import { Modal, Form, Input, Progress } from "antd";
 
 import CustomBtn from "@/components/shared/CustomBtn";
 import { passwordRequirements } from "@/constants";
+import BirthDateInput from "./BirthDateInput";
 
 const EditModal = ({ visible, onClose, type, name }) => {
   const { control, handleSubmit, reset, watch } = useForm();
@@ -16,7 +17,12 @@ const EditModal = ({ visible, onClose, type, name }) => {
 
   const onSubmit = (data) => {
     setLoading(true);
-    console.log("Updated Data:", data);
+    const filteredData = Object.fromEntries(
+      Object.entries(data).filter(
+        ([_, value]) => value !== "" && value !== undefined
+      )
+    );
+    console.log("Updated Data:", filteredData);
     setTimeout(() => {
       setLoading(false);
       onClose();
@@ -102,7 +108,6 @@ const EditModal = ({ visible, onClose, type, name }) => {
                 </li>
               ))}
             </ul>
-            {console.log(strength, color)}
             <div className="mb-4">
               <Progress
                 percent={(strength / 6) * 100}
@@ -145,7 +150,7 @@ const EditModal = ({ visible, onClose, type, name }) => {
               defaultValue=""
               rules={{
                 required: "کد ملی الزامی است.",
-                pattern: { value: /^\d{10}$/, message: "کد ملی نامعتبر است." },
+                pattern: { value: /^09\d{9}$/, message: "کد ملی نامعتبر است." },
               }}
               render={({ field, fieldState }) => (
                 <Form.Item
@@ -163,6 +168,119 @@ const EditModal = ({ visible, onClose, type, name }) => {
             />
           </>
         );
+      case "gender":
+        return (
+          <Controller
+            name="gender"
+            control={control}
+            defaultValue=""
+            rules={{ required: "انتخاب جنسیت الزامی است." }}
+            render={({ field, fieldState }) => (
+              <Form.Item
+                label="جنسیت"
+                validateStatus={fieldState.error ? "error" : ""}
+                help={fieldState.error?.message}
+              >
+                <select
+                  {...field}
+                  className="py-[12px] rounded-[8px] text-[12px] w-full border"
+                >
+                  <option value="">انتخاب کنید</option>
+                  <option value="male">مرد</option>
+                  <option value="female">زن</option>
+                </select>
+              </Form.Item>
+            )}
+          />
+        );
+      case "phoneNumber":
+        return (
+          <Controller
+            name="phoneNumber"
+            control={control}
+            defaultValue=""
+            rules={{
+              required: "شماره موبایل الزامی است.",
+              pattern: {
+                value: /^09\d{9}$/,
+                message: "شماره موبایل معتبر نیست.",
+              },
+            }}
+            render={({ field, fieldState }) => (
+              <Form.Item
+                label="شماره موبایل"
+                validateStatus={fieldState.error ? "error" : ""}
+                help={fieldState.error?.message}
+              >
+                <Input
+                  {...field}
+                  type="number"
+                  placeholder="شماره موبایل"
+                  className="py-[12px] rounded-[8px] text-[12px]"
+                />
+              </Form.Item>
+            )}
+          />
+        );
+      case "email":
+        return (
+          <Controller
+            name="email"
+            control={control}
+            defaultValue=""
+            rules={{
+              required: "ایمیل الزامی است.",
+              pattern: {
+                value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+                message: "ایمیل معتبر نیست.",
+              },
+            }}
+            render={({ field, fieldState }) => (
+              <Form.Item
+                label="ایمیل"
+                validateStatus={fieldState.error ? "error" : ""}
+                help={fieldState.error?.message}
+              >
+                <Input
+                  {...field}
+                  type="email"
+                  placeholder="ایمیل"
+                  className="py-[12px] rounded-[8px] text-[12px]"
+                />
+              </Form.Item>
+            )}
+          />
+        );
+      case "displayName":
+        return (
+          <Controller
+            name="displayName"
+            control={control}
+            defaultValue=""
+            rules={{
+              required: "نام و نام خانوادگی الزامی است.",
+              pattern: {
+                value: /^[\u0600-\u06FF\s]+$/,
+                message: "فقط حروف فارسی مجاز است.",
+              },
+            }}
+            render={({ field, fieldState }) => (
+              <Form.Item
+                label="نام و نام خانوادگی"
+                validateStatus={fieldState.error ? "error" : ""}
+                help={fieldState.error?.message}
+              >
+                <Input
+                  {...field}
+                  placeholder="نام و نام خانوادگی"
+                  className="py-[12px] rounded-[8px] text-[12px]"
+                />
+              </Form.Item>
+            )}
+          />
+        );
+      case "birthDate":
+        return <BirthDateInput />;
       default:
         return (
           <Controller
@@ -172,13 +290,13 @@ const EditModal = ({ visible, onClose, type, name }) => {
             rules={{ required: `${type} الزامی است.` }}
             render={({ field, fieldState }) => (
               <Form.Item
-                label={type}
+                label={name}
                 validateStatus={fieldState.error ? "error" : ""}
                 help={fieldState.error?.message}
               >
                 <Input
                   {...field}
-                  placeholder={`ویرایش ${type}`}
+                  placeholder={type}
                   className="py-[12px] rounded-[8px] text-[12px]"
                 />
               </Form.Item>

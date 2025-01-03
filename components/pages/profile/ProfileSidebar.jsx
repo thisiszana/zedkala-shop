@@ -16,7 +16,7 @@ export default function ProfileSidebar() {
     <div className="w-full md:w-[280px] border rounded-[10px] py-4 pl-[20px] h-fit shadow-md">
       {isPending ? (
         <div className="flex justify-center py-10">
-          <Loader size={8} />
+          <Loader size={5} />
         </div>
       ) : (
         <>

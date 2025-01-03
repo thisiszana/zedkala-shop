@@ -6,15 +6,16 @@ import { useUserQuery } from "@/hooks/useUserQuery";
 import { icons, images } from "@/constants";
 import CustomBtn from "@/components/shared/CustomBtn";
 import EditModal from "./EditModal";
+import Loader from "@/components/shared/Loader";
 
 const UserProfile = () => {
-  const { userData, isPending } = useUserQuery();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalType, setModalType] = useState(null);
   const [nameForm, setNameForm] = useState("");
 
+  const { userData, isPending } = useUserQuery();
+
   const handleEditClick = (type, name) => {
-    console.log(type, name)
     setModalType(type);
     setNameForm(name);
     setIsModalOpen(true);
@@ -73,18 +74,18 @@ const UserProfile = () => {
   ];
 
   if (isPending) {
-    return <div className="text-center py-10">در حال بارگذاری...</div>;
+    return <main className="text-center py-10 w-full flex items-center justify-center"><Loader size={8} /></main>;
   }
 
   return (
-    <div className="w-full border px-6 pt-5 bg-white rounded-lg shadow-md h-fit">
+    <div className="w-full border pt-5 bg-white rounded-lg shadow-md h-fit">
       <div className="flex items-center gap-4 mb-6">
         <Image
           src={userData?.user?.images || images.avatar}
           width={60}
           height={60}
           alt="آواتار"
-          className="w-20 h-20 rounded-full object-cover shadow-sm"
+          className="w-20 mr-5 border border-[#000] p-1 h-20 rounded-full object-cover shadow-sm"
         />
         <div>
           <h2 className="text-[16px] font-semibold text-gray-800">
