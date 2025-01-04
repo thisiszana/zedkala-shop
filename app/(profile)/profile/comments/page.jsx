@@ -1,7 +1,7 @@
-import React from 'react'
+import React from "react";
+
+export const dynamic = "force-dynamic";
 
 export default function Comments() {
-  return (
-    <div>Comments</div>
-  )
+  return <div>Comments</div>;
 }

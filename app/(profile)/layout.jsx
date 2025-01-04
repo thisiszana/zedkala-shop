@@ -3,6 +3,8 @@ import ClientProvider from "@/providers/ClientProvider";
 import { getServerSession } from "@/utils/session";
 import { redirect } from "next/navigation";
 
+export const dynamic = "force-dynamic";
+
 export default async function layout({ children }) {
     const { accessToken, refreshToken } = await getServerSession();
     

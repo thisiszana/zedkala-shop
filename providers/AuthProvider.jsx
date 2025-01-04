@@ -8,6 +8,7 @@ import { useEffect } from "react";
 
 import { fetchRefreshToken } from "@/services/req";
 import { QUERY_KEY } from "@/services/queryKey";
+import Loader from "@/components/shared/Loader";
 
 export default function AuthProvider({ children, refreshToken, accessToken }) {
   const router = useRouter();
@@ -41,8 +42,12 @@ export default function AuthProvider({ children, refreshToken, accessToken }) {
   }
 
   if (isLoading) {
-    return <div>در حال بررسی وضعیت...</div>;
+    return (
+      <div className="w-full flex items-center justify-center">
+        <Loader size={5} />
+      </div>
+    );
   }
-  
+
   return <>{children}</>;
 }

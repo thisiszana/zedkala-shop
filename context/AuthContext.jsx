@@ -26,7 +26,7 @@ export const AuthContextProvider = ({ children }) => {
       .split("; ")
       .find((row) => row.startsWith("accessToken="))
       ?.split("=")[1];
-      
+
     if (refreshToken && !accessToken) {
       fetchRefreshToken({ refreshToken })
         .then((data) => {
@@ -58,7 +58,15 @@ export const AuthContextProvider = ({ children }) => {
 
   return (
     <AuthContext.Provider
-      value={{ user, login, logout, loading, userData, isError, isLoading }}
+      value={{
+        user,
+        login,
+        logout,
+        loading,
+        userData,
+        isError,
+        isLoading,
+      }}
     >
       {children}
     </AuthContext.Provider>
