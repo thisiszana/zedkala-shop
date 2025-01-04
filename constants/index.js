@@ -56,22 +56,13 @@ export const icons = {
 
 export const images = {
   disIcon: "/icon/Amazing.svg",
-  home_logo: "/logo/z-logo.jpg",
+  home_logo: "/logo/z-logo.png",
   disIcon1: "/icon/Amazings1.svg",
   shopBanner: "/images/shop-banner.png",
   avatar: `/images/avatars/avatar_6.jpg`,
   freeDeliverySvg: "/icon/free-delivery.svg",
   imageNotFound: "/images/imagenotfound.jfif",
 };
-
-export const sortOptions = [
-  { title: "پربازدیدترین", sort: 1 },
-  { title: "بیشترین‌تخفیف", sort: 2 },
-  { title: "جدیدترین", sort: 3 },
-  { title: "ارزان‌ترین", sort: 4 },
-  { title: "گران‌ترین", sort: 5 },
-  { title: "سوپرمارکتی", sort: 6 },
-];
 
 export const navLinks = [
   {
@@ -104,6 +95,15 @@ export const navLinks = [
     link: "/about-us",
     name: "about",
   },
+];
+
+export const sortOptions = [
+  { title: "پربازدیدترین", sort: 1 },
+  { title: "بیشترین‌تخفیف", sort: 2 },
+  { title: "جدیدترین", sort: 3 },
+  { title: "ارزان‌ترین", sort: 4 },
+  { title: "گران‌ترین", sort: 5 },
+  { title: "سوپرمارکتی", sort: 6 },
 ];
 
 export const productBanner = [

@@ -133,3 +133,18 @@ export const fetchProduct = async (id) => {
   const responseData = await res.json();
   return responseData;
 };
+
+export const fetchEditUserInfo = async ({ accessToken, filteredData, id }) => {
+  console.log({ accessToken, filteredData, id });
+  const res = await fetch(`${BASE_URL}/api/user/${id}`, {
+    method: "PATCH",
+    body: JSON.stringify(filteredData),
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${accessToken}`,
+    },
+  });
+
+  const responseData = await res.json();
+  return responseData;
+};

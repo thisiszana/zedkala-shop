@@ -14,7 +14,7 @@ const UserProfile = () => {
   const [nameForm, setNameForm] = useState("");
 
   const { userData, isPending } = useUserQuery();
-
+  console.log(userData);
   const handleEditClick = (type, name) => {
     setModalType(type);
     setNameForm(name);
@@ -61,7 +61,12 @@ const UserProfile = () => {
     {
       label: "جنسیت",
       field: "gender",
-      value: userData?.user?.gender,
+      value:
+        userData?.user?.gender === "male"
+          ? "مرد"
+          : userData?.user?.gender === "female"
+          ? "زن"
+          : "غیره",
       editable: true,
     },
     {
@@ -74,7 +79,11 @@ const UserProfile = () => {
   ];
 
   if (isPending) {
-    return <main className="text-center py-10 w-full flex items-center justify-center"><Loader size={8} /></main>;
+    return (
+      <main className="text-center py-10 w-full flex items-center justify-center">
+        <Loader size={8} />
+      </main>
+    );
   }
 
   return (
@@ -127,6 +136,7 @@ const UserProfile = () => {
         onClose={handleModalClose}
         type={modalType}
         name={nameForm}
+        id={userData?.user?._id}
       />
     </div>
   );

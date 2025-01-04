@@ -8,26 +8,44 @@ import { Modal, Form, Input, Progress } from "antd";
 import CustomBtn from "@/components/shared/CustomBtn";
 import { passwordRequirements } from "@/constants";
 import BirthDateInput from "./BirthDateInput";
+import { fetchEditUserInfo } from "@/services/req";
+import { useAuth } from "@/context/AuthContext";
+import { useQueryClient } from "@tanstack/react-query";
+import { QUERY_KEY } from "@/services/queryKey";
+import toast from "react-hot-toast";
+import Loader from "@/components/shared/Loader";
 
-const EditModal = ({ visible, onClose, type, name }) => {
-  const { control, handleSubmit, reset, watch } = useForm();
+const EditModal = ({ visible, onClose, type, name, id }) => {
+  const [formUser, setFormUser] = useState({});
   const [loading, setLoading] = useState(false);
+
+  const { control, handleSubmit, reset, watch } = useForm();
+
+  const queryClient = useQueryClient();
+
+  const { user } = useAuth();
+  const { accessToken } = user || "";
 
   const newPassword = watch("newPassword", "");
 
-  const onSubmit = (data) => {
+  const onSubmit = async (data) => {
     setLoading(true);
     const filteredData = Object.fromEntries(
       Object.entries(data).filter(
         ([_, value]) => value !== "" && value !== undefined
       )
     );
-    console.log("Updated Data:", filteredData);
-    setTimeout(() => {
-      setLoading(false);
-      onClose();
+    setFormUser(() => ({ ...filteredData }));
+
+    const res = await fetchEditUserInfo({ accessToken, filteredData, id });
+    if (res.success === true) {
+      queryClient.invalidateQueries({ queryKey: [QUERY_KEY.user_session] });
       reset();
-    }, 1000);
+      onClose(false);
+    } else {
+      toast.error(res.msg);
+    }
+    setLoading(false);
   };
 
   const calculatePasswordStrength = () => {
@@ -150,7 +168,7 @@ const EditModal = ({ visible, onClose, type, name }) => {
               defaultValue=""
               rules={{
                 required: "کد ملی الزامی است.",
-                pattern: { value: /^09\d{9}$/, message: "کد ملی نامعتبر است." },
+                pattern: { value: /^\d{10}$/, message: "کد ملی نامعتبر است." },
               }}
               render={({ field, fieldState }) => (
                 <Form.Item
@@ -188,6 +206,7 @@ const EditModal = ({ visible, onClose, type, name }) => {
                   <option value="">انتخاب کنید</option>
                   <option value="male">مرد</option>
                   <option value="female">زن</option>
+                  <option value="etc">غیره</option>
                 </select>
               </Form.Item>
             )}
@@ -317,9 +336,14 @@ const EditModal = ({ visible, onClose, type, name }) => {
         {renderInputs()}
         <Form.Item>
           <CustomBtn
-            title="ثبت اطلاعات"
             classNames="w-[20%] bg-mainRed text-white text-[12px] font-bold py-2 rounded-[4px]"
-            loading={loading}
+            title={
+              loading ? (
+                <Loader size={4} color={"#fff"} />
+              ) : (
+                <div>ثبت اطلاعات</div>
+              )
+            }
             type="submit"
           />
         </Form.Item>
