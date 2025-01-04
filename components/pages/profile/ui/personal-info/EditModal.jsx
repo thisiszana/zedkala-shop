@@ -46,18 +46,19 @@ const EditModal = ({ visible, onClose, type, name, id }) => {
       )
     );
 
-    if (avatarData || avatarData.fileUrl) {
+    if (avatarData !== null) {
       filteredData.images = avatarData.fileUrl || avatarData;
     }
 
     if (birthDate) {
       filteredData.birthDate = birthDate;
     }
-
+    
     const res = await fetchEditUserInfo({ accessToken, filteredData, id });
     
     if (res.success === true) {
       queryClient.invalidateQueries({ queryKey: [QUERY_KEY.user_session] });
+      toast.success(res.msg)
       reset();
       onClose(false);
     } else {
