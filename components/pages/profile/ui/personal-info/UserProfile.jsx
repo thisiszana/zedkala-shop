@@ -95,6 +95,7 @@ const UserProfile = () => {
           src={userData?.user?.images || images.avatar}
           width={60}
           height={60}
+          priority={true}
           alt="آواتار"
           className="w-20 mr-5 border border-[#000] p-1 h-20 rounded-full object-cover shadow-sm"
         />

@@ -46,8 +46,8 @@ const EditModal = ({ visible, onClose, type, name, id }) => {
       )
     );
 
-    if (avatarData && avatarData.fileUrl) {
-      filteredData.images = avatarData.fileUrl;
+    if (avatarData || avatarData.fileUrl) {
+      filteredData.images = avatarData.fileUrl || avatarData;
     }
 
     if (birthDate) {
@@ -55,7 +55,7 @@ const EditModal = ({ visible, onClose, type, name, id }) => {
     }
 
     const res = await fetchEditUserInfo({ accessToken, filteredData, id });
-    console.log("ressssssssss", res);
+    
     if (res.success === true) {
       queryClient.invalidateQueries({ queryKey: [QUERY_KEY.user_session] });
       reset();

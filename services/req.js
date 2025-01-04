@@ -42,8 +42,7 @@ export const fetchRefreshToken = async (refreshToken) => {
   return responseData;
 };
 
-export const fetchUserSession = async ({ accessToken }) => {
-  console.log({accessToken})
+export const fetchUserSession = async ({ accessToken }) => {  
   const res = await fetch(`${BASE_URL}/api/user`, {
     method: "GET",
     headers: {
@@ -136,7 +135,6 @@ export const fetchProduct = async (id) => {
 };
 
 export const fetchEditUserInfo = async ({ accessToken, filteredData, id }) => {
-  console.log({ accessToken, filteredData, id });
   const res = await fetch(`${BASE_URL}/api/user/${id}`, {
     method: "PATCH",
     body: JSON.stringify(filteredData),

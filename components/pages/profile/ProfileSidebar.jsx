@@ -6,6 +6,7 @@ import Link from "next/link";
 import { icons, personalInfoSidebar } from "@/constants";
 import { useUserQuery } from "@/hooks/useUserQuery";
 import Loader from "@/components/shared/Loader";
+import { e2p } from "@/utils/clientFun";
 
 export default function ProfileSidebar() {
   const path = usePathname();
@@ -26,7 +27,7 @@ export default function ProfileSidebar() {
             </span>
             <div className="flex items-center justify-between">
               <span className="text-gray-400 text-[14px] my-2 inline-block">
-                {userData?.user?.phoneNumber || "شماره تلفن ثبت نشده"}
+                {e2p(userData?.user?.phoneNumber) || "شماره تلفن ثبت نشده"}
               </span>
               <Link href="/profile/personal-info" className="text-blue-400">
                 {icons.edit}
