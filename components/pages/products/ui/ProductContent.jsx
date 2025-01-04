@@ -72,7 +72,7 @@ export default function ProductContent() {
     );
   }
   return (
-    <div>
+    <div className="mt-[100px]">
       <ProductsSort
         refetch={refetch}
         setSort={handleSortChange}

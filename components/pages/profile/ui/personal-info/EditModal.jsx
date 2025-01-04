@@ -16,6 +16,7 @@ import toast from "react-hot-toast";
 import Loader from "@/components/shared/Loader";
 import UploadAvatar from "@/components/shared/UploadAvatar";
 import { uploadCompressedFile } from "@/utils/clientFun";
+import { useUserQuery } from "@/hooks/useUserQuery";
 
 const EditModal = ({ visible, onClose, type, name, id }) => {
   const [birthDate, setBirthDate] = useState(null);
@@ -29,6 +30,7 @@ const EditModal = ({ visible, onClose, type, name, id }) => {
 
   const { user } = useAuth();
   const { accessToken } = user || "";
+  useUserQuery(accessToken);
 
   const newPassword = watch("newPassword", "");
 
@@ -194,7 +196,7 @@ const EditModal = ({ visible, onClose, type, name, id }) => {
                 >
                   <Input
                     {...field}
-                    type="number" 
+                    type="number"
                     placeholder="کد ملی"
                     className="py-[12px] rounded-[8px] text-[12px]"
                   />

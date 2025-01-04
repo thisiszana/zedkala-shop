@@ -43,6 +43,7 @@ export const fetchRefreshToken = async (refreshToken) => {
 };
 
 export const fetchUserSession = async ({ accessToken }) => {
+  console.log({accessToken})
   const res = await fetch(`${BASE_URL}/api/user`, {
     method: "GET",
     headers: {

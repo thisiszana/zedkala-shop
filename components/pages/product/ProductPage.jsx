@@ -6,7 +6,7 @@ export default async function ProductPage({ id }) {
 
   console.log(product);
   return (
-    <div>
+    <div className="mt-[100px]">
       <ProductInformation product={product?.product} />
     </div>
   );

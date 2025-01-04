@@ -11,6 +11,9 @@ export const useUserQuery = (accessToken) => {
     gcTime: 0,
     staleTime: 0,
     enabled: !!accessToken,
+    onSuccess: () => {
+      queryClient.invalidateQueries([QUERY_KEY.user_session]);
+    },
   });
 
   return {

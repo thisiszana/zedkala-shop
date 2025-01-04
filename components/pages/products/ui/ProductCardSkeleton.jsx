@@ -5,7 +5,7 @@ export default function ProductSkeleton({ count = 1, className, bgColor }) {
 
   return (
     <div
-      className={`grid ${
+      className={`grid mt-[100px] ${
         count > 1
           ? "w-full grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 p-6 justify-items-center"
           : ""
