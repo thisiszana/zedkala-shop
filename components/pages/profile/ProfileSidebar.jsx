@@ -7,9 +7,13 @@ import { icons, personalInfoSidebar } from "@/constants";
 import { useUserQuery } from "@/hooks/useUserQuery";
 import Loader from "@/components/shared/Loader";
 import { e2p } from "@/utils/clientFun";
+import CustomBtn from "@/components/shared/CustomBtn";
+import { useAuth } from "@/context/AuthContext";
 
 export default function ProfileSidebar() {
   const path = usePathname();
+
+  const { logout } = useAuth();
 
   const { userData, isPending } = useUserQuery();
 
@@ -55,6 +59,16 @@ export default function ProfileSidebar() {
             </Link>
           );
         })}
+        <CustomBtn
+          onClick={() => logout()}
+          classNames="flex items-center gap-3 border-t py-3 pr-[16px] w-full"
+          title={
+            <div className="w-full flex items-center gap-3 text-secondaryRed font-bold">
+              <span className="text-[22px]">{icons.signout}</span>
+              <span className="text-[14px]">خروج</span>
+            </div>
+          }
+        />
       </div>
     </div>
   );

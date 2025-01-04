@@ -54,6 +54,7 @@ export const AuthContextProvider = ({ children }) => {
     setUser(null);
     document.cookie = "refreshToken=; Max-Age=0; path=/;";
     document.cookie = "accessToken=; Max-Age=0; path=/;";
+    router.replace("/");
   };
 
   return (
