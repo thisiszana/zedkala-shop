@@ -7,6 +7,8 @@ import { icons, images } from "@/constants";
 import CustomBtn from "@/components/shared/CustomBtn";
 import EditModal from "./EditModal";
 import Loader from "@/components/shared/Loader";
+import moment from "moment-jalaali";
+import { e2p } from "@/utils/clientFun";
 
 const UserProfile = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -14,7 +16,7 @@ const UserProfile = () => {
   const [nameForm, setNameForm] = useState("");
 
   const { userData, isPending } = useUserQuery();
-  console.log(userData);
+
   const handleEditClick = (type, name) => {
     setModalType(type);
     setNameForm(name);
@@ -72,7 +74,7 @@ const UserProfile = () => {
     {
       label: "تاریخ تولد",
       field: "birthDate",
-      value: userData?.user?.birthDate,
+      value: moment(userData?.user?.birthDate).format("jYYYY/jMM/jDD"),
       editable: true,
     },
     { label: "رمز عبور", field: "password", value: "******", editable: true },
@@ -129,7 +131,7 @@ const UserProfile = () => {
               )}
             </div>
             <span className="text-gray-800 text-[12px]">
-              {item.value || (
+              {e2p(item.value) || (
                 <span className="text-gray-400">اطلاعات وارد نشده</span>
               )}
             </span>

@@ -19,8 +19,8 @@ import { uploadCompressedFile } from "@/utils/clientFun";
 
 const EditModal = ({ visible, onClose, type, name, id }) => {
   const [birthDate, setBirthDate] = useState(null);
-  const [loading, setLoading] = useState(false);
   const [imageType, setImageType] = useState(null);
+  const [loading, setLoading] = useState(false);
   const [image, setImage] = useState(null);
 
   const { control, handleSubmit, reset, watch } = useForm();
@@ -36,9 +36,7 @@ const EditModal = ({ visible, onClose, type, name, id }) => {
     setLoading(true);
 
     const avatarData =
-      imageType === "custom"
-        ? await uploadCompressedFile(image)
-        : image;
+      imageType === "custom" ? await uploadCompressedFile(image) : image;
 
     const filteredData = Object.fromEntries(
       Object.entries(data).filter(
@@ -46,10 +44,16 @@ const EditModal = ({ visible, onClose, type, name, id }) => {
       )
     );
 
-    filteredData.images = (avatarData && avatarData?.fileUrl) || avatarData;
-    filteredData.birthDate = birthDate && birthDate;
+    if (avatarData && avatarData.fileUrl) {
+      filteredData.images = avatarData.fileUrl;
+    }
+
+    if (birthDate) {
+      filteredData.birthDate = birthDate;
+    }
 
     const res = await fetchEditUserInfo({ accessToken, filteredData, id });
+    console.log("ressssssssss", res);
     if (res.success === true) {
       queryClient.invalidateQueries({ queryKey: [QUERY_KEY.user_session] });
       reset();
@@ -175,7 +179,7 @@ const EditModal = ({ visible, onClose, type, name, id }) => {
         return (
           <>
             <Controller
-              name="nationalCode"
+              name="nationalcode"
               control={control}
               defaultValue=""
               rules={{
@@ -190,6 +194,7 @@ const EditModal = ({ visible, onClose, type, name, id }) => {
                 >
                   <Input
                     {...field}
+                    type="number" 
                     placeholder="کد ملی"
                     className="py-[12px] rounded-[8px] text-[12px]"
                   />
