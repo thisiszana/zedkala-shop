@@ -33,7 +33,7 @@ export default function ProfileSidebar() {
               <span className="text-gray-400 text-[14px] my-2 inline-block">
                 {e2p(userData?.user?.phoneNumber) || "شماره تلفن ثبت نشده"}
               </span>
-              <Link href="/profile/personal-info" className="text-blue-400">
+              <Link href="/profile/profile-info" className="text-blue-400">
                 {icons.edit}
               </Link>
             </div>
