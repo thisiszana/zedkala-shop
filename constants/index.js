@@ -129,6 +129,16 @@ export const productBanner = [
   },
 ];
 
+export const defaultAvatars = [
+  { id: 1, url: "/images/avatars/avatar_1.webp" },
+  { id: 2, url: "/images/avatars/avatar_6.jpg" },
+  { id: 3, url: "/images/avatars/avatar_8.jpg" },
+  { id: 4, url: "/images/avatars/avatar_15.jpg" },
+  { id: 5, url: "/images/avatars/avatar_20.jpg" },
+  { id: 6, url: "/images/avatars/avatar_22.jpg" },
+  { id: 7, url: "/images/avatars/avatar_23.jpg" },
+];
+
 export const productBanner1 = [
   {
     src: "/images/productBanner1.webp",

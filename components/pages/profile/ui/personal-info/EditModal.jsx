@@ -14,10 +14,14 @@ import { useQueryClient } from "@tanstack/react-query";
 import { QUERY_KEY } from "@/services/queryKey";
 import toast from "react-hot-toast";
 import Loader from "@/components/shared/Loader";
+import UploadAvatar from "@/components/shared/UploadAvatar";
+import { uploadCompressedFile } from "@/utils/clientFun";
 
 const EditModal = ({ visible, onClose, type, name, id }) => {
-  const [formUser, setFormUser] = useState({});
+  const [birthDate, setBirthDate] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [imageType, setImageType] = useState(null);
+  const [image, setImage] = useState(null);
 
   const { control, handleSubmit, reset, watch } = useForm();
 
@@ -30,12 +34,20 @@ const EditModal = ({ visible, onClose, type, name, id }) => {
 
   const onSubmit = async (data) => {
     setLoading(true);
+
+    const avatarData =
+      imageType === "custom"
+        ? await uploadCompressedFile(image)
+        : image;
+
     const filteredData = Object.fromEntries(
       Object.entries(data).filter(
         ([_, value]) => value !== "" && value !== undefined
       )
     );
-    setFormUser(() => ({ ...filteredData }));
+
+    filteredData.images = (avatarData && avatarData?.fileUrl) || avatarData;
+    filteredData.birthDate = birthDate && birthDate;
 
     const res = await fetchEditUserInfo({ accessToken, filteredData, id });
     if (res.success === true) {
@@ -299,7 +311,20 @@ const EditModal = ({ visible, onClose, type, name, id }) => {
           />
         );
       case "birthDate":
-        return <BirthDateInput />;
+        return (
+          <BirthDateInput
+            value={birthDate}
+            onChange={(date) => setBirthDate(date)}
+          />
+        );
+      case "images":
+        return (
+          <UploadAvatar
+            image={image}
+            setImage={setImage}
+            setImageType={setImageType}
+          />
+        );
       default:
         return (
           <Controller

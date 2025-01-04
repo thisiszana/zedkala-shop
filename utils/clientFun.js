@@ -34,3 +34,35 @@ export const productQuantity = (productId, cartItems) => {
   const item = cartItems.find((item) => item.productId === productId);
   return item ? item.quantity : 0;
 };
+
+export const uploadCompressedFile = async (file) => {
+  console.log("Uploading compressed file:", file);
+  const cloudName = process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME;
+  const uploadPreset = process.env.NEXT_PUBLIC_UPLOAD_PRESET;
+
+  console.log("Cloud Name:", cloudName);
+  console.log("Upload Preset:", uploadPreset);
+
+  const url = `https://api.cloudinary.com/v1_1/${cloudName}/raw/upload`;
+  const formData = new FormData();
+
+  formData.append("file", file);
+  formData.append("upload_preset", uploadPreset);
+
+  try {
+    const res = await fetch(url, {
+      method: "POST",
+      body: formData,
+    });
+
+    if (!res.ok) {
+      throw new Error("Network response was not ok" + res.statusText);
+    }
+
+    const data = await res.json();
+    return { fileUrl: data.secure_url };
+  } catch (error) {
+    console.error("Error uploading compressed file:", error);
+    return { fileUrl: null };
+  }
+};

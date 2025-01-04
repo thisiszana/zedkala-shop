@@ -104,6 +104,11 @@ const UserProfile = () => {
             {userData?.user?.email || "ایمیل وارد نشده"}
           </p>
         </div>
+        <CustomBtn
+          classNames="text-blue-500 text-sm hover:underline"
+          title={<span className="text-blue-400">{icons.edit}</span>}
+          onClick={() => handleEditClick("images", "آواتار")}
+        />
       </div>
       <ul className="grid grid-cols-1 sm:grid-cols-2 ">
         {userInfo.map((item, index) => (

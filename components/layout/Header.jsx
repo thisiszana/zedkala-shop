@@ -50,7 +50,7 @@ export default function Header() {
           <div className="flex items-center gap-5 ml-4 max-sm:hidden relative">
             <Link
               href={`${userData?.user ? "/profile/profile-info" : "/login"}`}
-              className={`iconSize paddingIcon rounded-full hover:bg-gray-100 transition1 ${
+              className={`iconSize paddingIcon rounded-full hover:bg-gray-100 transition1 w-[50px] h-[50px] ${
                 pathname.includes("/profile")
                   ? "text-secondaryRed"
                   : "text-gray-500"
@@ -63,10 +63,10 @@ export default function Header() {
               ) : (
                 <Image
                   src={userData?.user?.images || images.avatar}
-                  width={40}
-                  height={40}
+                  width={60}
+                  height={60}
                   alt="لوگو"
-                  className="rounded-full max-lg:w-[20px] max-lg:h-[20px]"
+                  className="rounded-full w-full h-full"
                 />
               )}
             </Link>
