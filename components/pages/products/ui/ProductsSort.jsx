@@ -5,6 +5,7 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 import { icons, sortOptions } from "@/constants";
+import { e2p } from "@/utils/clientFun";
 
 export default function ProductsSort({
   refetch,
@@ -12,7 +13,9 @@ export default function ProductsSort({
   totalProducts,
   sort,
 }) {
-  const [activeSort, setActiveSort] = useState(sortOptions[sort - 1].title || "جدیدترین");
+  const [activeSort, setActiveSort] = useState(
+    sortOptions[sort - 1].title || "جدیدترین"
+  );
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const handleSort = (option) => {
@@ -56,8 +59,8 @@ export default function ProductsSort({
             ))}
           </motion.ul>
         </div>
-        <span className="text-[14px] bg-greenIconShopping text-white rounded-full px-1 text-center">
-          {totalProducts}
+        <span className="text-[12px] text-dark1 px-1 text-center">
+          {e2p(totalProducts)} کالا
         </span>
       </div>
 
@@ -69,8 +72,8 @@ export default function ProductsSort({
           {icons.sort}
           <span className="text-[14px]">{activeSort}</span>
         </button>
-        <span className="text-[14px] bg-greenIconShopping text-white rounded-full px-2 py-1 font-bold">
-          {totalProducts}
+        <span className="text-[12px] text-dark1 px-1 text-center">
+          {e2p(totalProducts)} کالا
         </span>
         <AnimatePresence>
           {isMenuOpen && (

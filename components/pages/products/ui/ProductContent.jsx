@@ -14,6 +14,7 @@ export default function ProductContent() {
   const {
     data,
     isLoading,
+    totalProducts,
     isFetchingNextPage,
     hasNextPage,
     fetchNextPage,
@@ -76,7 +77,7 @@ export default function ProductContent() {
       <ProductsSort
         refetch={refetch}
         setSort={handleSortChange}
-        totalProducts={data.length}
+        totalProducts={totalProducts}
         sort={sort}
       />
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4  p-6 justify-self-center">

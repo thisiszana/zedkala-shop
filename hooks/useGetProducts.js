@@ -3,8 +3,6 @@
 import { QUERY_KEY } from "@/services/queryKey";
 import { fetchProducts } from "@/services/req";
 import { useInfiniteQuery } from "@tanstack/react-query";
-import { useMemo } from "react";
-
 export const useGetProducts = (sort) => {
   const {
     data,
@@ -18,7 +16,10 @@ export const useGetProducts = (sort) => {
     initialPageParam: 1,
     queryFn: ({ pageParam = 1 }) => fetchProducts({ pageParam, sort }),
     getNextPageParam: (lastPage, allPages, lastPageParam, allPageParams) => {
-      if (lastPage?.currentPage && lastPage?.totalPages > lastPage.currentPage) {
+      if (
+        lastPage?.currentPage &&
+        lastPage?.totalPages > lastPage.currentPage
+      ) {
         return lastPageParam + 1;
       } else {
         return null;
@@ -34,8 +35,11 @@ export const useGetProducts = (sort) => {
           self.findIndex((p) => p._id === product?._id) === index
       ) || [];
 
+  const totalProducts = data?.pages?.[0]?.totalProducts || 0;
+
   return {
     data: products,
+    totalProducts,
     isLoading,
     isFetchingNextPage,
     hasNextPage,
