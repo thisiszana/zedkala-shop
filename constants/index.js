@@ -7,6 +7,7 @@ import {
 } from "react-icons/pi";
 import {
   MdNotificationImportant,
+  MdOutlineDeliveryDining,
   MdOutlineNotificationsActive,
 } from "react-icons/md";
 import {
@@ -52,6 +53,7 @@ export const icons = {
   important: <MdNotificationImportant />,
   notif: <MdOutlineNotificationsActive />,
   aviable: <IoMdCheckmarkCircleOutline />,
+  shippingDelivery: <MdOutlineDeliveryDining />,
 };
 
 export const images = {

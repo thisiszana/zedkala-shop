@@ -1,22 +1,24 @@
 "use client";
 
 import { useState } from "react";
+import NextImage from "next/image";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
 import { Navigation } from "swiper/modules";
 import Loader from "@/components/shared/Loader";
-import { Image } from "@nextui-org/react";
+
 import { shorterText, sp } from "@/utils/clientFun";
 import Link from "next/link";
 import { images } from "@/constants";
 import { LeftAngle, RightAngle } from "@/components/icons/Icons";
 import DiscountBadge from "@/components/pages/products/ui/DiscountBadge";
+import Image from "next/image";
 
 export default function DisProductSlider({ discountProduct }) {
   const [isBeginning, setIsBeginning] = useState(true);
   const [isEnd, setIsEnd] = useState(false);
-
+  console.log(discountProduct);
   const productsWithStatic = [
     {
       static: true,
@@ -105,13 +107,14 @@ export default function DisProductSlider({ discountProduct }) {
                       />
                       {product.colors.length > 0 && (
                         <div className="flex flex-col space-y-2 absolute left-0 top-0">
-                          {product.colors.map((color, index) => (
+                          {product.colors.slice(0, 3).map((color, index) => (
                             <div
                               key={index}
                               className="w-[6px] h-[6px] rounded-full border border-dark1"
-                              style={{ backgroundColor: color }}
+                              style={{ backgroundColor: color?.value }}
                             ></div>
                           ))}
+                          <span className="text-[10px] cursor-pointer">+</span>
                         </div>
                       )}
                     </div>

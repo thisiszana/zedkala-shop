@@ -1,15 +1,16 @@
 "use client";
 
-import NextImage from "next/image";
-import { icons, images as img } from "@/constants";
+import Image from "next/image";
+import Link from "next/link";
+
 import { useState } from "react";
+
+import AddToCart from "@/components/shared/cart/AddToCart";
+import { icons, images as img } from "@/constants";
 import { FaShoppingBasket } from "react-icons/fa";
+import DiscountBadge from "./DiscountBadge";
 import { sp } from "@/utils/clientFun";
 import { motion } from "framer-motion";
-import { Image } from "@nextui-org/react";
-import AddToCart from "@/components/shared/cart/AddToCart";
-import DiscountBadge from "./DiscountBadge";
-import Link from "next/link";
 
 function ProductCard({ product }) {
   const {
@@ -36,7 +37,6 @@ function ProductCard({ product }) {
     >
       <div className="relative">
         <Image
-          as={NextImage}
           src={images[0] || img.imageNotFound}
           alt={title}
           width={400}
@@ -67,13 +67,14 @@ function ProductCard({ product }) {
         )}
         {colors.length > 0 && (
           <div className="flex flex-col space-y-2 absolute left-3 top-[15px]">
-            {colors.map((color, index) => (
+            {colors.slice(0, 4).map((color, index) => (
               <div
                 key={index}
                 className="w-[6px] h-[6px] rounded-full border-[0.5px] border-dark1"
-                style={{ backgroundColor: color }}
+                style={{ backgroundColor: color?.value }}
               ></div>
             ))}
+            <span className="text-[10px] cursor-pointer">+</span>
           </div>
         )}
       </div>
@@ -140,6 +141,16 @@ function ProductCard({ product }) {
               <span className="flex items-center gap-1 text-[22px] text-red-500">
                 {icons.fastDelivery}
               </span>
+            )}
+            {deliveryOptions?.shippingToday && (
+              <div className="flex items-center gap-1 bg-blue-400 px-3 rounded-[30px] rounded-tr-[0]">
+                <span className="flex items-center gap-1 text-[22px] text-white">
+                  {icons.shippingDelivery}
+                </span>
+                <span className="text-[10px] text-white font-bold">
+                  ارسال امروز
+                </span>
+              </div>
             )}
           </div>
           <DiscountBadge discount={discount} showTimerOnly />

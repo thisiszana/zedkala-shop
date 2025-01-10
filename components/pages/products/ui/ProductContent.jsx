@@ -54,12 +54,12 @@ export default function ProductContent() {
   };
 
   if (isLoading) {
-    return <ProductSkeletons count={9} />;
+    return <ProductSkeletons count={8} />;
   }
 
   if (error) {
     return (
-      <div className="p-6 text-red-500">
+      <div className="p-6 text-red-500 mt-[100px]">
         مشکلی در بارگذاری داده‌ها پیش آمده است. لطفاً مجدداً تلاش کنید.
       </div>
     );
@@ -67,26 +67,26 @@ export default function ProductContent() {
 
   if (!data?.length) {
     return (
-      <div className="p-6">
+      <div className="p-6 mt-[100px]">
         <p>محصولی برای نمایش وجود ندارد.</p>
       </div>
     );
   }
   return (
-    <div className="mt-[100px]">
+    <>
       <ProductsSort
         refetch={refetch}
         setSort={handleSortChange}
         totalProducts={totalProducts}
         sort={sort}
       />
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4  p-6 justify-self-center">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 p-6 justify-self-center">
         {data.map((product) => (
           <ProductsCard key={product._id} product={product} />
         ))}
         {isFetchingNextPage && <ProductSkeletons count={1} />}
         <div ref={loadingTarget}></div>
       </div>
-    </div>
+    </>
   );
 }
