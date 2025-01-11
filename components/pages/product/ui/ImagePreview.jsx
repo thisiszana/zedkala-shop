@@ -38,7 +38,7 @@ export default function ImagePreview({ product }) {
         </div>
       )}
 
-      <div className="lg:hidden">
+      <div className="lg:hidden mb-3">
         <Swiper
           modules={[Pagination]}
           pagination={{
@@ -67,7 +67,7 @@ export default function ImagePreview({ product }) {
         </Swiper>
       </div>
 
-      <div className="hidden lg:block">
+      <div className="hidden lg:block mt-5">
         <div className="grid grid-cols-1 gap-4 justify-center">
           <div
             className="relative cursor-pointer group"

@@ -74,7 +74,9 @@ function ProductCard({ product }) {
                 style={{ backgroundColor: color?.value }}
               ></div>
             ))}
-            <span className="text-[10px] cursor-pointer">+</span>
+            {colors.length > 3 && (
+              <span className="text-[10px] cursor-pointer">+</span>
+            )}
           </div>
         )}
       </div>
