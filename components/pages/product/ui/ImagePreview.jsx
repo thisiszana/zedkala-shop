@@ -42,7 +42,7 @@ export default function ImagePreview({ product }) {
         <Swiper
           modules={[Pagination]}
           pagination={{
-            el: ".custom-pagination2",
+            el: ".custom-pagination_sm",
             clickable: true,
             renderBullet: (index, className) =>
               `<span class="${className} custom-bullet"></span>`,
@@ -63,7 +63,7 @@ export default function ImagePreview({ product }) {
               </div>
             </SwiperSlide>
           ))}
-          <div className="custom-pagination2 absolute bottom-[.5rem] right-0 transform -translate-x-1/2 flex gap-2 z-50"></div>
+          <div className="custom-pagination_sm z-50"></div>
         </Swiper>
       </div>
 

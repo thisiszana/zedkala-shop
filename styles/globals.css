@@ -97,22 +97,41 @@ body {
   box-shadow: 0 0 8px rgba(41, 42, 42, 0.6);
 }
 
-.custom-pagination2 .custom-bullet {
+.custom-pagination_sm {
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(70%);
+  background-blend-mode: color;
+  padding: 5px 15px;
+  max-width: 100px;
+  width: 100%;
+  overflow-x: auto;
+  white-space: nowrap;
+  border-radius: 30px;
+  border-top-right-radius: 0;
+  margin: 0 auto;
+  margin-top: 10px;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px; /* سایه ظریف */
+}
+
+.custom-pagination_sm::-webkit-scrollbar {
+  display: none;
+}
+
+.custom-pagination_sm .custom-bullet {
   width: 6px;
   height: 6px;
-  margin: 0 1px;
+  margin: 0 5px;
   border-radius: 50%;
-  background-color: #363434;
+  background-color: #ffffff;
   transition: all 0.3s ease-in-out;
   transform: scale(1);
 }
 
-.custom-pagination2 .swiper-pagination-bullet-active {
-  background-color: #ef4056;
-  width: 18px;
+.custom-pagination_sm .swiper-pagination-bullet-active {
+  background-color: #ff000d;
+  width: 15px;
   border-radius: 5px;
   transform: scale(1.3);
-  box-shadow: 0 0 8px rgba(41, 42, 42, 0.6);
 }
 
 .maxWidth {
