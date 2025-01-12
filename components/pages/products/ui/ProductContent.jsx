@@ -54,7 +54,7 @@ export default function ProductContent() {
   };
 
   if (isLoading) {
-    return <ProductSkeletons count={8} />;
+    return <ProductSkeletons count={15} />;
   }
 
   if (error) {
@@ -80,13 +80,13 @@ export default function ProductContent() {
         totalProducts={totalProducts}
         sort={sort}
       />
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 p-6 justify-self-center">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 p-6 justify-self-center">
         {data.map((product) => (
           <ProductsCard key={product._id} product={product} />
         ))}
-        {isFetchingNextPage && <ProductSkeletons count={1} />}
         <div ref={loadingTarget}></div>
       </div>
+      {!isFetchingNextPage && <ProductSkeletons count={5} />}
     </>
   );
 }

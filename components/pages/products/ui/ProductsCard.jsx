@@ -80,7 +80,7 @@ function ProductCard({ product }) {
           </div>
         )}
       </div>
-      <div className="p-4 space-y-2">
+      <div className="p-2 space-y-2">
         <h3 className="text-sm font-semibold text-gray-800 truncate">
           {title}
         </h3>
