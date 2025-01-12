@@ -5,15 +5,19 @@ import "swiper/css";
 import Image from "next/image";
 import { productDetailIcons } from "@/constants";
 import { shorterText } from "@/utils/clientFun";
+import { Autoplay } from "swiper/modules";
 
 export default function DeliveryOptions() {
   return (
-    <div className="w-full p-4 border-t pt-3">
+    <div className="w-full p-4 border-t pt-3 bg-white">
       <Swiper
+        modules={[Autoplay]}
+        loop={true}
+        autoplay={{ delay: 3000, disableOnInteraction: false }}
         spaceBetween={10}
         breakpoints={{
           1024: {
-            slidesPerView: productDetailIcons.length ,
+            slidesPerView: productDetailIcons.length,
           },
 
           768: {
@@ -25,13 +29,13 @@ export default function DeliveryOptions() {
           },
           0: {
             slidesPerView: 1,
-            centeredSlides: true
+            centeredSlides: true,
           },
         }}
       >
         {productDetailIcons.map((icon) => (
           <SwiperSlide key={icon.id}>
-            <div className="flex items-center gap-2 border-t border-b justify-center">
+            <div className="flex items-center gap-2 border-t border-b justify-center bg-white">
               <Image
                 src={icon.src}
                 alt={shorterText(icon.title, 3)}

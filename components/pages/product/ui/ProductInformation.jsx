@@ -1,9 +1,7 @@
 "use client";
 
-import { Modal } from "antd";
-import React, { useRef, useState } from "react";
+import React, { useRef } from "react";
 import Image from "next/image";
-import AddToCartInfo from "@/components/shared/cart/AddToCartInfo";
 import { icons, images } from "@/constants";
 import ProductSpecifications from "./ProductSpecifications";
 import Link from "next/link";
@@ -13,6 +11,8 @@ import InsuranceCard from "./InsuranceCard";
 import DeliveryOptions from "./DeliveryOptions";
 import SelectColorAndSize from "./SelectColorAndSize";
 import DescriptionProductInfo from "./DescriptionProductInfo";
+import ShareFavorite from "./ShareFavorite";
+import ShippingInfo from "./ShippingInfo";
 
 export default function ProductInformation({ product }) {
   const targetRef = useRef(null);
@@ -24,96 +24,135 @@ export default function ProductInformation({ product }) {
   };
   console.log(product);
   return (
-    <div className="flex flex-col">
-      <div className="text-lg text-gray-700 flex items-center border-b pb-3 flex-wrap mx-5 lg:mx-0">
-        {product.categoryName && (
-          <Link href={product.slug} className="text-gray-400 text-[12px]">
-            {product.categoryName}
-          </Link>
-        )}
-        {product.subCategories.length > 0 &&
-          product.subCategories.map((subCategory, index) => (
-            <React.Fragment key={subCategory._id}>
-              <span className="mx-2 text-gray-400 text-[12px]">/</span>
+    <>
+      <div className="flex flex-col lg:flex-row gap-5">
+        <div className="fixed top-[65px] left-0 md:static w-full lg:w-[30%] -z-10">
+          <div className="text-lg text-gray-700 flex items-center border-b pb-3 flex-wrap mx-5 lg:mx-0">
+            <Link href="/products" className="text-gray-400 text-[12px] mx-2">
+              زد کالا
+            </Link>
+            <span className="mx-2 text-gray-400 text-[12px]">/</span>
+            {product.categoryName && (
               <Link
-                href={subCategory.slug}
+                href={`/products/${product.slug}`}
                 className="text-gray-400 text-[12px]"
               >
-                {subCategory.name}
+                {product.categoryName}
               </Link>
-            </React.Fragment>
-          ))}
-      </div>
-      <div className="p-4 md:p-6 lg:p-8 flex justify-between flex-col lg:flex-row gap-6 relative">
-        <ImagePreview product={product} />
-
-        <div className="space-y-6 w-full lg:w-[65%]">
-          <div className="flex flex-col gap-3 md:w-[65%]">
-            <div className="flex flex-wrap items-center gap-2 text-xs md:text-sm text-gray-700">
-              {product.keywords.map((key, index) => (
-                <span key={index} className="flex items-center mb-2">
-                  <p className="truncate font-bold text-[#19bfd3] cursor-pointer">
-                    {key}
-                  </p>
-                  {index < product.keywords.length - 1 && (
-                    <span className="pr-1 text-gray-300">/</span>
-                  )}
-                </span>
-              ))}
-            </div>
-            <h1 className="text-h4 font-bold">{product.title}</h1>
-            {product.description && (
-              <div className="flex gap-2 mt-3">
-                <h3 className="text-lg font-medium mb-2">{icons.info}</h3>
-                <p className="text-[14px] text-gray-600">
-                  {product.description}
-                </p>
-              </div>
             )}
+            {product.subCategories.length > 0 &&
+              product.subCategories.map((subCategory) => (
+                <React.Fragment key={subCategory._id}>
+                  <span className="mx-2 text-gray-400 text-[12px]">/</span>
+                  <Link
+                    href={`/products/${subCategory.slug}`}
+                    className="text-gray-400 text-[12px]"
+                  >
+                    {subCategory.name}
+                  </Link>
+                  {subCategory.items.length > 0 &&
+                    subCategory.items.map((item) => (
+                      <div className="flex items-center gap-1" key={item._id}>
+                        <span className="mx-2 text-gray-400 text-[12px]">
+                          /
+                        </span>
+                        <Link
+                          href={`/products/${item.slug}`}
+                          className="text-gray-400 text-[12px]"
+                        >
+                          {item.name}
+                        </Link>
+                      </div>
+                    ))}
+                </React.Fragment>
+              ))}
           </div>
 
-          <div className="flex gap-4">
-            <div className="flex flex-col gap-3 border-t w-full md:w-[65%]">
-              <InsuranceCard insurance={product.insurance} />
-              <ProductSpecifications
-                specifications={product.specifications}
-                handleShowAll={handleShowAll}
-              />
+          <ImagePreview product={product} />
+        </div>
 
-              <SelectColorAndSize product={product} />
+        <div className="flex flex-col mt-[360px] md:mt-0 w-full lg:w-[65%] z-30">
+          <div className="w-full p-2 md:p-6 lg:p-8 flex justify-between flex-col lg:flex-row gap-6 relative bg-white border-t md:border-t-[0] rounded-tr-[30px] md:rounded-tr-[0] rounded-tl-[30px] md:rounded-tl-[0] shadow-[0px_-4px_10px_rgba(0,0,0,0.1)] lg:shadow-none">
+            <div className="space-y-6 w-full lg:w-full">
+              <div className="flex flex-col gap-3 md:w-[65%]">
+                <div className="flex flex-wrap items-center justify-between text-xs md:text-sm text-gray-700 mx-4 md:mx-0 mt-2 lg:mt-0">
+                  <div className="flex flex-wrap items-center gap-2">
+                    {product.keywords.map((key, index) => (
+                      <span key={index} className="flex items-center mb-2">
+                        <p className="truncate font-bold text-[#19bfd3] cursor-pointer text-[10px] md:text-[12px]">
+                          {key}
+                        </p>
+                        {index < product.keywords.length - 1 && (
+                          <span className="pr-1 text-gray-300">/</span>
+                        )}
+                      </span>
+                    ))}
+                  </div>
 
-              {product.returnPolicy && (
-                <div className="flex gap-2 mt-3">
-                  <h3 className="text-lg font-medium mb-2">
-                    {icons.important}
-                  </h3>
-                  <p className="text-sm md:text-[12px] text-gray-600 text-justify">
-                    {product.returnPolicy}
-                  </p>
+                  <ShareFavorite productId={product._id} />
                 </div>
-              )}
-
-              {product.deliveryOptions.freeDelivery && (
-                <div className="flex items-center justify-between px-[10px] py-2 rounded-[8px] border">
-                  <p className=" text-gray-600 text-[12px] mdtext-[14px] font-bold">
-                    ارسال رایگان این کالا
-                  </p>
-                  <Image
-                    src="/icon/free-delivery.svg"
-                    width={100}
-                    height={100}
-                    alt="آیکون"
+                <h1 className="text-[12px] md:text-[16px] mr-4 md:mr-0 font-bold">
+                  {product.title}
+                </h1>
+                {product.description && (
+                  <div className="flex gap-2 mt-3">
+                    <h3 className="text-lg font-medium mb-2">{icons.info}</h3>
+                    <p className="text-[10px] md:text-[12px] text-gray-600">
+                      {product.description}
+                    </p>
+                  </div>
+                )}
+              </div>
+              <div className="lg:hidden">
+                <SelectColorAndSize product={product} />
+              </div>
+              <div className="flex gap-4">
+                <div className="flex flex-col gap-3 border-t w-full md:w-[65%]">
+                  <InsuranceCard insurance={product.insurance} />
+                  <ProductSpecifications
+                    specifications={product.specifications}
+                    isGrocery={product?.isGrocery.value}
+                    handleShowAll={handleShowAll}
                   />
-                </div>
-              )}
-            </div>
+                  <div className="hidden lg:block">
+                    <SelectColorAndSize product={product} />
+                  </div>
 
-            <SidebarProduct product={product} />
+                  {product.returnPolicy && (
+                    <div className="flex gap-2 mt-3">
+                      <h3 className="text-lg font-medium mb-2">
+                        {icons.important}
+                      </h3>
+                      <p className="text-[12px] md:text-[14px] text-gray-600 text-justify">
+                        {product.returnPolicy}
+                      </p>
+                    </div>
+                  )}
+
+                  {product.deliveryOptions.freeDelivery && (
+                    <div className="flex items-center justify-between px-[10px] py-2 rounded-[8px] border">
+                      <p className=" text-gray-600 text-[12px] mdtext-[14px] font-bold">
+                        ارسال رایگان این کالا
+                      </p>
+                      <Image
+                        src={images.freeDeliverySvg}
+                        width={100}
+                        height={100}
+                        alt="آیکون"
+                      />
+                    </div>
+                  )}
+                  {!product.deliveryOptions.freeDelivery && <ShippingInfo />}
+                </div>
+
+                <SidebarProduct product={product} />
+              </div>
+            </div>
           </div>
         </div>
       </div>
       <DeliveryOptions />
       <DescriptionProductInfo product={product} targetRef={targetRef} />
-    </div>
+    </>
   );
 }

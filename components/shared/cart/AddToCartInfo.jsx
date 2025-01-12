@@ -14,7 +14,7 @@ import { MESSAGES } from "@/messages/messages";
 import { Tooltip } from "antd";
 import Link from "next/link";
 
-export default function AddToCartInfo({ productId, stock }) {
+export default function AddToCartInfo({ productId, stock, isGrocery }) {
   const [action, setAction] = useState("");
   const { user } = useAuth();
   const { accessToken } = user || "";
@@ -93,6 +93,10 @@ export default function AddToCartInfo({ productId, stock }) {
       </Tooltip>
     );
 
+  const buttonClasses = `${isGrocery ? "bg-mainGreen" : "bg-mainRed"}`;
+
+  const textClasses = `${isGrocery ? "text-mainGreen" : "text-mainRed"}`;
+
   return (
     <div className="flex items-center md:mx-auto gap-2 rounded-[8px] md:w-[100%]">
       {isProductInCart < 0 ? (
@@ -114,7 +118,7 @@ export default function AddToCartInfo({ productId, stock }) {
             )
           }
           type="button"
-          classNames="flex items-center justify-center text-[10px] h-[40px] w-full rounded-[4px] bg-mainRed"
+          classNames={`flex items-center justify-center text-[10px] h-[40px] w-full rounded-[4px]  ${buttonClasses}`}
           onClick={addHandler}
           disabled={isPending || quantity >= stock}
         />
@@ -128,7 +132,9 @@ export default function AddToCartInfo({ productId, stock }) {
                   action === "decrease" && isPending ? (
                     <Loader size={5} color="#000" />
                   ) : (
-                    <span className="text-mainRed text-xl font-bold">-</span>
+                    <span className={`${textClasses} text-xl font-bold`}>
+                      -
+                    </span>
                   )
                 }
                 classNames="flex items-center justify-center text-xl h-8 w-8 rounded-full"
@@ -143,16 +149,16 @@ export default function AddToCartInfo({ productId, stock }) {
                 disabled={isPending}
                 title={
                   action === "delete" && isPending ? (
-                    <Loader size={5} color="#ef4444" />
+                    <Loader size={5} className={`${textClasses}`} />
                   ) : (
-                    <Trash className="text-mainRed w-5 h-5" />
+                    <Trash className={`${textClasses} w-5 h-5`} />
                   )
                 }
               />
             )}
             {isFetching ? (
               <div className="text-center font-bold mx-3">
-                <Loader size={5} color="#000" />
+                <Loader size={5} className={`${textClasses}`} />
               </div>
             ) : (
               <span
@@ -166,9 +172,9 @@ export default function AddToCartInfo({ productId, stock }) {
             <CustomBtn
               title={
                 action === "add" && isPending ? (
-                  <Loader size={4} color="#000" />
+                  <Loader size={4} className={`${textClasses}`} />
                 ) : (
-                  <span className="text-mainRed text-xl font-bold">+</span>
+                  <span className={`${textClasses} text-xl font-bold`}>+</span>
                 )
               }
               type="button"
@@ -179,7 +185,7 @@ export default function AddToCartInfo({ productId, stock }) {
           </div>
           <Link
             href="/cart"
-            className="hidden md:block text-xs text-secondaryRed text-center"
+            className={`hidden md:block text-xs text-center ${textClasses}`}
           >
             مشاهده سبد خرید
           </Link>

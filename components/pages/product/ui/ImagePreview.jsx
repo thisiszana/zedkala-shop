@@ -28,7 +28,7 @@ export default function ImagePreview({ product }) {
   };
 
   return (
-    <div className="w-full lg:w-[30%] flex flex-col-reverse lg:block">
+    <div className="w-full flex flex-col-reverse lg:block">
       {product.discount?.value > 0 && (
         <div className="flex items-center justify-between bg-[#fdecf0] w-full px-4 py-2 rounded-[8px] mt-[10px] lg:mt-0">
           <span className="text-mainRed font-extrabold">

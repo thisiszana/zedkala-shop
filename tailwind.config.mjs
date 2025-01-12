@@ -23,6 +23,8 @@ export default {
         cartIcon: "rgb(220, 53, 69)",
         mainRed: "#ef4056",
         secondaryRed: "#ef4444",
+        mainGreen: "#029a49",
+        secondaryGreen: "#04d465",
       },
       boxShadow: {
         homeMain: "0 0 15px 5px rgb(186, 255, 174)",

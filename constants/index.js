@@ -15,8 +15,8 @@ import {
   IoChatbubbleOutline,
   IoLocationOutline,
 } from "react-icons/io5";
+import { CiDeliveryTruck, CiHeart, CiShare2, CiStar } from "react-icons/ci";
 import { IoMdCheckmarkCircleOutline } from "react-icons/io";
-import { CiDeliveryTruck, CiStar } from "react-icons/ci";
 import { FaRegHeart, FaRegUser } from "react-icons/fa";
 import { BsBag, BsClockHistory } from "react-icons/bs";
 import { HiBars3BottomRight } from "react-icons/hi2";
@@ -25,6 +25,7 @@ import { TbTruckDelivery } from "react-icons/tb";
 import { FiGift, FiEdit3 } from "react-icons/fi";
 import { GoShieldCheck } from "react-icons/go";
 import { TiInfoLarge } from "react-icons/ti";
+import { FaShop } from "react-icons/fa6";
 import { GoHome } from "react-icons/go";
 
 export const icons = {
@@ -32,8 +33,11 @@ export const icons = {
   home: <GoHome />,
   gift: <FiGift />,
   star: <CiStar />,
+  shop: <FaShop />,
   edit: <FiEdit3 />,
+  heart: <CiHeart />,
   user: <FaRegUser />,
+  share: <CiShare2 />,
   info: <TiInfoLarge />,
   heart: <FaRegHeart />,
   check: <IoCheckmark />,
@@ -63,6 +67,7 @@ export const images = {
   shopBanner: "/images/shop-banner.png",
   avatar: `/images/avatars/avatar_6.jpg`,
   freeDeliverySvg: "/icon/free-delivery.svg",
+  freeDeliverySvg1: "/icon/free-delivery1.svg",
   imageNotFound: "/images/imagenotfound.jfif",
 };
 

@@ -18,7 +18,7 @@ import Image from "next/image";
 export default function DisProductSlider({ discountProduct }) {
   const [isBeginning, setIsBeginning] = useState(true);
   const [isEnd, setIsEnd] = useState(false);
-  console.log(discountProduct);
+
   const productsWithStatic = [
     {
       static: true,
@@ -114,7 +114,7 @@ export default function DisProductSlider({ discountProduct }) {
                               style={{ backgroundColor: color?.value }}
                             ></div>
                           ))}
-                          {colors.length > 3 && (
+                          {product.colors.length > 3 && (
                             <span className="text-[10px] cursor-pointer">
                               +
                             </span>

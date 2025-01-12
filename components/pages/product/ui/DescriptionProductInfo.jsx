@@ -15,21 +15,27 @@ export default function DescriptionProductInfo({ product, targetRef }) {
   };
 
   const truncateText = (text, maxLength, isExpanded) => {
-    if (isExpanded || text.length <= maxLength) return text;
-    return `${text.slice(0, maxLength)}...`;
+    if (isExpanded || text?.length <= maxLength) return text;
+    return `${text?.slice(0, maxLength)}...`;
   };
 
   const sections = [
-    {
-      id: "introduction",
-      title: product.introduction.title,
-      description: product.introduction.description,
-    },
-    ...product.expertReview.map((review) => ({
-      id: review._id,
-      title: review.title,
-      description: review.description,
-    })),
+    ...(product?.introduction
+      ? [
+          {
+            id: "introduction",
+            title: product?.introduction?.title || "معرفی محصول",
+            description: product?.introduction?.description || "",
+          },
+        ]
+      : []),
+    ...(product?.expertReview?.length > 0
+      ? product.expertReview.map((review) => ({
+          id: review?._id,
+          title: review?.title || null,
+          description: review?.description || null,
+        }))
+      : []),
   ];
 
   const specificationSection = {
@@ -65,14 +71,14 @@ export default function DescriptionProductInfo({ product, targetRef }) {
   }, [allSections]);
 
   return (
-    <>
-      <div className="sticky top-[60px] md:top-[85px] z-10 right-0 bg-white shadow-md w-fit">
+    <div className="bg-white">
+      <div className="sticky top-[60px] md:top-[85px] right-0 rounded-tl-[8px] rounded-bl-[8px] bg-white shadow-md w-fit">
         <div className="flex items-center px-4 py-2 border-b gap-5 overflow-x-auto">
           {allSections.map((section) => (
             <a
               key={section.id}
               href={`#${section.id}`}
-              className={`text-sm font-semibold whitespace-nowrap pb-1 transition ${
+              className={`text-[12px] md:text-[14px] font-semibold whitespace-nowrap pb-1 transition ${
                 activeSection === section.id
                   ? "text-mainRed border-b-2 border-mainRed"
                   : "text-gray-700 hover:text-mainRed"
@@ -98,9 +104,9 @@ export default function DescriptionProductInfo({ product, targetRef }) {
                   {section.title}
                 </h2>
                 <p className="text-sm text-gray-600 leading-relaxed text-justify">
-                  {truncateText(section.description, 250, isExpanded)}
+                  {truncateText(section?.description, 250, isExpanded)}
                 </p>
-                {section.description.length > 250 && (
+                {section.description?.length > 250 && (
                   <CustomBtn
                     title={isExpanded ? "نمایش کمتر" : "نمایش بیشتر"}
                     onClick={() => toggleExpand(section.id)}
@@ -113,7 +119,7 @@ export default function DescriptionProductInfo({ product, targetRef }) {
         </div>
         <Specifications product={product} targetRef={targetRef} />
       </div>
-    </>
+    </div>
   );
 }
 
@@ -127,14 +133,14 @@ function Specifications({ product, targetRef }) {
   };
 
   const visibleSpecifications = showAllSpecifications
-    ? product.specifications
-    : product.specifications.slice(0, initialVisibleCount);
+    ? product?.specifications || []
+    : product?.specifications?.slice(0, initialVisibleCount) || [];
 
   return (
     <div
       ref={targetRef}
       id="specifications"
-      className="bg-white p-4 rounded-md shadow-md hidden lg:block w-[50%]"
+      className="bg-white md:bg-none h-fit p-4 rounded-md shadow-md hidden lg:block w-[50%]"
     >
       <h2 className="text-lg font-bold text-gray-800 mb-4">مشخصات</h2>
       <table className="w-full border-collapse">
@@ -164,7 +170,7 @@ function Specifications({ product, targetRef }) {
         </tbody>
       </table>
 
-      {product.specifications.length > initialVisibleCount && (
+      {product?.specifications?.length > initialVisibleCount && (
         <div className="mt-4 text-center">
           <CustomBtn
             title={showAllSpecifications ? "نمایش کمتر" : "نمایش بیشتر"}

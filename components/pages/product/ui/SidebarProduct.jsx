@@ -5,7 +5,7 @@ import { Close, LeftAngle, ShoppingBag } from "@/components/icons/Icons";
 import CustomBtn from "@/components/shared/CustomBtn";
 import { icons, images } from "@/constants";
 import { motion, AnimatePresence } from "framer-motion";
-import { sp } from "@/utils/clientFun";
+import { e2p, sp } from "@/utils/clientFun";
 import Image from "next/image";
 
 export default function SidebarProduct({ product }) {
@@ -39,29 +39,62 @@ export default function SidebarProduct({ product }) {
     setModalContent("");
   };
 
+  const bgClasses = `${
+    product?.isGrocery.value ? "bg-mainGreen" : "bg-mainRed"
+  }`;
+
+  const textClasses = `${
+    product?.isGrocery.value ? "text-mainGreen" : "text-mainRed"
+  }`;
+
+  const bgClasses2 = `${
+    !product?.isGrocery.value ? "bg-mainGreen" : "bg-mainRed"
+  }`;
+
+  const textClasses2 = `${
+    !product?.isGrocery.value ? "text-secondaryGreen" : "text-secondaryRed"
+  }`;
+
   return (
     <>
-      <div className="hidden md:bg-[#f7f7f7] md:border md:flex md:flex-col md:rounded-[8px] md:shadow-md md:w-[35%] md:p-4 md:mt-8 md:h-fit">
+      <div className="hidden md:bg-white md:border md:flex md:flex-col md:rounded-[8px] md:shadow-md md:w-[35%] md:p-4 md:mt-8 md:h-fit">
         <div className="flex flex-col gap-4 mb-4">
           <h1 className="text-[14px] font-bold">فروشنده</h1>
           <div className="flex items-center gap-2">
-            <Image src={images.home_logo} width={40} height={40} alt="آیکون" />
-            <span className="font-bold text-[12px] text-secondaryRed">زد - کالا</span>
+            {product?.vendor.storeName === "زد-کالا" ? (
+              <Image
+                src={images.home_logo}
+                width={40}
+                height={40}
+                alt="آیکون"
+              />
+            ) : (
+              icons.shop
+            )}
+            <span className={`font-bold text-[12px] ${textClasses2}`}>
+              {product?.vendor.storeName}
+            </span>
           </div>
         </div>
-        <AddToCartInfo productId={product._id} stock={product.stock} />
+        <AddToCartInfo
+          isGrocery={product.isGrocery?.value}
+          productId={product._id}
+          stock={product.stock}
+        />
         <div className="flex flex-col items-end w-full gap-2 text-xs my-3">
           {product.discount?.value > 0 ? (
             <>
               <div className="flex items-center gap-1">
-                <span className="bg-mainRed text-white rounded-full px-1 ml-2 text-[10px]">
-                  {product.discount.value} %
+                <span
+                  className={`${bgClasses} text-white rounded-full px-1 ml-2 text-[10px]`}
+                >
+                  {e2p(product.discount.value)} %
                 </span>
-                <span className="text-red-500 font-bold line-through">
+                <span className={`font-bold line-through ${textClasses}`}>
                   {sp(product.price)}
                 </span>
               </div>
-              <p className="text-gray-800">
+              <p className={`text-gray-800 ${textClasses}`}>
                 {sp(
                   Math.floor(product.price * (1 - product.discount.value / 100))
                 )}{" "}
@@ -117,6 +150,14 @@ export default function SidebarProduct({ product }) {
               }
             />
           )}
+          {!product.deliveryOptions?.shippingToday && (
+            <div className="flex items-center gap-2 text-[#ef4056] text-[12px]">
+              <span className="inline-flex items-center text-[22px]">
+                {icons.shippingDelivery}
+              </span>
+              <span>ارسال امروز</span>
+            </div>
+          )}
         </div>
       </div>
 
@@ -153,7 +194,11 @@ export default function SidebarProduct({ product }) {
               />
             </div>
             <div className="flex items-center justify-between border-t pt-3">
-              <AddToCartInfo productId={product._id} stock={product.stock} />
+              <AddToCartInfo
+                isGrocery={product.isGrocery?.value}
+                productId={product._id}
+                stock={product.stock}
+              />
               <span className="block text-[14px] font-bold text-green-600 text-end mt-4">
                 {product.price.toLocaleString("fa-IR")} تومان
               </span>

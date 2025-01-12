@@ -16,7 +16,7 @@ export default function InsuranceCard({ insurance }) {
   };
 
   return (
-    <div className="border rounded-lg p-4 shadow-sm bg-white mt-4">
+    <div className="border rounded-lg p-2 md:p-4 shadow-sm bg-white mt-4">
       <div className="flex items-center justify-between mb-3">
         <div className="flex items-center gap-3">
           <CustomInp
@@ -33,7 +33,7 @@ export default function InsuranceCard({ insurance }) {
             {insurance.insuranceType}
           </label>
         </div>
-        <p className="font-bold text-red-500 text-[13px] lg:text-[16px]">
+        <p className="font-bold text-red-500 text-[12px] lg:text-[16px]">
           {Number(insurance.insuranceCost).toLocaleString()} تومان
         </p>
       </div>
