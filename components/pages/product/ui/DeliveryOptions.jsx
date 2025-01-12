@@ -9,7 +9,7 @@ import { Autoplay } from "swiper/modules";
 
 export default function DeliveryOptions() {
   return (
-    <div className="w-full p-4 border-t pt-3 bg-white">
+    <div className="w-full p-4 border-t pt-3 bg-white relative z-30">
       <Swiper
         modules={[Autoplay]}
         loop={true}

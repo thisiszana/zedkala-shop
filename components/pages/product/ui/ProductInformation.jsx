@@ -13,6 +13,7 @@ import SelectColorAndSize from "./SelectColorAndSize";
 import DescriptionProductInfo from "./DescriptionProductInfo";
 import ShareFavorite from "./ShareFavorite";
 import ShippingInfo from "./ShippingInfo";
+import BackBtn from "@/components/shared/BackBtn";
 
 export default function ProductInformation({ product }) {
   const targetRef = useRef(null);
@@ -26,53 +27,56 @@ export default function ProductInformation({ product }) {
   return (
     <>
       <div className="flex flex-col lg:flex-row gap-5">
-        <div className="fixed top-[65px] left-0 md:static w-full lg:w-[30%] -z-10">
-          <div className="text-lg text-gray-700 flex items-center border-b pb-3 flex-wrap mx-5 lg:mx-0">
-            <Link href="/products" className="text-gray-400 text-[12px] mx-2">
-              زد کالا
-            </Link>
-            <span className="mx-2 text-gray-400 text-[12px]">/</span>
-            {product.categoryName && (
-              <Link
-                href={`/products/${product.slug}`}
-                className="text-gray-400 text-[12px]"
-              >
-                {product.categoryName}
+        <div className="fixed top-[65px] left-0 md:static w-full lg:w-[30%]">
+          <div className="flex items-center justify-between border-b pb-3">
+            <div className="text-lg text-gray-700 flex items-center flex-wrap mx-1 lg:mx-0 mr-2">
+              <Link href="/products" className="text-gray-400 text-[12px]">
+                زد کالا
               </Link>
-            )}
-            {product.subCategories.length > 0 &&
-              product.subCategories.map((subCategory) => (
-                <React.Fragment key={subCategory._id}>
-                  <span className="mx-2 text-gray-400 text-[12px]">/</span>
-                  <Link
-                    href={`/products/${subCategory.slug}`}
-                    className="text-gray-400 text-[12px]"
-                  >
-                    {subCategory.name}
-                  </Link>
-                  {subCategory.items.length > 0 &&
-                    subCategory.items.map((item) => (
-                      <div className="flex items-center gap-1" key={item._id}>
-                        <span className="mx-2 text-gray-400 text-[12px]">
-                          /
-                        </span>
-                        <Link
-                          href={`/products/${item.slug}`}
-                          className="text-gray-400 text-[12px]"
-                        >
-                          {item.name}
-                        </Link>
-                      </div>
-                    ))}
-                </React.Fragment>
-              ))}
+              <span className="mx-1 text-gray-400 text-[12px]">/</span>
+              {product.categoryName && (
+                <Link
+                  href={`/products/${product.slug}`}
+                  className="text-gray-400 text-[12px]"
+                >
+                  {product.categoryName}
+                </Link>
+              )}
+              {product.subCategories.length > 0 &&
+                product.subCategories.map((subCategory) => (
+                  <React.Fragment key={subCategory._id}>
+                    <span className="mx-1 text-gray-400 text-[12px]">/</span>
+                    <Link
+                      href={`/products/${subCategory.slug}`}
+                      className="text-gray-400 text-[12px]"
+                    >
+                      {subCategory.name}
+                    </Link>
+                    {subCategory.items.length > 0 &&
+                      subCategory.items.map((item) => (
+                        <div className="flex items-center gap-1" key={item._id}>
+                          <span className="mx-1 text-gray-400 text-[12px]">
+                            /
+                          </span>
+                          <Link
+                            href={`/products/${item.slug}`}
+                            className="text-gray-400 text-[12px]"
+                          >
+                            {item.name}
+                          </Link>
+                        </div>
+                      ))}
+                  </React.Fragment>
+                ))}
+            </div>
+            <BackBtn backLink="/products" />
           </div>
 
           <ImagePreview product={product} />
         </div>
 
-        <div className="flex flex-col mt-[360px] md:mt-0 w-full lg:w-[65%] z-30">
-          <div className="w-full p-2 md:p-6 lg:p-8 flex justify-between flex-col lg:flex-row gap-6 relative bg-white border-t md:border-t-[0] rounded-tr-[30px] md:rounded-tr-[0] rounded-tl-[30px] md:rounded-tl-[0] shadow-[0px_-4px_10px_rgba(0,0,0,0.1)] lg:shadow-none">
+        <div className="flex flex-col mt-[420px] md:mt-0 w-full lg:w-[65%] z-40">
+          <div className="w-full p-2 md:p-6 lg:p-8 flex justify-between flex-col lg:flex-row gap-6 bg-white border-t md:border-t-[0] rounded-tr-[30px] md:rounded-tr-[0] rounded-tl-[30px] md:rounded-tl-[0] shadow-boxProductInfo lg:shadow-none">
             <div className="space-y-6 w-full lg:w-full">
               <div className="flex flex-col gap-3 md:w-[65%]">
                 <div className="flex flex-wrap items-center justify-between text-xs md:text-sm text-gray-700 mx-4 md:mx-0 mt-2 lg:mt-0">
@@ -144,13 +148,13 @@ export default function ProductInformation({ product }) {
                   )}
                   {!product.deliveryOptions.freeDelivery && <ShippingInfo />}
                 </div>
-
                 <SidebarProduct product={product} />
               </div>
             </div>
           </div>
         </div>
       </div>
+
       <DeliveryOptions />
       <DescriptionProductInfo product={product} targetRef={targetRef} />
     </>

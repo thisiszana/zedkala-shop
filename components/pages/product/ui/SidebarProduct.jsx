@@ -57,7 +57,7 @@ export default function SidebarProduct({ product }) {
 
   return (
     <>
-      <div className="hidden md:bg-white md:border md:flex md:flex-col md:rounded-[8px] md:shadow-md md:w-[35%] md:p-4 md:mt-8 md:h-fit">
+      <div className="hidden md:bg-white md:border md:flex md:flex-col md:rounded-[8px] md:shadow-md md:w-[35%] md:p-4 md:mt-8 md:h-fit relative z-50">
         <div className="flex flex-col gap-4 mb-4">
           <h1 className="text-[14px] font-bold">فروشنده</h1>
           <div className="flex items-center gap-2">
@@ -164,7 +164,7 @@ export default function SidebarProduct({ product }) {
       {!isOpen && (
         <motion.button
           onClick={() => setIsOpen(true)}
-          className="fixed bottom-[150px] left-0 bg-mainRed text-white p-2 rounded-tr-[10px] text-[12px] shadow-lg z-[1000] md:hidden"
+          className={`fixed bottom-[150px] left-0 ${bgClasses} text-white p-2 rounded-tr-[20px] text-[12px] shadow-lg z-50 md:hidden`}
           initial={{ y: 150, opacity: 0, scale: 0.8 }}
           animate={{ y: 0, opacity: 1, scale: 1 }}
           transition={{
@@ -180,7 +180,7 @@ export default function SidebarProduct({ product }) {
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            className="fixed bottom-0 left-0 w-full bg-white p-6 z-50 shadow-lg rounded-t-lg md:hidden"
+            className="fixed bottom-0 left-0 w-full bg-white p-6 z-50 shadow-boxProductInfo rounded-t-[30px] md:hidden"
             variants={slideVariants}
             initial="hidden"
             animate="visible"

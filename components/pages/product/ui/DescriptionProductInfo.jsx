@@ -24,16 +24,16 @@ export default function DescriptionProductInfo({ product, targetRef }) {
       ? [
           {
             id: "introduction",
-            title: product?.introduction?.title || "معرفی محصول",
-            description: product?.introduction?.description || "",
+            title: product?.introduction?.title,
+            description: product?.introduction?.description,
           },
         ]
       : []),
     ...(product?.expertReview?.length > 0
       ? product.expertReview.map((review) => ({
           id: review?._id,
-          title: review?.title || null,
-          description: review?.description || null,
+          title: review?.title,
+          description: review?.description
         }))
       : []),
   ];
@@ -71,7 +71,7 @@ export default function DescriptionProductInfo({ product, targetRef }) {
   }, [allSections]);
 
   return (
-    <div className="bg-white">
+    <div className="bg-white relative z-30">
       <div className="sticky top-[60px] md:top-[85px] right-0 rounded-tl-[8px] rounded-bl-[8px] bg-white shadow-md w-fit">
         <div className="flex items-center px-4 py-2 border-b gap-5 overflow-x-auto">
           {allSections.map((section) => (

@@ -27,9 +27,9 @@ export default function SelectColorAndSize({ product }) {
   };
 
   return (
-    <div className="border-t pt-2">
+    <div>
       {product.colors.length > 0 && (
-        <div>
+        <div className="border-t pt-2">
           <div className="flex items-center gap-1 mb-2">
             <span className="text-[12px] md:text-[16px] font-medium">
               انتخاب رنگ :
@@ -62,7 +62,7 @@ export default function SelectColorAndSize({ product }) {
         </div>
       )}
       {product.sizes.length > 0 && (
-        <div className="mt-4">
+        <div className="mt-4 border-t pt-2">
           <h3 className="text-[16px] font-medium mb-2">انتخاب سایز :</h3>
           <select
             value={selectedSize}
@@ -78,7 +78,7 @@ export default function SelectColorAndSize({ product }) {
         </div>
       )}
       {product.weight.value > 0 && (
-        <div className="mt-4">
+        <div className="mt-4 border-t pt-2">
           <h3 className="text-[16px] font-medium mb-2">انتخاب وزن :</h3>
           <select
             value={selectedWeight}

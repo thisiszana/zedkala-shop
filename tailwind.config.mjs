@@ -35,6 +35,7 @@ export default {
         profile: "0 7px 15px rgba(255, 165, 0, 0.6)",
         cartMain: "0 0 15px 5px rgb(220, 53, 69)",
         cart: "0 7px 15px rgb(220, 53, 69)",
+        boxProductInfo: "0px -4px 10px rgba(0,0,0,0.1)"
       },
     },
   },
