@@ -54,7 +54,7 @@ export default function ProductInformation({ product }) {
                     </Link>
                     {subCategory.items.length > 0 &&
                       subCategory.items.map((item) => (
-                        <div className="flex items-center gap-1" key={item._id}>
+                        <div className="flex items-center" key={item._id}>
                           <span className="mx-1 text-gray-400 text-[12px]">
                             /
                           </span>

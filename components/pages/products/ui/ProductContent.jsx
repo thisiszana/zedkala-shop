@@ -86,7 +86,7 @@ export default function ProductContent() {
         ))}
         <div ref={loadingTarget}></div>
       </div>
-      {!isFetchingNextPage && <ProductSkeletons count={5} />}
+      {isFetchingNextPage && <ProductSkeletons count={5} />}
     </>
   );
 }

@@ -30,7 +30,7 @@ export default function ImagePreview({ product }) {
   return (
     <div className="w-full flex flex-col-reverse lg:block">
       {product.discount?.value > 0 && (
-        <div className="flex items-center justify-between bg-[#fdecf0] w-full px-4 py-2 rounded-[8px] mt-[10px] lg:mt-0">
+        <div className="flex items-center justify-between bg-[#fdecf0] w-full px-4 py-2 rounded-[8px] mt-[10px] ">
           <span className="text-mainRed font-extrabold">
             {product.discount.title}
           </span>
@@ -107,13 +107,13 @@ export default function ImagePreview({ product }) {
                     className="relative cursor-pointer group"
                     onClick={() => openModal(img)}
                   >
-                    <div className="flex justify-center items-center">
+                    <div className="flex justify-center items-center h-[100px]">
                       <Image
                         src={img ? img : images.imageNotFound}
                         width={100}
                         height={100}
                         alt={shorterText(product.title, 4)}
-                        className="rounded-lg object-cover border"
+                        className="rounded-lg object-cover border h-full"
                       />
                     </div>
                   </div>

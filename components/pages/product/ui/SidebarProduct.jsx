@@ -48,11 +48,11 @@ export default function SidebarProduct({ product }) {
   }`;
 
   const bgClasses2 = `${
-    !product?.isGrocery.value ? "bg-mainGreen" : "bg-mainRed"
+    product?.isGrocery.value ? "bg-mainGreen" : "bg-mainRed"
   }`;
 
   const textClasses2 = `${
-    !product?.isGrocery.value ? "text-secondaryGreen" : "text-secondaryRed"
+    product?.isGrocery.value ? "text-secondaryGreen" : "text-secondaryRed"
   }`;
 
   return (
@@ -139,7 +139,7 @@ export default function SidebarProduct({ product }) {
               onClick={() => handleShowModal("ارسال رایگان")}
               title={
                 <>
-                  <div className="flex items-center gap-2 text-[#ef4056] text-[12px]">
+                  <div className="flex items-center gap-2 text-[#ef4056] text-[12px] border-b pb-2">
                     <span className="inline-flex items-center text-[22px]">
                       {icons.freeDelivery}
                     </span>

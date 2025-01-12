@@ -1,6 +1,7 @@
 "use client";
 
 import CustomBtn from "@/components/shared/CustomBtn";
+import { shorterText } from "@/utils/clientFun";
 import React, { useState, useEffect } from "react";
 
 export default function DescriptionProductInfo({ product, targetRef }) {
@@ -33,18 +34,12 @@ export default function DescriptionProductInfo({ product, targetRef }) {
       ? product.expertReview.map((review) => ({
           id: review?._id,
           title: review?.title,
-          description: review?.description
+          description: review?.description,
         }))
       : []),
   ];
 
-  const specificationSection = {
-    id: "specifications",
-    title: "مشخصات",
-    description: "",
-  };
-
-  const allSections = [...sections, specificationSection];
+  const allSections = [...sections];
 
   useEffect(() => {
     const handleScroll = () => {
@@ -73,7 +68,7 @@ export default function DescriptionProductInfo({ product, targetRef }) {
   return (
     <div className="bg-white relative z-30">
       <div className="sticky top-[60px] md:top-[85px] right-0 rounded-tl-[8px] rounded-bl-[8px] bg-white shadow-md w-fit">
-        <div className="flex items-center px-4 py-2 border-b gap-5 overflow-x-auto">
+        <div className="flex items-center flex-wrap px-4 py-2 border-b gap-5 overflow-x-auto">
           {allSections.map((section) => (
             <a
               key={section.id}
@@ -84,7 +79,7 @@ export default function DescriptionProductInfo({ product, targetRef }) {
                   : "text-gray-700 hover:text-mainRed"
               }`}
             >
-              {section.title}
+              {shorterText(section.title, 15)}
             </a>
           ))}
         </div>
@@ -139,8 +134,7 @@ function Specifications({ product, targetRef }) {
   return (
     <div
       ref={targetRef}
-      id="specifications"
-      className="bg-white md:bg-none h-fit p-4 rounded-md shadow-md hidden lg:block w-[50%]"
+      className="h-fit p-4 mt-4 border-t pt-3 hidden lg:block w-[50%]"
     >
       <h2 className="text-lg font-bold text-gray-800 mb-4">مشخصات</h2>
       <table className="w-full border-collapse">
