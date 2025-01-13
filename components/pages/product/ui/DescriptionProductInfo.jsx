@@ -69,48 +69,56 @@ export default function DescriptionProductInfo({ product, targetRef }) {
     <div className="bg-white relative z-30">
       <div className="sticky top-[60px] md:top-[85px] right-0 rounded-tl-[8px] rounded-bl-[8px] bg-white shadow-md w-fit">
         <div className="flex items-center flex-wrap px-4 py-2 border-b gap-5 overflow-x-auto">
-          {allSections.map((section) => (
-            <a
-              key={section.id}
-              href={`#${section.id}`}
-              className={`text-[12px] md:text-[14px] font-semibold whitespace-nowrap pb-1 transition ${
-                activeSection === section.id
-                  ? "text-mainRed border-b-2 border-mainRed"
-                  : "text-gray-700 hover:text-mainRed"
-              }`}
-            >
-              {shorterText(section.title, 15)}
-            </a>
-          ))}
+          {allSections
+            .filter(
+              (section) => section.title !== "" || section.description !== ""
+            )
+            .map((section) => (
+              <a
+                key={section.id}
+                href={`#${section.id}`}
+                className={`text-[12px] md:text-[14px] font-semibold whitespace-nowrap pb-1 transition ${
+                  activeSection === section.id
+                    ? "text-mainRed border-b-2 border-mainRed"
+                    : "text-gray-700 hover:text-mainRed"
+                }`}
+              >
+                {shorterText(section.title, 15)}
+              </a>
+            ))}
         </div>
       </div>
 
       <div className="flex flex-col lg:flex-row gap-5">
         <div className="mt-4 px-4 space-y-6 flex-1">
-          {sections.map((section) => {
-            const isExpanded = expandedSections[section.id] || false;
-            return (
-              <div
-                key={section.id}
-                id={section.id}
-                className="border-t pb-4 transition-opacity"
-              >
-                <h2 className="text-lg font-bold text-gray-800 mb-2">
-                  {section.title}
-                </h2>
-                <p className="text-sm text-gray-600 leading-relaxed text-justify">
-                  {truncateText(section?.description, 250, isExpanded)}
-                </p>
-                {section.description?.length > 250 && (
-                  <CustomBtn
-                    title={isExpanded ? "نمایش کمتر" : "نمایش بیشتر"}
-                    onClick={() => toggleExpand(section.id)}
-                    classNames="mt-2 text-sm font-semibold text-mainRed hover:underline"
-                  />
-                )}
-              </div>
-            );
-          })}
+          {sections
+            .filter(
+              (section) => section.title !== "" || section.description !== ""
+            )
+            .map((section) => {
+              const isExpanded = expandedSections[section.id] || false;
+              return (
+                <div
+                  key={section.id}
+                  id={section.id}
+                  className="border-t pb-4 transition-opacity"
+                >
+                  <h2 className="text-lg font-bold text-gray-800 mb-2">
+                    {section.title}
+                  </h2>
+                  <p className="text-sm text-gray-600 leading-relaxed text-justify">
+                    {truncateText(section?.description, 250, isExpanded)}
+                  </p>
+                  {section.description?.length > 250 && (
+                    <CustomBtn
+                      title={isExpanded ? "نمایش کمتر" : "نمایش بیشتر"}
+                      onClick={() => toggleExpand(section.id)}
+                      classNames="mt-2 text-sm font-semibold text-mainRed hover:underline"
+                    />
+                  )}
+                </div>
+              );
+            })}
         </div>
         <Specifications product={product} targetRef={targetRef} />
       </div>

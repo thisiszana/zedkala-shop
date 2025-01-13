@@ -24,7 +24,7 @@ export default function ProductsSort({
   };
 
   return (
-    <div className="border-b pb-2 mx-6 lg:mx-0 mt-[70px] sm:mt-[100px]">
+    <div className="border-b sticky top-[55px] sm:top-[85px] right-0 bg-white pb-2 mx-6 lg:mx-0 mb-[20px] sm:mb-[50px] z-[20]">
       <div className="hidden md:flex items-center justify-between">
         <div className="flex items-center gap-4">
           <span className="text-gray-600 font-medium text-[15px] flex items-center gap-2">

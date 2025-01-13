@@ -6,10 +6,8 @@ export default function ProductSkeleton({ count = 1, className, bgColor }) {
   return (
     <div
       className={`grid ${
-        count > 1
-          ? "w-full grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 p-6 justify-self-center"
-          : ""
-      } ${className}`}
+        count > 5 ? "mt-[40px] sm:mt-[100px]" : "mt-0"
+      } w-full grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 p-6 justify-self-center ${className}`}
     >
       {skeletons.map((_, index) => (
         <div
