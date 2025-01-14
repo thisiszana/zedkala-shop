@@ -9,13 +9,10 @@ import { fetchEditUserInfo } from "@/services/req";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 
-export default function ShareFavorite({ productId }) {
+export default function ShareFavorite({ productId, isGrocery }) {
   const { user, userData } = useAuth();
   const { accessToken } = user || "";
-
-  useEffect(() => {
-    if (accessToken) useUserQuery(accessToken);
-  }, [accessToken]);
+  useUserQuery(accessToken);
 
   const [isFavorite, setIsFavorite] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -83,19 +80,19 @@ export default function ShareFavorite({ productId }) {
 
   return (
     <div className="flex items-center gap-4 text-[16px]">
-      {isLoading ? (
-        <Loader size={4} />
-      ) : (
-        <span
-          onClick={handleAddFavoriteProduct}
-          className={`cursor-pointer p-2 rounded-full ${
-            isFavorite ? "bg-mainRed text-white" : "bg-gray-200"
-          }`}
-        >
-          {isFavorite ? icons.heartFill : icons.heart}
-        </span>
-      )}
-
+      {!isGrocery &&
+        (isLoading ? (
+          <Loader size={4} />
+        ) : (
+          <span
+            onClick={handleAddFavoriteProduct}
+            className={`cursor-pointer p-2 rounded-full ${
+              isFavorite ? "bg-mainRed text-white" : "bg-gray-200"
+            }`}
+          >
+            {isFavorite ? icons.heartFill : icons.heart}
+          </span>
+        ))}
       <span onClick={handleShare} className="cursor-pointer">
         {icons.share}
       </span>

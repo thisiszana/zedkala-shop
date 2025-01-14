@@ -93,7 +93,7 @@ export default function ProductInformation({ product }) {
                     ))}
                   </div>
 
-                  <ShareFavorite productId={product._id} />
+                  <ShareFavorite productId={product._id} isGrocery={product?.isGrocery.value} />
                 </div>
                 <h1 className="text-[12px] md:text-[16px] mr-4 md:mr-0 font-bold">
                   {product.title}

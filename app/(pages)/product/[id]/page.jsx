@@ -1,12 +1,13 @@
 import ProductPage from "@/components/pages/product/ProductPage";
 import { fetchProduct } from "@/services/req";
 
+export const dynamic = "force-dynamic";
+
 export default async function page({ params }) {
   const id = (await params).id;
 
   return <ProductPage id={id} />;
 }
-
 
 export async function generateMetadata({ params }) {
   const id = (await params).id;
