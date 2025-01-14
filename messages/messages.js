@@ -1,6 +1,9 @@
 export const MESSAGES = {
   confirmPassword: "رمز عبور جدید نادرست است!",
 
+  addFavoriteproduct: "محصول به لیست اضافه شد.",
+  deleteFavoriteproduct: "محصول از لیست علاقه‌مندی‌ها حذف شد.",
+  productIdNotFound: "آیدی محصول مورد نظر یافت نشد!",
   uploadAvatar:
     "فرمت یا اندازه‌ی فایل معتبر نیست. لطفاً فایل مناسب آپلود کنید.",
   userUnAuth: "لطفاً ابتدا وارد حساب کاربری خود شوید.",

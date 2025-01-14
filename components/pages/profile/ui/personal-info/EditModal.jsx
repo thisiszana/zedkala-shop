@@ -53,12 +53,16 @@ const EditModal = ({ visible, onClose, type, name, id }) => {
     if (birthDate) {
       filteredData.birthDate = birthDate;
     }
-    
-    const res = await fetchEditUserInfo({ accessToken, filteredData, id });
-    
+
+    const res = await fetchEditUserInfo({
+      accessToken,
+      data: filteredData,
+      id,
+    });
+
     if (res.success === true) {
       queryClient.invalidateQueries({ queryKey: [QUERY_KEY.user_session] });
-      toast.success(res.msg)
+      toast.success(res.msg);
       reset();
       onClose(false);
     } else {

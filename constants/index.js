@@ -25,6 +25,8 @@ import { TbTruckDelivery } from "react-icons/tb";
 import { FiGift, FiEdit3 } from "react-icons/fi";
 import { GoShieldCheck } from "react-icons/go";
 import { TiInfoLarge } from "react-icons/ti";
+import { GoHeartFill } from "react-icons/go";
+import { GoHeart } from "react-icons/go";
 import { FaShop } from "react-icons/fa6";
 import { GoHome } from "react-icons/go";
 
@@ -36,6 +38,8 @@ export const icons = {
   shop: <FaShop />,
   edit: <FiEdit3 />,
   heart: <CiHeart />,
+  heart1: <GoHeart />,
+  heartFill: <GoHeartFill />,
   user: <FaRegUser />,
   share: <CiShare2 />,
   info: <TiInfoLarge />,

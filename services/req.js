@@ -42,7 +42,7 @@ export const fetchRefreshToken = async (refreshToken) => {
   return responseData;
 };
 
-export const fetchUserSession = async ({ accessToken }) => {  
+export const fetchUserSession = async ({ accessToken }) => {
   const res = await fetch(`${BASE_URL}/api/user`, {
     method: "GET",
     headers: {
@@ -134,16 +134,16 @@ export const fetchProduct = async (id) => {
   return responseData;
 };
 
-export const fetchEditUserInfo = async ({ accessToken, filteredData, id }) => {
-  const res = await fetch(`${BASE_URL}/api/user/${id}`, {
+export const fetchEditUserInfo = async ({ accessToken, data, id }) => {
+  console.log(accessToken, data, id);
+  const res = await fetch(`${BASE_URL}/api/user`, {
     method: "PATCH",
-    body: JSON.stringify(filteredData),
+    body: JSON.stringify(data),
     headers: {
       "Content-Type": "application/json",
       Authorization: `Bearer ${accessToken}`,
     },
   });
-
   const responseData = await res.json();
   return responseData;
 };
