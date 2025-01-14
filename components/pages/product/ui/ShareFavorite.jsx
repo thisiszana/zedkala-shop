@@ -5,7 +5,9 @@ import { icons } from "@/constants";
 import { useAuth } from "@/context/AuthContext";
 import { useUserQuery } from "@/hooks/useUserQuery";
 import { MESSAGES } from "@/messages/messages";
+import { QUERY_KEY } from "@/services/queryKey";
 import { fetchEditUserInfo } from "@/services/req";
+import { useQueryClient } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 
@@ -14,16 +16,18 @@ export default function ShareFavorite({ productId, isGrocery }) {
   const { accessToken } = user || "";
   useUserQuery(accessToken);
 
+  const queryClient = useQueryClient();
+
   const [isFavorite, setIsFavorite] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    setIsLoading(true);
     if (userData?.user?.favoriteProducts) {
-      const isAvailableProduct =
-        userData.user.favoriteProducts.includes(productId);
+
+      const isAvailableProduct = userData.user.favoriteProducts.some(
+        (product) => product._id === productId
+      );
       setIsFavorite(isAvailableProduct);
-      setIsLoading(false);
     }
   }, [userData, productId]);
 
@@ -67,6 +71,7 @@ export default function ShareFavorite({ productId, isGrocery }) {
 
     if (res.success === true) {
       setIsLoading(false);
+      queryClient.invalidateQueries({ queryKey: [QUERY_KEY.user_session] });
       toast.success(
         isFavorite
           ? MESSAGES.deleteFavoriteproduct

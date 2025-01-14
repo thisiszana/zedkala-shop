@@ -78,7 +78,7 @@ export default function ProductInformation({ product }) {
         <div className="flex flex-col mt-[390px] md:mt-0 w-full lg:w-[65%] z-40">
           <div className="w-full p-2 md:p-6 lg:p-8 flex justify-between flex-col lg:flex-row gap-6 bg-white border-t md:border-t-[0] rounded-tr-[30px] md:rounded-tr-[0] rounded-tl-[30px] md:rounded-tl-[0] shadow-boxProductInfo lg:shadow-none">
             <div className="space-y-6 w-full lg:w-full">
-              <div className="flex flex-col gap-3 md:w-[65%]">
+              <div className="flex flex-col gap-3 lg:w-[65%]">
                 <div className="flex flex-wrap items-center justify-between text-xs md:text-sm text-gray-700 mx-4 md:mx-0 mt-2 lg:mt-0">
                   <div className="flex flex-wrap items-center gap-2">
                     {product.keywords.map((key, index) => (

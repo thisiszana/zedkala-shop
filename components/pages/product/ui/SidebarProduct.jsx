@@ -58,6 +58,7 @@ export default function SidebarProduct({ product }) {
   return (
     <>
       <div className="hidden md:bg-white md:border md:flex md:flex-col md:rounded-[8px] md:shadow-md md:w-[35%] md:p-4 md:mt-8 md:h-fit relative z-50">
+        <h2 className="text-[10px] text-left">{product.brand}</h2>
         <div className="flex flex-col gap-4 mb-4">
           <h1 className="text-[14px] font-bold">فروشنده</h1>
           <div className="flex items-center gap-2">

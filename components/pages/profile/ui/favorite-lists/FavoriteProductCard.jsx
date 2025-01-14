@@ -17,10 +17,12 @@ import { useAuth } from "@/context/AuthContext";
 import { useUserQuery } from "@/hooks/useUserQuery";
 import Loader from "@/components/shared/Loader";
 import toast from "react-hot-toast";
+import { MESSAGES } from "@/messages/messages";
 
 export default function FavoriteProductCard({ product }) {
   const [isHovered, setIsHovered] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [isFavorite, setIsFavorite] = useState(false);
 
   const { user, userData } = useAuth();
   const { accessToken } = user || "";
