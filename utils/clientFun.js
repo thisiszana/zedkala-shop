@@ -22,7 +22,7 @@ export const sp = (number) => {
 
 export const isInCart = (productId, selectedItems) => {
   if (selectedItems) {
-    const existingIndex = selectedItems.findIndex((item) => item === productId);
+    const existingIndex = selectedItems.findIndex((item) => item._id === productId);
     return existingIndex;
   } else {
     return -1;

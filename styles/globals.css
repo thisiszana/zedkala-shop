@@ -134,6 +134,16 @@ body {
   transform: scale(1.3);
 }
 
+.custom-drawer .ant-drawer-content {
+  width: 100%;
+}
+
+@media (min-width: 768px) {
+  .custom-drawer .ant-drawer-content {
+    width: 550px;
+  }
+}
+
 .maxWidth {
   @apply max-w-[1600px] mx-auto;
 }

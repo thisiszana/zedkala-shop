@@ -16,9 +16,14 @@ import DesktopNav from "./DesktopNav";
 import { images } from "@/constants";
 import MobileNav from "./MobileNav";
 import { useUserCart } from "@/hooks/useUserQuery";
+import CartDrawer from "../shared/cart/CartDrawer";
+import CustomBtn from "../shared/CustomBtn";
+import CartDrawerSkeleton from "../shared/cart/CartDrawerSkeleton";
+import { e2p } from "@/utils/clientFun";
 
 export default function Header() {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isOpenDarawer, setIsOpenDarawer] = useState(false);
 
   const { logout, user, isLoading, userData } = useAuth();
   const { accessToken } = user || "";
@@ -29,6 +34,8 @@ export default function Header() {
   const totalProduct = userCart?.cart?.totalProductsCount;
 
   const pathname = usePathname();
+
+  const cartDarawerHandler = () => setIsOpenDarawer(!isOpenDarawer);
   return (
     <>
       <header className="backdrop-blur-[5px] bg-white/70 border-b-2 fixed top-0 z-[1000] w-full mb-[60px]">
@@ -74,13 +81,15 @@ export default function Header() {
             {userLoading ? (
               <Loader size={4} color="#000" />
             ) : (
-              <Link href="/checkout/cart">
-                <ShoppingCart />
-              </Link>
+              <CustomBtn
+                onClick={cartDarawerHandler}
+                icon={<ShoppingCart />}
+                classNames="text-[12px]"
+              />
             )}
             {totalProduct > 0 && (
               <div className="w-[17px] h-[17px] flex items-center justify-center text-[10px] absolute bottom-6 -left-[10px] lg:bottom-8 bg-red-600 text-white rounded-full">
-                {totalProduct}
+                {e2p(totalProduct)}
               </div>
             )}
           </div>
@@ -92,7 +101,17 @@ export default function Header() {
         isLoading={isLoading}
         userLoading={userLoading}
         totalProduct={totalProduct}
+        setIsOpenDarawer={setIsOpenDarawer}
       />
+      {userLoading ? (
+        <CartDrawerSkeleton />
+      ) : (
+        <CartDrawer
+          isOpenDarawer={isOpenDarawer}
+          setIsOpenDarawer={setIsOpenDarawer}
+          cartData={userCart}
+        />
+      )}
     </>
   );
 }

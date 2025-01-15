@@ -53,9 +53,9 @@ export const icons = {
   history: <BsClockHistory />,
   question: <PiQuestionLight />,
   chat: <IoChatbubbleOutline />,
+  location: <IoLocationOutline />,
   category: <PiBoundingBoxLight />,
   menuBars: <HiBars3BottomRight />,
-  location: <IoLocationOutline />,
   fastDelivery: <TbTruckDelivery />,
   freeDelivery: <CiDeliveryTruck />,
   important: <MdNotificationImportant />,
@@ -71,8 +71,9 @@ export const images = {
   shopBanner: "/images/shop-banner.png",
   avatar: `/images/avatars/avatar_6.jpg`,
   freeDeliverySvg: "/icon/free-delivery.svg",
-  freeDeliverySvg1: "/icon/free-delivery1.svg",
   imageNotFound: "/images/imagenotfound.jfif",
+  freeDeliverySvg1: "/icon/free-delivery1.svg",
+  imageNotFoundCart: "/images/fresh-empty-cart.webp",
 };
 
 export const navLinks = [

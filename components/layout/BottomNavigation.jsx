@@ -16,6 +16,7 @@ export default function BottomNavigation({
   isLoading,
   userLoading,
   totalProduct,
+  setIsOpenDarawer,
 }) {
   const pathname = usePathname();
   const [prevPath, setPrevPath] = useState(pathname);
@@ -96,21 +97,21 @@ export default function BottomNavigation({
             ></motion.span>
           )}
         </Link>
-        <Link
-          href="/cart"
+        <div
+          onClick={() => setIsOpenDarawer(true)}
           className={`relative text-[22px] flex items-center justify-center w-10 h-10 rounded-full cursor-pointer transition-all ${
-            pathname === "/cart"
+            pathname === "/checkout/cart"
               ? "bg-cartIcon shadow-cartMain text-lightGray"
               : "text-lightGray"
           }`}
         >
-          {userLoading ? <Loader size={4} color="#000" /> : <ShoppingCart />}
+          {userLoading ? <Loader size={4} color="#fff" /> : <ShoppingCart />}
           {totalProduct > 0 && (
             <div className="w-[17px] h-[17px] flex items-center justify-center text-[10px] absolute bottom-8 -left-[10px] lg:bottom-8 bg-red-600 text-white rounded-full">
               {totalProduct}
             </div>
           )}
-          {pathname === "/cart" && (
+          {pathname === "/checkout/cart" && (
             <motion.span
               className="absolute w-10 h-2 bg-cartIcon shadow-cart rounded-full"
               initial={{ opacity: 0, y: -20, scaleX: 0 }}
@@ -127,7 +128,7 @@ export default function BottomNavigation({
               }}
             ></motion.span>
           )}
-        </Link>
+        </div>
         <Link
           href={`${userData?.user ? "/profile/profile-info" : "/login"}`}
           className={`relative text-[22px] flex items-center justify-center w-10 h-10 rounded-full cursor-pointer transition-all ${

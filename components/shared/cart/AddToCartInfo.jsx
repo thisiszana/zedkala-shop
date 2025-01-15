@@ -4,7 +4,7 @@ import { useAuth } from "@/context/AuthContext";
 import { useAddToCart } from "@/hooks/useAddToCart";
 import Loader from "../Loader";
 import CustomBtn from "../CustomBtn";
-import { isInCart, productQuantity } from "@/utils/clientFun";
+import { e2p, isInCart, productQuantity } from "@/utils/clientFun";
 import { useUserCart } from "@/hooks/useUserQuery";
 import { Exclamation, Trash } from "@/components/icons/Icons";
 import { useState } from "react";
@@ -18,7 +18,7 @@ export default function AddToCartInfo({ productId, stock, isGrocery }) {
   const [action, setAction] = useState("");
   const { user } = useAuth();
   const { accessToken } = user || "";
-
+  
   const { data, isFetching, isError } = useUserCart(accessToken, productId);
   const { userCart } = data || {};
 
@@ -166,7 +166,7 @@ export default function AddToCartInfo({ productId, stock, isGrocery }) {
                   quantity === stock ? "text-red-500 text-xs" : "text-base"
                 }`}
               >
-                {quantity && quantity === stock ? "حداکثر مقدار" : quantity}
+                {quantity && quantity === stock ? "حداکثر مقدار" : e2p(quantity)}
               </span>
             )}
             <CustomBtn
