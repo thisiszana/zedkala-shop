@@ -1,6 +1,10 @@
 "use client";
 
 import { useState } from "react";
+
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+
 import CustomBtn from "@/components/shared/CustomBtn";
 
 export default function SelectColorAndSize({ product }) {
@@ -38,11 +42,38 @@ export default function SelectColorAndSize({ product }) {
               {colorTitle}
             </span>
           </div>
-          <div className="flex gap-2">
-            {product.colors?.map((color) => (
+          <div className="md:hidden">
+            <Swiper
+              spaceBetween={10}
+              slidesPerView="auto"
+              slidesOffsetAfter={10}
+              className="flex gap-2"
+            >
+              {product.colors.map((color) => (
+                <SwiperSlide key={color._id} className="!w-fit">
+                  <div className="flex items-center gap-2 border rounded-lg px-2 py-1">
+                    <CustomBtn
+                      onClick={() => handleSelectColor(color)}
+                      style={{ backgroundColor: color.value }}
+                      classNames={`w-6 h-6 rounded-full border-2 ${
+                        selectedColor === color.value
+                          ? "border-black"
+                          : "border-gray-300"
+                      }`}
+                    />
+                    <span className="text-[10px] md:text-[14px] font-bold">
+                      {color.title}
+                    </span>
+                  </div>
+                </SwiperSlide>
+              ))}
+            </Swiper>
+          </div>
+          <div className="hidden md:flex gap-2 md:flex-wrap">
+            {product.colors.map((color) => (
               <div
                 key={color._id}
-                className="flex items-center gap-2 border rounded-lg px-2 py-1"
+                className="flex items-center gap-2 border rounded-lg px-2 py-1 w-fit"
               >
                 <CustomBtn
                   onClick={() => handleSelectColor(color)}
@@ -53,9 +84,6 @@ export default function SelectColorAndSize({ product }) {
                       : "border-gray-300"
                   }`}
                 />
-                <span className="text-[10px] md:text-[14px] font-bold">
-                  {color.title}
-                </span>
               </div>
             ))}
           </div>
