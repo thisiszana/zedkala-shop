@@ -28,7 +28,8 @@ export default function ImagePreview({ product }) {
   };
 
   return (
-    <div className="w-full flex flex-col lg:block">
+    <div className="fixed top-[135px] left-0 md:static w-full lg:w-[30%]">
+      <div className="w-full flex flex-col lg:block">
       {product.discount?.value > 0 && (
         <div className="hidden lg:flex lg:items-center lg:justify-between lg:bg-[#fdecf0] lg:w-full lg:px-4 lg:py-1 lg:rounded-[8px] lg:mt-[5px]">
           <span className="text-mainRed font-extrabold">
@@ -163,5 +164,7 @@ export default function ImagePreview({ product }) {
         </div>
       )}
     </div>
+    </div>
+    
   );
 }

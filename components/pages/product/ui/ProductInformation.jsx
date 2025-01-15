@@ -15,6 +15,7 @@ import ShareFavorite from "./ShareFavorite";
 import ShippingInfo from "./ShippingInfo";
 import BackBtn from "@/components/shared/BackBtn";
 import DiscountBadge from "../../products/ui/DiscountBadge";
+import CategorySlider from "./CategorySlider";
 
 export default function ProductInformation({ product }) {
   const targetRef = useRef(null);
@@ -27,56 +28,11 @@ export default function ProductInformation({ product }) {
   console.log(product);
   return (
     <>
-      <div className="flex flex-col lg:flex-row gap-5">
-        <div className="fixed top-[65px] left-0 md:static w-full lg:w-[30%]">
-          <div className="flex items-center justify-between border-b pb-3">
-            <div className="text-lg text-gray-700 flex items-center flex-wrap mx-1 lg:mx-0 mr-2">
-              <Link href="/products" className="text-gray-400 text-[12px]">
-                زد کالا
-              </Link>
-              <span className="mx-1 text-gray-400 text-[12px]">/</span>
-              {product.categoryName && (
-                <Link
-                  href={`/products/${product.slug}`}
-                  className="text-gray-400 text-[12px]"
-                >
-                  {product.categoryName}
-                </Link>
-              )}
-              {product.subCategories.length > 0 &&
-                product.subCategories.map((subCategory) => (
-                  <React.Fragment key={subCategory._id}>
-                    <span className="mx-1 text-gray-400 text-[12px]">/</span>
-                    <Link
-                      href={`/products/${subCategory.slug}`}
-                      className="text-gray-400 text-[12px]"
-                    >
-                      {subCategory.name}
-                    </Link>
-                    {subCategory.items.length > 0 &&
-                      subCategory.items.map((item) => (
-                        <div className="flex items-center" key={item._id}>
-                          <span className="mx-1 text-gray-400 text-[12px]">
-                            /
-                          </span>
-                          <Link
-                            href={`/products/${item.slug}`}
-                            className="text-gray-400 text-[12px]"
-                          >
-                            {item.name}
-                          </Link>
-                        </div>
-                      ))}
-                  </React.Fragment>
-                ))}
-            </div>
-            <BackBtn backLink="/products" />
-          </div>
+      <CategorySlider product={product} />
+      <div className="flex flex-col lg:flex-row gap-5 relative">
+        <ImagePreview product={product} />
 
-          <ImagePreview product={product} />
-        </div>
-
-        <div className="flex flex-col mt-[400px] md:mt-0 w-full lg:w-[65%] z-40 relative">
+        <div className="flex flex-col mt-[450px] md:mt-[30px] lg:mt-0 w-full lg:w-[65%] z-40 relative">
           {product.discount?.value > 0 && (
             <div className="flex items-center justify-between absolute top-[-45px] bg-[#fdecf0] w-full px-4 pt-1 pb-[40px] rounded-[8px] mt-[5px] rounded-tl-[30px] rounded-tr-[30px] border-t-4 border-t-mainRed z-10 lg:hidden">
               <span className="text-mainRed font-extrabold">
