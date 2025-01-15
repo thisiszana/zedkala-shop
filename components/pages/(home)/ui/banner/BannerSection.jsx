@@ -1,7 +1,6 @@
-import { fetchBanner } from "@/services/req";
-import React from "react";
-import BannerSlider from "./BannerSlider";
 import BannerSliderSkeleton from "./BannerSliderSkeleton";
+import { fetchBanner } from "@/services/req";
+import BannerSlider from "./BannerSlider";
 
 export default async function BannerSection() {
   try {

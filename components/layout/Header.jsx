@@ -103,15 +103,11 @@ export default function Header() {
         totalProduct={totalProduct}
         setIsOpenDarawer={setIsOpenDarawer}
       />
-      {userLoading ? (
-        <CartDrawerSkeleton />
-      ) : (
-        <CartDrawer
-          isOpenDarawer={isOpenDarawer}
-          setIsOpenDarawer={setIsOpenDarawer}
-          cartData={userCart}
-        />
-      )}
+      <CartDrawer
+        isOpenDarawer={isOpenDarawer}
+        setIsOpenDarawer={setIsOpenDarawer}
+        cartData={userCart}
+      />
     </>
   );
 }
