@@ -30,7 +30,7 @@ export default function ImagePreview({ product }) {
   return (
     <div className="w-full flex flex-col lg:block">
       {product.discount?.value > 0 && (
-        <div className="flex items-center justify-between bg-[#fdecf0] w-full px-4 py-1 rounded-[8px] mt-[5px] ">
+        <div className="hidden lg:flex lg:items-center lg:justify-between lg:bg-[#fdecf0] lg:w-full lg:px-4 lg:py-1 lg:rounded-[8px] lg:mt-[5px]">
           <span className="text-mainRed font-extrabold">
             {product.discount.title}
           </span>
@@ -38,7 +38,7 @@ export default function ImagePreview({ product }) {
         </div>
       )}
 
-      <div className="lg:hidden mb-3">
+      <div className="lg:hidden">
         <Swiper
           modules={[Pagination]}
           pagination={{
@@ -52,7 +52,7 @@ export default function ImagePreview({ product }) {
         >
           {product.images.map((img, index) => (
             <SwiperSlide key={index}>
-              <div className="flex justify-center items-center">
+              <div className="flex justify-center items-center h-[300px]">
                 <Image
                   src={img || images.imageNotFound}
                   width={300}

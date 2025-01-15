@@ -14,6 +14,7 @@ import DescriptionProductInfo from "./DescriptionProductInfo";
 import ShareFavorite from "./ShareFavorite";
 import ShippingInfo from "./ShippingInfo";
 import BackBtn from "@/components/shared/BackBtn";
+import DiscountBadge from "../../products/ui/DiscountBadge";
 
 export default function ProductInformation({ product }) {
   const targetRef = useRef(null);
@@ -75,8 +76,16 @@ export default function ProductInformation({ product }) {
           <ImagePreview product={product} />
         </div>
 
-        <div className="flex flex-col mt-[390px] md:mt-0 w-full lg:w-[65%] z-40">
-          <div className="w-full p-2 md:p-6 lg:p-8 flex justify-between flex-col lg:flex-row gap-6 bg-white border-t md:border-t-[0] rounded-tr-[30px] md:rounded-tr-[0] rounded-tl-[30px] md:rounded-tl-[0] shadow-boxProductInfo lg:shadow-none">
+        <div className="flex flex-col mt-[400px] md:mt-0 w-full lg:w-[65%] z-40 relative">
+          {product.discount?.value > 0 && (
+            <div className="flex items-center justify-between absolute top-[-45px] bg-[#fdecf0] w-full px-4 pt-1 pb-[40px] rounded-[8px] mt-[5px] rounded-tl-[30px] rounded-tr-[30px] border-t-4 border-t-mainRed z-10 lg:hidden">
+              <span className="text-mainRed font-extrabold">
+                {product.discount.title}
+              </span>
+              <DiscountBadge discount={product.discount} showTimerOnly={true} />
+            </div>
+          )}
+          <div className="w-full p-2 pt-0 md:p-6 lg:p-8 flex justify-between flex-col lg:flex-row gap-6 bg-white border-t md:border-t-[0] rounded-tr-[30px] md:rounded-tr-[0] rounded-tl-[30px] md:rounded-tl-[0] z-30">
             <div className="space-y-6 w-full lg:w-full">
               <div className="flex flex-col gap-3 lg:w-[65%]">
                 <div className="flex flex-wrap items-center justify-between text-xs md:text-sm text-gray-700 mx-4 md:mx-0 mt-2 lg:mt-0">
@@ -93,7 +102,10 @@ export default function ProductInformation({ product }) {
                     ))}
                   </div>
 
-                  <ShareFavorite productId={product._id} isGrocery={product?.isGrocery.value} />
+                  <ShareFavorite
+                    productId={product._id}
+                    isGrocery={product?.isGrocery.value}
+                  />
                 </div>
                 <h1 className="text-[12px] md:text-[16px] mr-4 md:mr-0 font-bold">
                   {product.title}
